@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
+import type { GroupBase } from "react-select";
 import {
   findSupplierOptionByCode,
   searchSupplierOptions,
@@ -16,6 +17,17 @@ type Props = {
   placeholder?: string;
   noOptionsText?: string;
 };
+
+// react-select's option-list type allows groups, but our loadOptions
+// only ever returns a flat SupplierOption[]. Flatten defensively so
+// TypeScript (and any future grouped usage) stays safe.
+function flattenSupplierOptions(
+  options: readonly (SupplierOption | GroupBase<SupplierOption>)[],
+): SupplierOption[] {
+  return options.flatMap((option) =>
+    "options" in option ? option.options : [option],
+  );
+}
 
 export default function SupplierSelect({
   value,
@@ -120,7 +132,7 @@ export default function SupplierSelect({
         isValidNewOption={(inputValue, _selected, options) => {
           const code = inputValue.trim();
           if (!code) return false;
-          return !options.some(
+          return !flattenSupplierOptions(options).some(
             (option) => option.value.toLowerCase() === code.toLowerCase(),
           );
         }}
