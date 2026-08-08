@@ -1,0 +1,37 @@
+{
+  "brand": "ERP ADMIN",
+  "name": "Data Simulation",
+  "subtitle": "ERP data simulation and transactions.",
+  "loginPrompt": "Please sign in to access the admin area.",
+  "openMenu": "Open menu",
+  "closeMenu": "Close menu",
+  "nav": {
+    "dashboard": "Dashboard",
+    "materials": "Material Master",
+    "partners": "Business Partners",
+    "receiptInput": "03 · Goods Receipt",
+    "issues": "06 · Material Issue",
+    "availability": "Stock Availability",
+    "currentStock": "Current Stock",
+    "ledger": "Stock Ledger",
+    "bom": "Bill of Materials",
+    "analysis": "Business Process",
+    "users": "User Management",
+    "purchaseRequisition": "01 · Purchase Requisition",
+    "purchaseOrder": "02 · Purchase Order",
+    "incomingQuality": "04 · Incoming Quality Check",
+    "rawMaterialWarehouse": "05 · Raw Material Warehouse",
+    "productionOrder": "07 · Production Order",
+    "manufacturing": "08 · Manufacturing Process",
+    "finishedGoodsReceipt": "09 · Finished Goods Receipt",
+    "finishedGoodsWarehouse": "10 · FG Warehouse",
+    "salesOrder": "11 · Sales / Delivery Order",
+    "customerDelivery": "12 · Customer Delivery"
+  },
+  "sections": {
+    "process": "Process Flow",
+    "controls": "Controls & Inventory",
+    "masterData": "Master Data",
+    "overview": "Overview"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "code": "Code",
+    "name": "Name",
+    "category": "Category",
+    "unit": "Unit",
+    "type": "Type",
+    "receivedAt": "Date",
+    "receiptCode": "Receipt",
+    "materialCode": "Material",
+    "batchNumber": "Batch",
+    "expiryDate": "Expiry",
+    "quantity": "Qty",
+    "requiredQuantity": "Required Qty"
+  },
+  "addData": "Add data",
+  "deleteConfirm": "Soft-delete this record? It will remain in the audit trail.",
+  "saveFailed": "Failed to save data",
+  "deleteFailed": "Failed to delete data",
+  "createSuccess": "Data created successfully.",
+  "updateSuccess": "Data updated successfully.",
+  "deleteSuccess": "Data deleted successfully.",
+  "refreshFailed": "The operation succeeded, but the latest data could not be refreshed."
+}

@@ -1,0 +1,13 @@
+{
+  "materials": "자재 마스터",
+  "businessPartners": "거래처",
+  "goodsReceipts": "입고 거래",
+  "bom": "자재 명세서",
+  "currentStock": "현재 재고",
+  "receiptInput": "입고 입력",
+  "materialIssue": "자재 출고 입력",
+  "availability": "재고 가용성",
+  "ledger": "재고 원장",
+  "analysis": "비즈니스 프로세스 분석",
+  "users": "사용자 관리"
+}

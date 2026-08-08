@@ -1,0 +1,37 @@
+{
+  "brand": "ERP 관리자",
+  "name": "데이터 시뮬레이션",
+  "subtitle": "ERP 데이터 및 거래 시뮬레이션.",
+  "loginPrompt": "관리자 영역에 접근하려면 로그인하세요.",
+  "openMenu": "메뉴 열기",
+  "closeMenu": "메뉴 닫기",
+  "nav": {
+    "dashboard": "대시보드",
+    "materials": "자재 마스터",
+    "partners": "거래처",
+    "receiptInput": "03 · 입고",
+    "issues": "06 · 자재 출고",
+    "availability": "재고 가용성",
+    "currentStock": "현재 재고",
+    "ledger": "재고 원장",
+    "bom": "자재 명세서",
+    "analysis": "비즈니스 프로세스",
+    "users": "사용자 관리",
+    "purchaseRequisition": "01 · 구매 요청",
+    "purchaseOrder": "02 · 구매 주문",
+    "incomingQuality": "04 · 입고 품질 검사",
+    "rawMaterialWarehouse": "05 · 원자재 창고",
+    "productionOrder": "07 · 생산 오더",
+    "manufacturing": "08 · 제조 공정",
+    "finishedGoodsReceipt": "09 · 완제품 입고",
+    "finishedGoodsWarehouse": "10 · 완제품 창고",
+    "salesOrder": "11 · 판매 / 출고 오더",
+    "customerDelivery": "12 · 고객 배송"
+  },
+  "sections": {
+    "process": "프로세스 흐름",
+    "controls": "재고 및 제어",
+    "masterData": "마스터 데이터",
+    "overview": "개요"
+  }
+}

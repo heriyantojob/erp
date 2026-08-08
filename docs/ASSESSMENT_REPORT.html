@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>FKA ERP Technical Assessment Report</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">FKA ERP Technical Assessment Report</h1>
+</header>
+<h1 id="fka-erp-technical-assessment-report">FKA ERP Technical
+Assessment Report</h1>
+<p><strong>Assessment:</strong> IT Inventory System Developer - PT
+French Korean Aromatics<br />
+<strong>Prototype:</strong> FKA ERP Mini Prototype<br />
+<strong>Database:</strong> PostgreSQL<br />
+<strong>Frontend:</strong> Next.js / React / TypeScript<br />
+<strong>Backend:</strong> Express / TypeScript / Drizzle ORM<br />
+<strong>Authentication:</strong> Better Auth<br />
+<strong>Scope:</strong> inventory and manufacturing transaction core,
+with additional purchasing, production, quality, delivery, RBAC and
+audit prototype features.</p>
+<hr />
+<h2 id="1-business-process-analysis">1. Business Process Analysis</h2>
+<p>The full process analysed for the assessment is:</p>
+<pre class="text"><code>Purchase Requisition
+-&gt; Purchase Order
+-&gt; Goods Receipt
+-&gt; Incoming Quality Check
+-&gt; Raw Material Warehouse
+-&gt; Material Issue
+-&gt; Production Order
+-&gt; Manufacturing Process
+-&gt; Finished Goods Receipt
+-&gt; Finished Goods Warehouse
+-&gt; Sales / Delivery Order
+-&gt; Customer Delivery</code></pre>
+<p>The detailed responsibility, document, inventory impact,
+traceability, approval/validation, quality status and future Customs/ERP
+control points are documented in
+<strong><code>docs/PROCESS_FLOW.md</code></strong>.</p>
+<h3 id="key-flow-summary">Key flow summary</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Main owner</th>
+<th style="text-align: right;">Inventory effect</th>
+<th>Main control</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Purchase Requisition</td>
+<td>Production / Purchasing</td>
+<td style="text-align: right;">None</td>
+<td>Material, unit, quantity and requirement validation</td>
+</tr>
+<tr class="even">
+<td>Purchase Order</td>
+<td>Purchasing</td>
+<td style="text-align: right;">None</td>
+<td>Active supplier, unique document and status</td>
+</tr>
+<tr class="odd">
+<td>Goods Receipt</td>
+<td>Warehouse</td>
+<td style="text-align: right;">Increase on-hand in quarantine</td>
+<td>PO/material/unit/qty validation, batch and duplicate prevention</td>
+</tr>
+<tr class="even">
+<td>Incoming Quality</td>
+<td>QA / Approver</td>
+<td style="text-align: right;">No quantity change</td>
+<td>Release or reject receipt batch</td>
+</tr>
+<tr class="odd">
+<td>Raw Material Warehouse</td>
+<td>Warehouse</td>
+<td style="text-align: right;">Available stock after release</td>
+<td>Material + batch + warehouse + location balance</td>
+</tr>
+<tr class="even">
+<td>Material Issue</td>
+<td>Warehouse</td>
+<td style="text-align: right;">Decrease raw material</td>
+<td>Production-order link, FIFO/selected batch, no negative stock</td>
+</tr>
+<tr class="odd">
+<td>Production Order</td>
+<td>Production</td>
+<td style="text-align: right;">None at creation</td>
+<td>Planned quantity/BOM/status validation</td>
+</tr>
+<tr class="even">
+<td>Manufacturing</td>
+<td>Production</td>
+<td style="text-align: right;">Consumption already recorded by
+issue</td>
+<td>Exact input batches tied to production order</td>
+</tr>
+<tr class="odd">
+<td>Finished Goods Receipt</td>
+<td>Production / Warehouse</td>
+<td style="text-align: right;">Increase FG</td>
+<td>Production order + output batch + quantity validation</td>
+</tr>
+<tr class="even">
+<td>FG Warehouse</td>
+<td>Warehouse</td>
+<td style="text-align: right;">Holds deliverable FG</td>
+<td>FG balance by batch/location</td>
+</tr>
+<tr class="odd">
+<td>Sales / Delivery Order</td>
+<td>Sales / Logistics</td>
+<td style="text-align: right;">Reservation may reduce availability</td>
+<td>Customer and stock availability validation</td>
+</tr>
+<tr class="even">
+<td>Customer Delivery</td>
+<td>Logistics / Warehouse</td>
+<td style="text-align: right;">Decrease FG</td>
+<td>Exact delivered batch, no negative stock, unique delivery</td>
+</tr>
+</tbody>
+</table>
+<h3 id="assumptions">Assumptions</h3>
+<ol type="1">
+<li>Quantities use three decimal places and must be positive.</li>
+<li>Default demo storage is used if a transaction does not explicitly
+select another warehouse/location.</li>
+<li>A batch number is unique within a material.</li>
+<li>Newly received raw material is quarantined until QA release.</li>
+<li>Only eligible/released stock is consumed by production or
+delivery.</li>
+<li>Posted stock movements and audit records are append-only.
+Corrections use a reversal/counter-entry with reason.</li>
+<li>Mutable master/business data may use soft delete so historical
+transaction references remain traceable.</li>
+<li>Customs/Bonded Zone, costing and external ERP/accounting
+integrations are treated as integration boundaries, not full production
+integrations in this prototype.</li>
+</ol>
+<hr />
+<h2 id="2-database-design-and-erd">2. Database Design and ERD</h2>
+<pre class="mermaid"><code>erDiagram
+  USER ||--o{ USER_ROLES : assigned
+  ROLES ||--o{ USER_ROLES : contains
+  ROLES ||--o{ ROLE_PERMISSIONS : grants
+  PERMISSIONS ||--o{ ROLE_PERMISSIONS : defines
+
+  MATERIALS ||--o{ BATCH_LOTS : has
+  WAREHOUSES ||--o{ LOCATIONS : contains
+  MATERIALS ||--o{ STOCK_BALANCES : balances
+  BATCH_LOTS ||--o{ STOCK_BALANCES : balances
+
+  GOODS_RECEIPT_HEADERS ||--o{ GOODS_RECEIPT_LINES : contains
+  MATERIALS ||--o{ GOODS_RECEIPT_LINES : received
+  BATCH_LOTS ||--o{ GOODS_RECEIPT_LINES : identifies
+
+  PRODUCTION_ORDERS ||--o{ PRODUCTION_MATERIAL_ISSUES : consumes
+  BATCH_LOTS ||--o{ PRODUCTION_MATERIAL_ISSUES : input_batch
+  PRODUCTION_ORDERS ||--o{ FINISHED_GOODS_RECEIPTS : produces
+  BATCH_LOTS ||--o{ FINISHED_GOODS_RECEIPTS : output_batch
+
+  DELIVERY_HEADERS ||--o{ DELIVERY_LINES : contains
+  BATCH_LOTS ||--o{ DELIVERY_LINES : delivered_batch
+
+  MATERIALS ||--o{ STOCK_TRANSACTIONS : movement
+  BATCH_LOTS ||--o{ STOCK_TRANSACTIONS : movement_batch
+  USER ||--o{ AUDIT_LOGS : performs</code></pre>
+<h3 id="database-design-characteristics">Database design
+characteristics</h3>
+<ul>
+<li><strong>Multiple batches per item:</strong> one material can have
+many <code>batch_lots</code>.</li>
+<li><strong>Multiple transaction lines:</strong> Goods Receipt and
+Delivery use header/detail tables.</li>
+<li><strong>Several input batches per production order:</strong>
+multiple <code>production_material_issues</code> rows can reference the
+same production order with different batch IDs.</li>
+<li><strong>Unique transaction numbers:</strong> receipt/ledger/delivery
+document numbers have uniqueness constraints where applicable.</li>
+<li><strong>Raw material -&gt; finished goods traceability:</strong>
+input and output rows share <code>production_order_id</code>, allowing
+two-way queries.</li>
+<li><strong>Current balance separated from immutable ledger:</strong>
+<code>stock_balances</code> supports fast operational reads while
+<code>stock_transactions</code> preserves movement history.</li>
+<li><strong>Audit evidence:</strong> <code>audit_logs</code> records
+actor/action/entity and optional before/after JSON.</li>
+<li><strong>RBAC:</strong> many-to-many <code>user_roles</code> and
+<code>role_permissions</code> allow role assignment without hard-coding
+permissions into UI pages.</li>
+</ul>
+<p>A detailed table-level dictionary containing primary keys, foreign
+keys, mandatory/optional fields and purpose is included in
+<strong><code>docs/DATA_DICTIONARY.md</code></strong>. The executable
+source of truth remains
+<strong><code>erp-api/src/db/schema.ts</code></strong>.</p>
+<hr />
+<h2 id="3-sql-queries">3. SQL Queries</h2>
+<p><strong>SQL dialect: PostgreSQL.</strong></p>
+<p>All five executable/logically complete assessment queries are
+provided in <strong><code>docs/ASSESSMENT_SQL.sql</code></strong>:</p>
+<h3 id="31-current-stock">3.1 Current Stock</h3>
+<p>Returns Rose Extract (<code>RM-001</code>) balance grouped by batch,
+including material, batch, expiry, quantity and unit.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> m.code, m.name, bl.batch_number, bl.expiry_date,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">SUM</span>(sb.quantity_on_hand) <span class="kw">AS</span> quantity, sb.unit</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> stock_balances sb</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> materials m <span class="kw">ON</span> m.code <span class="op">=</span> sb.material_code</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> batch_lots bl <span class="kw">ON</span> bl.<span class="kw">id</span> <span class="op">=</span> sb.batch_lot_id</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> m.code <span class="op">=</span> <span class="st">&#39;RM-001&#39;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> m.code, m.name, bl.batch_number, bl.expiry_date, sb.unit, bl.received_at</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> bl.received_at, bl.batch_number;</span></code></pre></div>
+<h3 id="32-stock-ledger">3.2 Stock Ledger</h3>
+<p>Returns all Alcohol (<code>RM-002</code>) movements in August 2026,
+including quantity in/out and a window-function running balance. See
+<code>ASSESSMENT_SQL.sql</code> for the complete query.</p>
+<h3 id="33-expiring-materials">3.3 Expiring Materials</h3>
+<p>Accepts a supplied report date and returns batches with positive
+on-hand stock whose expiry falls within the next 90 days.</p>
+<h3 id="34-traceability">3.4 Traceability</h3>
+<p>Two queries are provided:</p>
+<ul>
+<li>finished-goods batch -&gt; all raw-material batches used;</li>
+<li>raw-material batch -&gt; all finished-goods batches that consumed
+it.</li>
+</ul>
+<p>The join path is
+<code>finished_goods_receipts -&gt; production_orders -&gt; production_material_issues</code>.</p>
+<h3 id="35-reconciliation">3.5 Reconciliation</h3>
+<p>A <code>FULL OUTER JOIN</code> compares ledger-derived quantity
+(<code>SUM(quantity_in - quantity_out)</code>) against
+<code>stock_balances.quantity_on_hand</code> by material, batch,
+warehouse, location and unit. The query returns discrepancies only.</p>
+<hr />
+<h2 id="4-fifo-allocation-and-transaction-safety">4. FIFO Allocation and
+Transaction Safety</h2>
+<p>Assessment simulation stock:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Batch</th>
+<th>Receipt date</th>
+<th style="text-align: right;">Available</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AL-26001</td>
+<td>1 Aug 2026</td>
+<td style="text-align: right;">40 L</td>
+</tr>
+<tr class="even">
+<td>AL-26002</td>
+<td>10 Aug 2026</td>
+<td style="text-align: right;">80 L</td>
+</tr>
+</tbody>
+</table>
+<p>For a request of <strong>50 L Alcohol</strong>, FIFO allocates:</p>
+<pre class="text"><code>AL-26001 -&gt; use 40 L -&gt; balance 0 L
+AL-26002 -&gt; use 10 L -&gt; balance 70 L</code></pre>
+<h3 id="transaction-safety-strategy">Transaction-safety strategy</h3>
+<ol type="1">
+<li>Begin PostgreSQL transaction.</li>
+<li>Resolve production order/material and reject invalid
+status/unit.</li>
+<li>Read eligible released balances ordered by oldest
+<code>batch_lots.received_at</code>.</li>
+<li>Lock selected stock rows with <code>FOR UPDATE</code> before
+changing quantities.</li>
+<li>Sum available stock and reject the complete request if it is
+insufficient.</li>
+<li>Allocate oldest batch first until requested quantity is
+satisfied.</li>
+<li>Update <code>stock_balances</code> and write
+<code>production_material_issues</code> plus immutable
+<code>stock_transactions</code> in the same transaction.</li>
+<li>Write audit evidence.</li>
+<li>Commit only after every step succeeds; any exception rolls the full
+transaction back.</li>
+</ol>
+<h3 id="risks-addressed">Risks addressed</h3>
+<ul>
+<li><strong>Insufficient stock:</strong> pre-check total eligible stock
+before commit.</li>
+<li><strong>Negative stock:</strong> update only locked rows after
+availability validation.</li>
+<li><strong>Duplicate submission:</strong> unique document numbers and
+idempotent/duplicate checks where posting flows support them.</li>
+<li><strong>Partial update:</strong> stock, issue lines and ledger are
+written in one DB transaction.</li>
+<li><strong>Concurrent consumption:</strong> row-level locking prevents
+two sessions from spending the same balance simultaneously.</li>
+</ul>
+<hr />
+<h2 id="5-mini-web-prototype">5. Mini Web Prototype</h2>
+<p>The mandatory assessment flow is implemented:</p>
+<pre class="text"><code>Goods Receipt -&gt; Material Issue -&gt; Current Stock -&gt; Stock Ledger</code></pre>
+<p>Mandatory features and implementation status:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Mandatory feature</th>
+<th>Status</th>
+<th>Main endpoint</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Material Master</td>
+<td>Implemented</td>
+<td><code>GET/POST/PUT/DELETE /api/erp/materials</code></td>
+</tr>
+<tr class="even">
+<td>Goods Receipt Input</td>
+<td>Implemented</td>
+<td><code>POST /api/erp/stock/goods-receipts</code></td>
+</tr>
+<tr class="odd">
+<td>Material Issue Input</td>
+<td>Implemented</td>
+<td><code>POST /api/erp/stock/material-issues</code></td>
+</tr>
+<tr class="even">
+<td>Batch/Lot Selection</td>
+<td>Implemented</td>
+<td>stock availability / receipt / issue data</td>
+</tr>
+<tr class="odd">
+<td>Stock Availability Validation</td>
+<td>Implemented</td>
+<td><code>GET /api/erp/stock/availability</code></td>
+</tr>
+<tr class="even">
+<td>Balance by Item + Batch</td>
+<td>Implemented</td>
+<td><code>GET /api/erp/stock/current-stock</code></td>
+</tr>
+<tr class="odd">
+<td>Stock Ledger</td>
+<td>Implemented</td>
+<td><code>GET /api/erp/stock/ledger</code></td>
+</tr>
+<tr class="even">
+<td>Persistent Database</td>
+<td>Implemented</td>
+<td>PostgreSQL via Drizzle ORM</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-api-responses">Example API responses</h3>
+<p>Success concept:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;receiptId&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;uuid&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;receiptNumber&quot;</span><span class="fu">:</span> <span class="st">&quot;GR-26006&quot;</span><span class="fu">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;qualityStatus&quot;</span><span class="fu">:</span> <span class="st">&quot;quarantine&quot;</span><span class="fu">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;warehouseCode&quot;</span><span class="fu">:</span> <span class="st">&quot;MAIN&quot;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Validation/business error concept:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;code&quot;</span><span class="fu">:</span> <span class="st">&quot;VALIDATION_ERROR&quot;</span><span class="fu">,</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="st">&quot;Request validation failed&quot;</span><span class="fu">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;errors&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">&quot;field&quot;</span><span class="fu">:</span> <span class="st">&quot;quantity&quot;</span><span class="fu">,</span> <span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="st">&quot;Quantity must be greater than zero&quot;</span> <span class="fu">}</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Database-reference/schema errors are mapped to explicit error
+codes/messages rather than only returning a generic database violation
+message.</p>
+<h3 id="features-beyond-the-mandatory-prototype">Features beyond the
+mandatory prototype</h3>
+<p>The application also contains Purchase Requisition, Purchase Order,
+Incoming Quality Check, Production Order, Manufacturing/issue flow,
+Finished Goods Receipt, FG stock, Sales/Delivery, Customer Delivery,
+reservations, FIFO allocation, reversal, Business Partners, BOM,
+multilingual UI, Better Auth, RBAC and audit trail.</p>
+<hr />
+<h2 id="6-system-architecture">6. System Architecture</h2>
+<pre class="mermaid"><code>flowchart LR
+  User[Warehouse / Production / QA / Purchasing / Supervisor / Auditor]
+  User --&gt; FE[Next.js Frontend]
+  FE --&gt;|same-origin ERP requests| API[Express API]
+  API --&gt; Auth[Better Auth]
+  API --&gt; RBAC[RBAC Middleware]
+  API --&gt; Service[Feature Services / FIFO / Stock]
+  Auth --&gt; DB[(PostgreSQL)]
+  RBAC --&gt; DB
+  Service --&gt; DB
+  API --&gt; Audit[Audit + Stock Ledger]
+  Audit --&gt; DB
+  API -. future .-&gt; Ext[ERP / Accounting / Customs]
+  DB --&gt; Backup[Encrypted Backup / WAL / Off-site]</code></pre>
+<h3 id="technology-and-operating-considerations">Technology and
+operating considerations</h3>
+<ul>
+<li><strong>Maintainability:</strong> feature-based backend modules and
+centralized frontend API services reduce cross-module coupling.</li>
+<li><strong>Scalability:</strong> frontend/API are stateless with
+persistent state in PostgreSQL; production can add connection pooling,
+reporting replicas, workers and caches as load grows.</li>
+<li><strong>Security:</strong> server-side auth/permission validation,
+Zod input validation, parameterized Drizzle queries, transactional
+posting and immutable evidence.</li>
+<li><strong>Operating cost:</strong> prototype runs locally; production
+can start with a small API/frontend service plus PostgreSQL and scale
+incrementally.</li>
+<li><strong>Integration readiness:</strong> stable document
+numbers/reference IDs and explicit transaction boundaries can support
+idempotent ERP/accounting/Customs integration later.</li>
+</ul>
+<p>The extended explanation is in
+<strong><code>docs/ARCHITECTURE_IMPLEMENTATION_DR.md</code></strong>.</p>
+<hr />
+<h2 id="7-security-and-role-based-access-control">7. Security and
+Role-Based Access Control</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Minimum access concept</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>System Administrator</td>
+<td>Manage users/configuration/roles/permissions/logs; business changes
+remain audited</td>
+</tr>
+<tr class="even">
+<td>Warehouse User</td>
+<td>Create receipt/issue and view stock; cannot silently remove posted
+movements</td>
+</tr>
+<tr class="odd">
+<td>Production User</td>
+<td>Create/view production requests and BOM/status; cannot directly
+alter balances</td>
+</tr>
+<tr class="even">
+<td>Supervisor / Approver</td>
+<td>Review/approve/reverse with recorded reason</td>
+</tr>
+<tr class="odd">
+<td>Management / Auditor</td>
+<td>Read-only stock/report/traceability/audit access</td>
+</tr>
+</tbody>
+</table>
+<h3 id="security-controls">Security controls</h3>
+<ul>
+<li><strong>Password security:</strong> Better Auth manages password
+hashing; plaintext passwords are not stored in business tables.</li>
+<li><strong>Sessions:</strong> Better Auth session storage/cookies; API
+checks authenticated user before protected ERP actions.</li>
+<li><strong>Access review:</strong> role assignments are stored
+separately (<code>user_roles</code>), allowing periodic review/export
+without changing application source.</li>
+<li><strong>Segregation of duties:</strong> Warehouse posts stock;
+Production requests/consumes through controlled flows; Supervisor
+performs approval/reversal; Auditor is read-only.</li>
+<li><strong>Correction/reversal:</strong> posted ledger evidence is not
+silently deleted; corrections create recorded reversal/counter
+transactions.</li>
+<li><strong>Audit trail:</strong> actor/action/entity and before/after
+data are recorded for supported business changes.</li>
+<li><strong>SQL injection:</strong> Drizzle query builders/parameterized
+SQL are used; dynamic values are not concatenated into ad-hoc SQL in
+normal CRUD flows.</li>
+<li><strong>Unauthorized access:</strong> authentication plus permission
+middleware return 401/403 before protected business actions.</li>
+</ul>
+<hr />
+<h2 id="8-backup-and-disaster-recovery">8. Backup and Disaster
+Recovery</h2>
+<p>Recommended production approach:</p>
+<ol type="1">
+<li>Nightly encrypted PostgreSQL backup.</li>
+<li>Continuous WAL/incremental backup for point-in-time recovery where
+available.</li>
+<li>Off-site copy in a separate account/region.</li>
+<li>Encryption in transit and at rest; separate protection for backup
+credentials/keys.</li>
+<li>Example retention: daily 14 days, weekly 8 weeks, monthly 12 months,
+subject to business/regulatory confirmation.</li>
+<li>Quarterly restore drill plus automated integrity checks.</li>
+<li>On server failure, rebuild stateless app service, restore/reattach
+PostgreSQL, apply recorded migration version, then validate
+login/stock/ledger/audit.</li>
+<li>Ransomware response uses immutable/versioned off-site backups and
+clean-room restore.</li>
+<li>Prototype planning target: <strong>RPO &lt;= 24 hours, RTO &lt;= 4
+hours</strong> until production requirements define stricter
+targets.</li>
+</ol>
+<hr />
+<h2 id="9-implementation-approach">9. Implementation Approach</h2>
+<h3 id="requirements-gathering">Requirements gathering</h3>
+<p>Conduct workshops with Warehouse, Production, QA, Purchasing, Finance
+and Management. Capture process owner, document, required fields, stock
+impact, status/approval, exceptions/reversal and reports for every
+step.</p>
+<h3 id="excel-migration-and-duplicate-master-prevention">Excel migration
+and duplicate-master prevention</h3>
+<p>Use a staging import template, normalize codes/units/dates, validate
+mandatory data and references, detect duplicate codes/names, review
+conflicts, reconcile counts/totals, then promote only accepted data.</p>
+<h3 id="uat-and-user-training">UAT and user training</h3>
+<p>Run role-based scenarios covering Goods Receipt, QA release/reject,
+Material Issue/FIFO, Current Stock, Stock Ledger, traceability, reversal
+and delivery. Record expected/actual result and business sign-off. Train
+each user role on only its permitted workflow and recovery steps.</p>
+<h3 id="recommended-phases">Recommended phases</h3>
+<ol type="1">
+<li>Master data + warehouse/location + users/RBAC.</li>
+<li>Goods Receipt + QA + Current Stock + Stock Ledger.</li>
+<li>Material Issue + Production Order + FIFO +
+traceability/reconciliation.</li>
+<li>Finished Goods Receipt + Sales/Delivery.</li>
+<li>Reporting, backup/restore drill and monitoring.</li>
+<li>ERP/accounting/Customs/Bonded Zone integration.</li>
+</ol>
+<h3 id="future-customserp-development">Future Customs/ERP
+development</h3>
+<p>Introduce mapped Customs material/document codes, bonded warehouse
+controls, idempotent integration messages, integration
+audit/retry/dead-letter handling and reconciliation reports. External
+integration failures must never leave a half-posted stock
+transaction.</p>
+<hr />
+<h2 id="10-prototype-screenshots">10. Prototype Screenshots</h2>
+<p>Included screenshots are documented in
+<strong><code>docs/PROTOTYPE_SCREENSHOTS.md</code></strong> and stored
+in <strong><code>docs/screenshots/</code></strong>:</p>
+<ul>
+<li>Goods Receipt Input</li>
+<li>Purchase Order</li>
+<li>Business Partners</li>
+</ul>
+<p>Additional final-build screenshots of Current Stock, Material Issue,
+Stock Ledger, FIFO and RBAC/Audit can be added before submission if
+desired.</p>
+<hr />
+<h2 id="11-technology-list-and-ai-use-disclosure">11. Technology List
+and AI-Use Disclosure</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Area</th>
+<th>Technology</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Frontend</td>
+<td>Next.js 16, React 19, TypeScript, Tailwind CSS, React Select</td>
+</tr>
+<tr class="even">
+<td>Backend</td>
+<td>Node.js, Express 5, TypeScript, Zod</td>
+</tr>
+<tr class="odd">
+<td>Authentication</td>
+<td>Better Auth</td>
+</tr>
+<tr class="even">
+<td>Database</td>
+<td>PostgreSQL, Drizzle ORM and SQL migrations</td>
+</tr>
+<tr class="odd">
+<td>Transaction integrity</td>
+<td>PostgreSQL transaction + row locking + unique constraints +
+reversal</td>
+</tr>
+<tr class="even">
+<td>Internationalization</td>
+<td>English, Indonesian, Korean locale dictionaries/routes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ai-disclosure">AI disclosure</h3>
+<p>AI assistance was used for code scaffolding/refactoring suggestions,
+troubleshooting support, report drafting and review. The developer
+remains responsible for understanding the submitted code, selecting
+assumptions, running migrations/seeds/tests, validating business logic
+and being able to explain or modify the work during the interview. No
+confidential employer production data was intentionally used as
+assessment input.</p>
+<hr />
+<h2 id="12-source-code-and-local-installation-notes">12. Source-Code and
+Local Installation Notes</h2>
+<p>The source package contains frontend, backend/application logic,
+database migrations/scripts, sample simulation seed data, README
+documentation and local startup instructions.</p>
+<p>Environment files currently used for local development are
+intentionally retained in this working package. Sanitized templates are
+provided as:</p>
+<ul>
+<li><code>erp-api/.env.example</code></li>
+<li><code>erp-front-end/.env.example</code></li>
+</ul>
+<p>Before sending the final assessment package outside the local
+development environment, review real <code>.env</code> values and ensure
+no secret/token/API key is disclosed.</p>
+<h3 id="local-startup">Local startup</h3>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> erp-api</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run migrate</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div>
+<p>In another terminal:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> erp-front-end</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div>
+<p>Backend default: <code>http://localhost:4000</code><br />
+Frontend default: <code>http://localhost:3100</code></p>
+<hr />
+<h2 id="appendix-a---assessment-simulation-data">Appendix A - Assessment
+Simulation Data</h2>
+<p>Seeded master data follows the supplied simulation dataset:</p>
+<ul>
+<li><code>RM-001</code> Rose Extract - Raw Material - kg</li>
+<li><code>RM-002</code> Alcohol - Raw Material - liter</li>
+<li><code>RM-003</code> Packaging Bottle - Packaging - pcs</li>
+<li><code>FG-001</code> Aroma Blend A - Finished Goods - liter</li>
+<li><code>SUP-001</code> Supplier Alpha</li>
+<li><code>SUP-002</code> Supplier Beta</li>
+<li><code>CUS-001</code> Customer A</li>
+<li>Goods Receipts <code>GR-26001</code> through
+<code>GR-26005</code></li>
+<li>BOM example for 20 liters of FG-001: 4 kg Rose Extract, 16 liters
+Alcohol, 20 pcs Packaging Bottle</li>
+</ul>
+<p>See <code>ERP_DEMO_SEED.md</code> and
+<code>erp-api/scripts/seed-simulation-data.ts</code>.</p>
+<h2 id="appendix-b---demo-users">Appendix B - Demo Users</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Email</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>System Administrator</td>
+<td><code>admin@erp.test</code></td>
+<td><code>1234asdf</code></td>
+</tr>
+<tr class="even">
+<td>Warehouse User</td>
+<td><code>warehouse@erp.test</code></td>
+<td><code>asdf1234</code></td>
+</tr>
+<tr class="odd">
+<td>Production User</td>
+<td><code>production@erp.test</code></td>
+<td><code>asdf1234</code></td>
+</tr>
+<tr class="even">
+<td>Supervisor / Approver</td>
+<td><code>approver@erp.test</code></td>
+<td><code>asdf1234</code></td>
+</tr>
+<tr class="odd">
+<td>Management / Auditor</td>
+<td><code>auditor@erp.test</code></td>
+<td><code>asdf1234</code></td>
+</tr>
+</tbody>
+</table>
+<p>These are local assessment/demo accounts. Better Auth stores password
+hashes rather than these plaintext values in its credential storage.</p>
+</body>
+</html>

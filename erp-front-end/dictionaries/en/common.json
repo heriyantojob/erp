@@ -1,0 +1,18 @@
+{
+  "loading": "Loading...",
+  "add": "Add",
+  "edit": "Edit",
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "save": "Save changes",
+  "search": "Search",
+  "actions": "Actions",
+  "noData": "No data yet.",
+  "saving": "Saving...",
+  "posting": "Posting...",
+  "data": "records",
+  "language": "Language",
+  "signOut": "Sign out",
+  "login": "Login",
+  "requestFailed": "Request failed"
+}

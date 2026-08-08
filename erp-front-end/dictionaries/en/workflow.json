@@ -1,0 +1,80 @@
+{
+  "title": "End-to-End Process",
+  "subtitle": "Execute the required supply chain and manufacturing flow in the correct sequence.",
+  "refresh": "Refresh",
+  "loading": "Loading process data...",
+  "success": "Data saved successfully. Latest data has been refreshed.",
+  "actionSuccess": "Process updated successfully. Latest data has been refreshed.",
+  "error": "Unable to complete the process.",
+  "fields": {
+    "number": "Document Number",
+    "material": "Material",
+    "quantity": "Quantity",
+    "unit": "Unit",
+    "date": "Date",
+    "notes": "Notes / Reason",
+    "supplier": "Supplier Code",
+    "customer": "Customer Code",
+    "requisition": "Purchase Requisition",
+    "productionOrder": "Production Order",
+    "batch": "Batch Number",
+    "stock": "Released Stock / Batch",
+    "salesOrder": "Sales Order"
+  },
+  "actions": {
+    "create": "Create",
+    "approve": "Approve",
+    "start": "Start Manufacturing",
+    "complete": "Complete Manufacturing",
+    "release": "Release",
+    "reject": "Reject",
+    "receive": "Receive Finished Goods",
+    "deliver": "Post Customer Delivery"
+  },
+  "steps": {
+    "purchase-requisition": {
+      "title": "Purchase Requisition",
+      "desc": "Create and submit material demand before purchasing."
+    },
+    "purchase-order": {
+      "title": "Purchase Order",
+      "desc": "Convert approved demand into a supplier order."
+    },
+    "incoming-quality": {
+      "title": "Incoming Quality Check",
+      "desc": "Inspect received batches. Only released stock becomes available."
+    },
+    "production-order": {
+      "title": "Production Order",
+      "desc": "Plan finished goods quantity and release work to production."
+    },
+    "manufacturing": {
+      "title": "Manufacturing Process",
+      "desc": "Start and complete released production orders."
+    },
+    "finished-goods-receipt": {
+      "title": "Finished Goods Receipt",
+      "desc": "Receive completed production into the FG warehouse."
+    },
+    "sales-order": {
+      "title": "Sales / Delivery Order",
+      "desc": "Confirm customer demand and reserve released finished goods."
+    },
+    "customer-delivery": {
+      "title": "Customer Delivery",
+      "desc": "Post delivery, consume reservation, and reduce physical stock."
+    }
+  },
+  "status": "Status",
+  "empty": "No records yet.",
+  "table": {
+    "document": "Document",
+    "material": "Material",
+    "quantity": "Quantity",
+    "date": "Date",
+    "status": "Status",
+    "action": "Action",
+    "batch": "Batch",
+    "reference": "Reference"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "title": "End-to-End 프로세스",
+  "subtitle": "필수 공급망 및 제조 흐름을 올바른 순서로 실행합니다.",
+  "refresh": "새로고침",
+  "loading": "프로세스 데이터를 불러오는 중...",
+  "success": "데이터가 저장되었습니다. 최신 데이터를 다시 불러왔습니다.",
+  "actionSuccess": "프로세스가 업데이트되었습니다. 최신 데이터를 다시 불러왔습니다.",
+  "error": "프로세스를 완료할 수 없습니다.",
+  "fields": {
+    "number": "문서 번호",
+    "material": "자재",
+    "quantity": "수량",
+    "unit": "단위",
+    "date": "날짜",
+    "notes": "메모 / 사유",
+    "supplier": "공급업체 코드",
+    "customer": "고객 코드",
+    "requisition": "구매 요청",
+    "productionOrder": "생산 오더",
+    "batch": "배치 번호",
+    "stock": "Released 재고 / 배치",
+    "salesOrder": "판매 오더"
+  },
+  "actions": {
+    "create": "생성",
+    "approve": "승인",
+    "start": "생산 시작",
+    "complete": "생산 완료",
+    "release": "Release",
+    "reject": "거절",
+    "receive": "완제품 입고",
+    "deliver": "고객 출고"
+  },
+  "steps": {
+    "purchase-requisition": {
+      "title": "구매 요청",
+      "desc": "구매 전에 자재 수요를 생성하고 제출합니다."
+    },
+    "purchase-order": {
+      "title": "구매 주문",
+      "desc": "승인된 수요를 공급업체 주문으로 전환합니다."
+    },
+    "incoming-quality": {
+      "title": "입고 품질 검사",
+      "desc": "입고 배치를 검사하며 released 재고만 사용 가능합니다."
+    },
+    "production-order": {
+      "title": "생산 오더",
+      "desc": "완제품 수량을 계획하고 생산 작업을 release 합니다."
+    },
+    "manufacturing": {
+      "title": "제조 공정",
+      "desc": "Released 생산 오더를 시작하고 완료합니다."
+    },
+    "finished-goods-receipt": {
+      "title": "완제품 입고",
+      "desc": "완료된 생산품을 완제품 창고에 입고합니다."
+    },
+    "sales-order": {
+      "title": "판매 / 출고 오더",
+      "desc": "고객 수요를 확정하고 완제품 재고를 예약합니다."
+    },
+    "customer-delivery": {
+      "title": "고객 배송",
+      "desc": "배송을 게시하고 예약을 소진하며 실제 재고를 차감합니다."
+    }
+  },
+  "status": "상태",
+  "empty": "데이터가 없습니다.",
+  "table": {
+    "document": "문서",
+    "material": "자재",
+    "quantity": "수량",
+    "date": "날짜",
+    "status": "상태",
+    "action": "작업",
+    "batch": "배치",
+    "reference": "참조"
+  }
+}

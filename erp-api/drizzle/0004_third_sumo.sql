@@ -1,0 +1,1 @@
+ALTER TABLE "batch_lots" ADD COLUMN "received_at" date DEFAULT CURRENT_DATE NOT NULL;

@@ -1,0 +1,80 @@
+{
+  "title": "Proses End-to-End",
+  "subtitle": "Jalankan alur supply chain dan manufaktur sesuai urutan proses yang diwajibkan.",
+  "refresh": "Muat ulang",
+  "loading": "Memuat data proses...",
+  "success": "Data berhasil disimpan. Data terbaru sudah dimuat ulang.",
+  "actionSuccess": "Proses berhasil diperbarui. Data terbaru sudah dimuat ulang.",
+  "error": "Proses tidak dapat diselesaikan.",
+  "fields": {
+    "number": "Nomor Dokumen",
+    "material": "Material",
+    "quantity": "Kuantitas",
+    "unit": "Satuan",
+    "date": "Tanggal",
+    "notes": "Catatan / Alasan",
+    "supplier": "Kode Supplier",
+    "customer": "Kode Customer",
+    "requisition": "Purchase Requisition",
+    "productionOrder": "Production Order",
+    "batch": "Nomor Batch",
+    "stock": "Stok / Batch Released",
+    "salesOrder": "Sales Order"
+  },
+  "actions": {
+    "create": "Buat",
+    "approve": "Setujui",
+    "start": "Mulai Produksi",
+    "complete": "Selesaikan Produksi",
+    "release": "Release",
+    "reject": "Tolak",
+    "receive": "Terima Finished Goods",
+    "deliver": "Post Pengiriman"
+  },
+  "steps": {
+    "purchase-requisition": {
+      "title": "Purchase Requisition",
+      "desc": "Buat dan ajukan kebutuhan material sebelum pembelian."
+    },
+    "purchase-order": {
+      "title": "Purchase Order",
+      "desc": "Ubah kebutuhan yang disetujui menjadi pesanan supplier."
+    },
+    "incoming-quality": {
+      "title": "Incoming Quality Check",
+      "desc": "Periksa batch masuk. Hanya stok released yang tersedia."
+    },
+    "production-order": {
+      "title": "Production Order",
+      "desc": "Rencanakan kuantitas barang jadi dan release ke produksi."
+    },
+    "manufacturing": {
+      "title": "Manufacturing Process",
+      "desc": "Mulai dan selesaikan production order yang sudah released."
+    },
+    "finished-goods-receipt": {
+      "title": "Finished Goods Receipt",
+      "desc": "Terima hasil produksi ke gudang finished goods."
+    },
+    "sales-order": {
+      "title": "Sales / Delivery Order",
+      "desc": "Konfirmasi permintaan customer dan reservasi finished goods."
+    },
+    "customer-delivery": {
+      "title": "Customer Delivery",
+      "desc": "Post pengiriman, konsumsi reservasi, dan kurangi stok fisik."
+    }
+  },
+  "status": "Status",
+  "empty": "Belum ada data.",
+  "table": {
+    "document": "Dokumen",
+    "material": "Material",
+    "quantity": "Kuantitas",
+    "date": "Tanggal",
+    "status": "Status",
+    "action": "Aksi",
+    "batch": "Batch",
+    "reference": "Referensi"
+  }
+}

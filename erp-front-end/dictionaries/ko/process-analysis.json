@@ -1,0 +1,77 @@
+{
+  "title": "비즈니스 프로세스",
+  "eyebrow": "2.1 필수 End-to-End 프로세스",
+  "flowTitle": "End-to-End 공급망 및 제조 흐름",
+  "description": "운영 End-to-End 흐름입니다. 각 프로세스 카드는 전용 ERP 단계로 이동하며 재고/제어 화면은 지원 통제로 유지됩니다.",
+  "status": {
+    "available": "사용 가능",
+    "planned": "계획"
+  },
+  "stages": {
+    "purchaseRequisition": {
+      "title": "구매 요청",
+      "department": "구매"
+    },
+    "purchaseOrder": {
+      "title": "구매 주문",
+      "department": "구매"
+    },
+    "goodsReceipt": {
+      "title": "입고",
+      "department": "창고"
+    },
+    "incomingQuality": {
+      "title": "입고 품질 검사",
+      "department": "QA"
+    },
+    "rawMaterialWarehouse": {
+      "title": "원자재 창고",
+      "department": "창고"
+    },
+    "materialIssue": {
+      "title": "자재 출고",
+      "department": "창고"
+    },
+    "productionOrder": {
+      "title": "생산 지시",
+      "department": "생산"
+    },
+    "manufacturingProcess": {
+      "title": "제조 공정",
+      "department": "생산"
+    },
+    "finishedGoodsReceipt": {
+      "title": "완제품 입고",
+      "department": "창고"
+    },
+    "finishedGoodsWarehouse": {
+      "title": "완제품 창고",
+      "department": "창고"
+    },
+    "salesDeliveryOrder": {
+      "title": "판매 / 출고 주문",
+      "department": "영업"
+    },
+    "customerDelivery": {
+      "title": "고객 배송",
+      "department": "물류"
+    }
+  },
+  "controlLayer": "관리 계층",
+  "controls": [
+    "승인",
+    "배치/로트 추적성",
+    "재고 원장",
+    "감사 추적",
+    "품질 상태",
+    "세관/ERP 통합"
+  ],
+  "prototype": {
+    "title": "프로토타입 범위",
+    "description": "핵심 재고 및 제조 거래 흐름은 운영 프로토타입으로 구현되었습니다. 원가, 운송 계획 및 세관 연동은 아키텍처/통합 범위로 유지됩니다."
+  },
+  "legend": {
+    "available": "운영 단계",
+    "planned": "계획 / 프로세스 설계 범위"
+  }
+}

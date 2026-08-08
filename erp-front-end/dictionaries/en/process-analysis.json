@@ -1,0 +1,77 @@
+{
+  "title": "Business Process",
+  "eyebrow": "2.1 Required End-to-End Process",
+  "flowTitle": "End-to-End Supply Chain & Manufacturing Flow",
+  "description": "Operational end-to-end flow. Every process card now opens its dedicated ERP step; inventory/control pages remain supporting controls.",
+  "status": {
+    "available": "Available",
+    "planned": "Planned"
+  },
+  "stages": {
+    "purchaseRequisition": {
+      "title": "Purchase Requisition",
+      "department": "Purchasing"
+    },
+    "purchaseOrder": {
+      "title": "Purchase Order",
+      "department": "Purchasing"
+    },
+    "goodsReceipt": {
+      "title": "Goods Receipt",
+      "department": "Warehouse"
+    },
+    "incomingQuality": {
+      "title": "Incoming Quality Check",
+      "department": "QA"
+    },
+    "rawMaterialWarehouse": {
+      "title": "Raw Material Warehouse",
+      "department": "Warehouse"
+    },
+    "materialIssue": {
+      "title": "Material Issue",
+      "department": "Warehouse"
+    },
+    "productionOrder": {
+      "title": "Production Order",
+      "department": "Production"
+    },
+    "manufacturingProcess": {
+      "title": "Manufacturing Process",
+      "department": "Production"
+    },
+    "finishedGoodsReceipt": {
+      "title": "Finished Goods Receipt",
+      "department": "Warehouse"
+    },
+    "finishedGoodsWarehouse": {
+      "title": "FG Warehouse",
+      "department": "Warehouse"
+    },
+    "salesDeliveryOrder": {
+      "title": "Sales / Delivery Order",
+      "department": "Sales"
+    },
+    "customerDelivery": {
+      "title": "Customer Delivery",
+      "department": "Logistics"
+    }
+  },
+  "controlLayer": "Control layer",
+  "controls": [
+    "Approval",
+    "Batch/Lot Traceability",
+    "Stock Ledger",
+    "Audit Trail",
+    "Quality Status",
+    "Customs/ERP Integration"
+  ],
+  "prototype": {
+    "title": "Prototype Scope",
+    "description": "Core inventory and manufacturing transaction flow is implemented as an operational prototype. Costing, transport planning, and Customs integration remain architecture/integration scope."
+  },
+  "legend": {
+    "available": "Operational step",
+    "planned": "Planned / process-design scope"
+  }
+}

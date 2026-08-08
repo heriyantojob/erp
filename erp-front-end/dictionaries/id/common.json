@@ -1,0 +1,18 @@
+{
+  "loading": "Memuat...",
+  "add": "Tambah",
+  "edit": "Ubah",
+  "delete": "Hapus",
+  "cancel": "Batal",
+  "save": "Simpan perubahan",
+  "search": "Cari",
+  "actions": "Aksi",
+  "noData": "Belum ada data.",
+  "saving": "Menyimpan...",
+  "posting": "Memproses...",
+  "data": "data",
+  "language": "Bahasa",
+  "signOut": "Keluar",
+  "login": "Masuk",
+  "requestFailed": "Permintaan gagal"
+}

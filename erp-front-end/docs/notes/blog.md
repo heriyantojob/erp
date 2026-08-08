@@ -1,0 +1,1 @@
+https://www.mikealche.com/software-development/how-to-have-a-next-js-app-and-wordpress-blog-in-the-same-domain

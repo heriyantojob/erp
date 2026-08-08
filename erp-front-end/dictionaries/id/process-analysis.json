@@ -1,0 +1,77 @@
+{
+  "title": "Proses Bisnis",
+  "eyebrow": "2.1 Proses End-to-End yang Dibutuhkan",
+  "flowTitle": "Alur End-to-End Supply Chain & Manufaktur",
+  "description": "Alur operasional end-to-end. Setiap kartu proses sekarang membuka step ERP khusus; halaman inventory/control tetap menjadi kontrol pendukung.",
+  "status": {
+    "available": "Tersedia",
+    "planned": "Rencana"
+  },
+  "stages": {
+    "purchaseRequisition": {
+      "title": "Purchase Requisition",
+      "department": "Purchasing"
+    },
+    "purchaseOrder": {
+      "title": "Purchase Order",
+      "department": "Purchasing"
+    },
+    "goodsReceipt": {
+      "title": "Goods Receipt",
+      "department": "Warehouse"
+    },
+    "incomingQuality": {
+      "title": "Incoming Quality Check",
+      "department": "QA"
+    },
+    "rawMaterialWarehouse": {
+      "title": "Raw Material Warehouse",
+      "department": "Warehouse"
+    },
+    "materialIssue": {
+      "title": "Material Issue",
+      "department": "Warehouse"
+    },
+    "productionOrder": {
+      "title": "Production Order",
+      "department": "Production"
+    },
+    "manufacturingProcess": {
+      "title": "Manufacturing Process",
+      "department": "Production"
+    },
+    "finishedGoodsReceipt": {
+      "title": "Finished Goods Receipt",
+      "department": "Warehouse"
+    },
+    "finishedGoodsWarehouse": {
+      "title": "FG Warehouse",
+      "department": "Warehouse"
+    },
+    "salesDeliveryOrder": {
+      "title": "Sales / Delivery Order",
+      "department": "Sales"
+    },
+    "customerDelivery": {
+      "title": "Customer Delivery",
+      "department": "Logistics"
+    }
+  },
+  "controlLayer": "Lapisan kontrol",
+  "controls": [
+    "Persetujuan",
+    "Traceability Batch/Lot",
+    "Stock Ledger",
+    "Audit Trail",
+    "Status Kualitas",
+    "Integrasi Bea Cukai/ERP"
+  ],
+  "prototype": {
+    "title": "Ruang Lingkup Prototype",
+    "description": "Alur transaksi inti inventory dan manufaktur sudah diimplementasikan sebagai prototype operasional. Costing, perencanaan transportasi, dan integrasi Bea Cukai tetap menjadi ruang lingkup arsitektur/integrasi."
+  },
+  "legend": {
+    "available": "Step operasional",
+    "planned": "Rencana / ruang lingkup desain proses"
+  }
+}

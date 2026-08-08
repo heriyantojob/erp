@@ -1,0 +1,26 @@
+services:
+  next-app:
+    container_name: pictheme-end-user
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # NEXT_PUBLIC_* dibaca dan dibundel oleh Next.js saat `next build`.
+        NEXT_PUBLIC_API_URL_EXPRESS: ${NEXT_PUBLIC_API_URL_EXPRESS}
+    env_file:
+      - .env.local
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    restart: always
+    ports:
+      - 3102:3100
+    # network_mode: host  # Ganti networks dengan ini
+    networks:
+      - my_network
+# Add more containers below (nginx, postgres, etc.)
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  my_network:
+    external: true

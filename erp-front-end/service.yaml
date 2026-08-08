@@ -1,0 +1,30 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: car-new
+  annotations:
+        run.googleapis.com/allow-unauthenticated: "true"  # Allows public access
+spec:
+  template:
+    metadata:
+      name: car-new-revision-4
+    spec:
+      containers:
+      - image: gcr.io/project-id/car-new
+        ports:
+          - containerPort: 3000
+      env:
+        - name: NEXT_PUBLIC_API_URL
+          value: "http://localhost:8090/api/v1"
+        - name: API_URL
+          value: "http://localhost:8090/api/v1"
+        - name: NEXT_PUBLIC_AUTH_API_URL
+          value: "http://localhost:8090/api/auth"
+        - name: NEXT_PUBLIC_BASE_URL
+          value: "http://localhost:8090"
+        - name: NEXT_PUBLIC_DOMAIN_URL
+          value: "https://www.octobees.com"
+        - name: NEXT_PUBLIC_SPREADSHEET_API
+          value: "https://script.google.com/macros/s/AKfycbzGtDvI9LVxbNdq_ijSjXjALQnpgZtMD6e7gj1bJXS7nFg0HdgR2_dtS0afJeglMqw/exec"
+
+

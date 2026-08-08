@@ -1,0 +1,21 @@
+{
+  "title": "대시보드",
+  "cards": [
+    {
+      "title": "자재 마스터",
+      "description": "자재 코드, 분류 및 단위."
+    },
+    {
+      "title": "거래처",
+      "description": "회사의 공급업체 및 고객."
+    },
+    {
+      "title": "입고",
+      "description": "배치별 자재 입고."
+    },
+    {
+      "title": "자재 명세서",
+      "description": "자재 소요 목록."
+    }
+  ]
+}

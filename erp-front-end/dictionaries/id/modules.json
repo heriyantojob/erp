@@ -1,0 +1,13 @@
+{
+  "materials": "Master Material",
+  "businessPartners": "Mitra Bisnis",
+  "goodsReceipts": "Transaksi Penerimaan Barang",
+  "bom": "Bill of Materials",
+  "currentStock": "Stok Saat Ini",
+  "receiptInput": "Input Penerimaan Barang",
+  "materialIssue": "Input Pengeluaran Material",
+  "availability": "Ketersediaan Stok",
+  "ledger": "Buku Besar Stok",
+  "analysis": "Analisis Proses Bisnis",
+  "users": "Manajemen User"
+}

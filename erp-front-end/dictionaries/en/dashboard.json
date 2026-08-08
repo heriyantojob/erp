@@ -1,0 +1,21 @@
+{
+  "title": "Dashboard",
+  "cards": [
+    {
+      "title": "Material Master",
+      "description": "Material codes, categories, and units."
+    },
+    {
+      "title": "Business Partners",
+      "description": "Company suppliers and customers."
+    },
+    {
+      "title": "Goods Receipt",
+      "description": "Material receipts by batch."
+    },
+    {
+      "title": "Bill of Materials",
+      "description": "Material requirement list."
+    }
+  ]
+}

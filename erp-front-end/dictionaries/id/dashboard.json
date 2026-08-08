@@ -1,0 +1,21 @@
+{
+  "title": "Dasbor",
+  "cards": [
+    {
+      "title": "Master Material",
+      "description": "Kode, kategori, dan satuan material."
+    },
+    {
+      "title": "Mitra Bisnis",
+      "description": "Supplier dan pelanggan perusahaan."
+    },
+    {
+      "title": "Penerimaan Barang",
+      "description": "Penerimaan material berdasarkan batch."
+    },
+    {
+      "title": "Bill of Materials",
+      "description": "Daftar kebutuhan material."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "code": "Kode",
+    "name": "Nama",
+    "category": "Kategori",
+    "unit": "Satuan",
+    "type": "Tipe",
+    "receivedAt": "Tanggal",
+    "receiptCode": "Penerimaan",
+    "materialCode": "Material",
+    "batchNumber": "Batch",
+    "expiryDate": "Kedaluwarsa",
+    "quantity": "Jumlah",
+    "requiredQuantity": "Jumlah Dibutuhkan"
+  },
+  "addData": "Tambah data",
+  "deleteConfirm": "Hapus sementara data ini? Data tetap tersimpan dalam audit trail.",
+  "saveFailed": "Gagal menyimpan data",
+  "deleteFailed": "Gagal menghapus data",
+  "createSuccess": "Data berhasil ditambahkan.",
+  "updateSuccess": "Data berhasil diperbarui.",
+  "deleteSuccess": "Data berhasil dihapus.",
+  "refreshFailed": "Operasi berhasil, tetapi data terbaru gagal dimuat ulang."
+}

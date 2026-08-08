@@ -1,0 +1,24 @@
+ERP Demo Users
+==================
+
+System Administrator
+Email: admin@erp.test
+Password: 1234asdf
+
+Warehouse User
+Email: warehouse@erp.test
+Password: asdf1234
+
+Production User
+Email: production@erp.test
+Password: asdf1234
+
+Supervisor / Approver
+Email: approver@erp.test
+Password: asdf1234
+
+Management / Auditor
+Email: auditor@erp.test
+Password: asdf1234
+
+Assessment-only accounts. Change or remove before production deployment.

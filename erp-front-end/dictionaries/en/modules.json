@@ -1,0 +1,13 @@
+{
+  "materials": "Material Master",
+  "businessPartners": "Business Partners",
+  "goodsReceipts": "Goods Receipt Transactions",
+  "bom": "Bill of Materials",
+  "currentStock": "Current Stock",
+  "receiptInput": "Goods Receipt Input",
+  "materialIssue": "Material Issue Input",
+  "availability": "Stock Availability",
+  "ledger": "Stock Ledger",
+  "analysis": "Business Process Analysis",
+  "users": "User Management"
+}

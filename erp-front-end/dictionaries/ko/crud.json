@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "code": "코드",
+    "name": "이름",
+    "category": "분류",
+    "unit": "단위",
+    "type": "유형",
+    "receivedAt": "날짜",
+    "receiptCode": "입고 번호",
+    "materialCode": "자재",
+    "batchNumber": "배치",
+    "expiryDate": "유효기간",
+    "quantity": "수량",
+    "requiredQuantity": "필요 수량"
+  },
+  "addData": "데이터 추가",
+  "deleteConfirm": "이 레코드를 소프트 삭제하시겠습니까? 감사 추적에는 계속 보존됩니다.",
+  "saveFailed": "데이터 저장 실패",
+  "deleteFailed": "데이터 삭제 실패",
+  "createSuccess": "데이터가 성공적으로 추가되었습니다.",
+  "updateSuccess": "데이터가 성공적으로 수정되었습니다.",
+  "deleteSuccess": "데이터가 성공적으로 삭제되었습니다.",
+  "refreshFailed": "작업은 성공했지만 최신 데이터를 새로고침하지 못했습니다."
+}

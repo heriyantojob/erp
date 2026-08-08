@@ -1,0 +1,35 @@
+CREATE TABLE template (
+  id_template serial PRIMARY KEY,
+  title varchar(255),
+  description varchar(255),
+  status smallint,
+  update_status smallint,
+  live_demo_url varchar(255),
+  tags jsonb,
+  type_template varchar(255),
+  format_file integer,
+  template_slug varchar(255),
+  created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at timestamptz,
+  deleted_at timestamptz,
+  id_user uuid
+);
+
+
+CREATE TABLE template_file (
+  id_template_file serial PRIMARY KEY,
+  file_name varchar(255),
+  file_slug varchar(255),
+  file_ext varchar(255),
+  file_mime varchar(255),
+  file_list text,
+  file_size integer,
+  file_width integer,
+  file_height integer,
+  is_file  smallint DEFAULT NULL COMMENT '0 no; 1 yes',
+  is_preview  smallint DEFAULT NULL COMMENT '0 no; 1 yes',
+  created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at timestamptz,
+  deleted_at timestamptz,
+  id_template integer
+);

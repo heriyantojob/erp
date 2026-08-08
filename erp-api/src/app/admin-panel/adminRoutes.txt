@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { v7 as uuid } from 'uuid';
+
+
+import userBackOfficeRoutes from "./user/userAdminRoutes";
+
+const backOfficeRouter = Router();
+backOfficeRouter.use('/user', userBackOfficeRoutes);
+
+
+export default backOfficeRouter;

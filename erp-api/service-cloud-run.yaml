@@ -1,0 +1,40 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: pictheme-api  # Nama layanan di Cloud Run
+
+spec:
+  template:
+    metadata:
+      name: pictheme-api-revision-19  # Nama revisi layanan
+      annotations:
+        run.googleapis.com/cloudsql-instances: <CLousql Connection name in overview>
+        run.googleapis.com/allow-unauthenticated: "true"  # Mengizinkan akses publik
+    spec:
+      containers:
+        - image: gcr.io/PROJECT-ID/pictheme-api  # Ganti dengan image container Express.js di Container Registry atau Artifact Registry
+          ports:
+            - containerPort: 8080  # Cloud Run menggunakan port 8080 secara default
+          env:
+            - name: ACCESS_TOKEN_SECRET
+              value: "your-access-token-secret"
+            - name: REFRESH_TOKEN_SECRET
+              value: "your-refresh-token-secret"
+            - name: ORIGIN
+              value: "*"
+            - name: DATABASE_URL
+              value: "mysql://username:password@Host/database_name"
+            - name: DB_HOST
+              value: "localhost"
+            - name: DB_NAME
+              value: "octobees"
+            - name: DB_USER
+              value: "username"
+            - name: DB_PASSWORD
+              value: "password"
+            - name: DB_SOCKET
+              value: "/cloudsql/<CLousql Connection name in overview>"
+          resources:
+            limits:
+              cpu: "1"
+              memory: "512Mi"

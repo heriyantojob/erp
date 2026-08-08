@@ -1,0 +1,6 @@
+ASSESSMENT_REPORT.md is the canonical editable report source.
+ASSESSMENT_REPORT.docx, ASSESSMENT_REPORT.pdf and ASSESSMENT_REPORT.html were regenerated from the updated Markdown report.
+
+If you edit ASSESSMENT_REPORT.md later, regenerate the DOCX/HTML with Pandoc (if installed) or edit the DOCX directly, then visually verify the final PDF before submission.
+
+Do not use the older hand-written report generator scripts without updating their content first; they are retained only as historical utilities.
