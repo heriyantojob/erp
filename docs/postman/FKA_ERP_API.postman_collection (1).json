@@ -1,0 +1,1562 @@
+{
+  "info": {
+    "name": "FKA ERP API - Complete Postman Collection",
+    "description": "Generated from the ERP API source-code snapshot. Canonical ERP prefix: /api/erp. Sign in first so Postman's cookie jar retains the Better Auth session. x-locale supports en, id, ko.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "00 - System & Authentication",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/health",
+            "description": ""
+          }
+        },
+        {
+          "name": "Root",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/",
+            "description": ""
+          }
+        },
+        {
+          "name": "Sign In - System Administrator",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/auth/sign-in/email",
+            "description": "Better Auth email/password sign-in. Postman cookie jar should retain the session cookie for subsequent ERP requests.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{adminEmail}}\",\n  \"password\": \"{{adminPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Current Session - /me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/me",
+            "description": ""
+          }
+        },
+        {
+          "name": "ERP Diagnostic",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/_diagnostic",
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "01 - Security, Users & Audit",
+      "item": [
+        {
+          "name": "Current ERP Access",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/security/access",
+            "description": ""
+          }
+        },
+        {
+          "name": "Audit Logs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/audit-logs",
+            "description": ""
+          }
+        },
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/security/users",
+            "description": ""
+          }
+        },
+        {
+          "name": "List Roles",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/security/roles",
+            "description": ""
+          }
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/security/users",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Postman Warehouse User\",\n  \"email\": \"postman.warehouse@erp.test\",\n  \"password\": \"asdf1234\",\n  \"roleCodes\": [\n    \"warehouse\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/security/users/{{userId}}",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Postman Warehouse User Updated\",\n  \"email\": \"postman.warehouse@erp.test\",\n  \"banned\": false,\n  \"roleCodes\": [\n    \"warehouse\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Soft Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/security/users/{{userId}}",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Postman assessment cleanup\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 - Material Master",
+      "item": [
+        {
+          "name": "List Materials",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/materials",
+            "description": ""
+          }
+        },
+        {
+          "name": "Create Material",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/materials",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"RM-PM-001\",\n  \"name\": \"Postman Test Material\",\n  \"category\": \"Raw Material\",\n  \"unit\": \"kg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Material",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/materials/{{materialCode}}",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Postman Test Material Updated\",\n  \"category\": \"Raw Material\",\n  \"unit\": \"kg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Soft Delete Material",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/materials/{{materialCode}}",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Postman assessment cleanup\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 - Business Partners",
+      "item": [
+        {
+          "name": "Supplier Options",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/business-partners/suppliers/options?q=SUP",
+            "description": ""
+          }
+        },
+        {
+          "name": "Supplier Option By Code",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/business-partners/suppliers/{{supplierCode}}/option",
+            "description": ""
+          }
+        },
+        {
+          "name": "List Business Partners",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/business-partners",
+            "description": ""
+          }
+        },
+        {
+          "name": "Create Business Partner",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/business-partners",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"SUP-PM-001\",\n  \"type\": \"supplier\",\n  \"name\": \"Postman Supplier\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Business Partner",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/business-partners/{{supplierCode}}",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"supplier\",\n  \"name\": \"Postman Supplier Updated\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Soft Delete Business Partner",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/business-partners/{{supplierCode}}",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Postman assessment cleanup\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 - Bill of Materials",
+      "item": [
+        {
+          "name": "List BOM",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/bill-of-materials",
+            "description": ""
+          }
+        },
+        {
+          "name": "Create BOM",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/bill-of-materials",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"materialCode\": \"RM-001\",\n  \"requiredQuantity\": 4,\n  \"unit\": \"kg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update BOM",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/bill-of-materials/{{bomId}}",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"materialCode\": \"RM-001\",\n  \"requiredQuantity\": 5,\n  \"unit\": \"kg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Soft Delete BOM",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/bill-of-materials/{{bomId}}",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Postman assessment cleanup\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 - Purchase Requisition",
+      "item": [
+        {
+          "name": "List Purchase Requisitions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/purchase-requisitions",
+            "description": ""
+          }
+        },
+        {
+          "name": "Create Purchase Requisition",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/purchase-requisitions",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requisitionNumber\": \"PR-PM-001\",\n  \"materialCode\": \"RM-001\",\n  \"quantity\": \"25\",\n  \"unit\": \"kg\",\n  \"neededAt\": \"2026-08-15\",\n  \"notes\": \"Postman assessment request\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Approve Purchase Requisition",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/purchase-requisitions/{{purchaseRequisitionId}}/approve",
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 - Purchase Order",
+      "item": [
+        {
+          "name": "List Purchase Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/purchase-orders",
+            "description": ""
+          }
+        },
+        {
+          "name": "Create Purchase Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/purchase-orders",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderNumber\": \"PO-PM-001\",\n  \"requisitionId\": null,\n  \"supplierCode\": \"SUP-001\",\n  \"materialCode\": \"RM-001\",\n  \"quantity\": \"25\",\n  \"unit\": \"kg\",\n  \"expectedAt\": \"2026-08-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Approve Purchase Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/purchase-orders/{{purchaseOrderId}}/status",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"approved\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Cancel Purchase Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/purchase-orders/{{purchaseOrderId}}/status",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"cancelled\",\n  \"reason\": \"Cancelled during Postman test\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 - Goods Receipt",
+      "item": [
+        {
+          "name": "Create Transactional Goods Receipt",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/stock/goods-receipts",
+            "description": "Creates batch/lot, stock balance and stock transaction through the transactional goods-receipt module.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receivedAt\": \"2026-08-10\",\n  \"receiptNumber\": \"GR-PM-001\",\n  \"materialCode\": \"RM-001\",\n  \"batchNumber\": \"RE-PM-001\",\n  \"expiryDate\": \"2027-08-10\",\n  \"quantity\": \"25\",\n  \"unit\": \"kg\",\n  \"purchaseOrderId\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "List Legacy Goods Receipts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/goods-receipts",
+            "description": ""
+          }
+        },
+        {
+          "name": "Create Legacy Goods Receipt",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/goods-receipts",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receivedAt\": \"2026-08-10\",\n  \"receiptCode\": \"GR-LEG-PM-001\",\n  \"materialCode\": \"RM-001\",\n  \"batchNumber\": \"RE-LEG-PM-001\",\n  \"expiryDate\": \"2027-08-10\",\n  \"quantity\": 25,\n  \"unit\": \"kg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Legacy Goods Receipt",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/goods-receipts/{{legacyGoodsReceiptId}}",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receivedAt\": \"2026-08-10\",\n  \"receiptCode\": \"GR-LEG-PM-001\",\n  \"materialCode\": \"RM-001\",\n  \"batchNumber\": \"RE-LEG-PM-001\",\n  \"expiryDate\": \"2027-08-10\",\n  \"quantity\": 26,\n  \"unit\": \"kg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Legacy Goods Receipt - Expected 405",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/goods-receipts/{{legacyGoodsReceiptId}}",
+            "description": "Posted transactions cannot be deleted; API instructs use of reversal."
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 - Incoming Quality",
+      "item": [
+        {
+          "name": "List Incoming Quality",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/incoming-quality",
+            "description": ""
+          }
+        },
+        {
+          "name": "Release Batch",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/incoming-quality/{{qualityInspectionId}}/inspect",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"released\",\n  \"result\": \"Material passed incoming quality inspection\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Reject Batch",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/incoming-quality/{{qualityInspectionId}}/inspect",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"rejected\",\n  \"result\": \"Material failed incoming quality inspection\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 - Stock Queries",
+      "item": [
+        {
+          "name": "Stock Availability - All",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/stock/availability",
+            "description": ""
+          }
+        },
+        {
+          "name": "Stock Availability - Material",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/stock/availability?materialCode={{stockMaterialCode}}",
+            "description": ""
+          }
+        },
+        {
+          "name": "Current Stock",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/stock/current-stock",
+            "description": ""
+          }
+        },
+        {
+          "name": "Stock Ledger",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/stock/ledger",
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "10 - Stock Reservations",
+      "item": [
+        {
+          "name": "List Active Reservations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/stock/reservations?status=active",
+            "description": ""
+          }
+        },
+        {
+          "name": "Create Reservation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/stock/reservations",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stockBalanceId\": \"{{stockBalanceId}}\",\n  \"quantity\": \"5\",\n  \"reservationNumber\": \"RSV-PM-001\",\n  \"referenceType\": \"manual\",\n  \"referenceId\": \"POSTMAN-001\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Release Reservation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/stock/reservations/{{reservationId}}/release",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Released during Postman assessment test\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "11 - Production",
+      "item": [
+        {
+          "name": "List Production Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/production-orders",
+            "description": ""
+          }
+        },
+        {
+          "name": "Create Production Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/production-orders",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderNumber\": \"PROD-PM-001\",\n  \"finishedMaterialCode\": \"FG-001\",\n  \"plannedQuantity\": \"20\",\n  \"unit\": \"liter\",\n  \"plannedAt\": \"2026-08-10\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Start Production Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/production-orders/{{productionOrderId}}/start",
+            "description": ""
+          }
+        },
+        {
+          "name": "FIFO Allocate Material",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/fifo/allocate",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productionOrderId\": \"{{productionOrderId}}\",\n  \"materialCode\": \"RM-002\",\n  \"quantity\": \"16\",\n  \"unit\": \"liter\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Material Issue - Specific Balance",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/stock/material-issues",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stockBalanceId\": \"{{stockBalanceId}}\",\n  \"quantity\": \"4\",\n  \"productionOrderId\": \"{{productionOrderId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Complete Production Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/production-orders/{{productionOrderId}}/complete",
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "12 - Finished Goods Receipt",
+      "item": [
+        {
+          "name": "List Finished Goods Receipts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/finished-goods-receipts",
+            "description": ""
+          }
+        },
+        {
+          "name": "Create Finished Goods Receipt",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/finished-goods-receipts",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productionOrderId\": \"{{productionOrderId}}\",\n  \"batchNumber\": \"FG-PM-001\",\n  \"quantity\": \"20\",\n  \"unit\": \"liter\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "13 - Sales & Delivery",
+      "item": [
+        {
+          "name": "List Sales Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/sales-orders",
+            "description": ""
+          }
+        },
+        {
+          "name": "Create Sales Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/sales-orders",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderNumber\": \"SO-PM-001\",\n  \"customerCode\": \"CUS-001\",\n  \"materialCode\": \"FG-001\",\n  \"quantity\": \"5\",\n  \"unit\": \"liter\",\n  \"requestedAt\": \"2026-08-10\",\n  \"stockBalanceId\": \"{{finishedGoodsStockBalanceId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "List Deliveries",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/deliveries",
+            "description": ""
+          }
+        },
+        {
+          "name": "Create Delivery",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/deliveries",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deliveryNumber\": \"DL-PM-001\",\n  \"salesOrderId\": \"{{salesOrderId}}\",\n  \"deliveredAt\": \"2026-08-10\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "14 - Reversal",
+      "item": [
+        {
+          "name": "Reverse Stock Transaction",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/stock/transactions/{{transactionNumber}}/reverse",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Correction during Postman assessment test\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "15 - Process Summary",
+      "item": [
+        {
+          "name": "Process Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-locale",
+                "value": "{{locale}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/erp/process/summary",
+            "description": ""
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000"
+    },
+    {
+      "key": "locale",
+      "value": "en"
+    },
+    {
+      "key": "adminEmail",
+      "value": "admin@erp.test"
+    },
+    {
+      "key": "adminPassword",
+      "value": "1234asdf"
+    },
+    {
+      "key": "materialCode",
+      "value": "RM-PM-001"
+    },
+    {
+      "key": "supplierCode",
+      "value": "SUP-001"
+    },
+    {
+      "key": "stockMaterialCode",
+      "value": "RM-001"
+    },
+    {
+      "key": "userId",
+      "value": ""
+    },
+    {
+      "key": "bomId",
+      "value": ""
+    },
+    {
+      "key": "legacyGoodsReceiptId",
+      "value": ""
+    },
+    {
+      "key": "purchaseRequisitionId",
+      "value": ""
+    },
+    {
+      "key": "purchaseOrderId",
+      "value": ""
+    },
+    {
+      "key": "qualityInspectionId",
+      "value": ""
+    },
+    {
+      "key": "stockBalanceId",
+      "value": ""
+    },
+    {
+      "key": "reservationId",
+      "value": ""
+    },
+    {
+      "key": "productionOrderId",
+      "value": ""
+    },
+    {
+      "key": "finishedGoodsStockBalanceId",
+      "value": ""
+    },
+    {
+      "key": "salesOrderId",
+      "value": ""
+    },
+    {
+      "key": "transactionNumber",
+      "value": ""
+    }
+  ]
+}
