@@ -15,8 +15,9 @@ export const viewFileAdmin = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "Not Found" });
     }
     return res.status(200).json({ ...data });
-
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error. Please try again later." });
+    return res
+      .status(500)
+      .json({ message: "Internal server error. Please try again later." });
   }
 };

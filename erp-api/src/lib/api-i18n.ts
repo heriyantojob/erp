@@ -36,8 +36,10 @@ const messages: Record<ApiLocale, Messages> = {
     tooBigString: "{field} must contain at most {maximum} character(s).",
     tooBigNumber: "{field} must be less than or equal to {maximum}.",
     duplicate: "A record with the same {field} already exists.",
-    referenceNotFound: "The referenced data was not found or is no longer active.",
-    databaseError: "The data could not be saved because of a database constraint.",
+    referenceNotFound:
+      "The referenced data was not found or is no longer active.",
+    databaseError:
+      "The data could not be saved because of a database constraint.",
   },
   id: {
     invalidRequest: "Permintaan tidak valid.",
@@ -54,7 +56,8 @@ const messages: Record<ApiLocale, Messages> = {
     tooBigNumber: "{field} harus lebih kecil atau sama dengan {maximum}.",
     duplicate: "Data dengan {field} yang sama sudah tersedia.",
     referenceNotFound: "Data referensi tidak ditemukan atau sudah tidak aktif.",
-    databaseError: "Data tidak dapat disimpan karena melanggar aturan database.",
+    databaseError:
+      "Data tidak dapat disimpan karena melanggar aturan database.",
   },
   ko: {
     invalidRequest: "잘못된 요청입니다.",
@@ -75,19 +78,38 @@ const messages: Record<ApiLocale, Messages> = {
   },
 };
 
-const interpolate = (template: string, values: Record<string, string | number>) =>
-  Object.entries(values).reduce((result, [key, value]) => result.split(`{${key}}`).join(String(value)), template);
+const interpolate = (
+  template: string,
+  values: Record<string, string | number>,
+) =>
+  Object.entries(values).reduce(
+    (result, [key, value]) => result.split(`{${key}}`).join(String(value)),
+    template,
+  );
 
 export function getApiLocale(req: Request): ApiLocale {
-  const explicit = String(req.header("x-locale") ?? req.header("x-lang") ?? "").toLowerCase().split("-")[0];
-  if (explicit === "id" || explicit === "ko" || explicit === "en") return explicit;
+  const explicit = String(req.header("x-locale") ?? req.header("x-lang") ?? "")
+    .toLowerCase()
+    .split("-")[0];
+  if (explicit === "id" || explicit === "ko" || explicit === "en")
+    return explicit;
   const accepted = String(req.header("accept-language") ?? "").toLowerCase();
   if (accepted.startsWith("id")) return "id";
   if (accepted.startsWith("ko")) return "ko";
   return "en";
 }
 
-type ValidationIssue = { code: string; path: PropertyKey[]; message: string; input?: unknown; format?: string; values?: unknown[]; minimum?: unknown; maximum?: unknown; origin?: string };
+type ValidationIssue = {
+  code: string;
+  path: PropertyKey[];
+  message: string;
+  input?: unknown;
+  format?: string;
+  values?: unknown[];
+  minimum?: unknown;
+  maximum?: unknown;
+  origin?: string;
+};
 
 function fieldName(issue: ValidationIssue): string {
   return issue.path.length ? issue.path.map(String).join(".") : "request";
@@ -97,7 +119,12 @@ function issueMessage(issue: ValidationIssue, locale: ApiLocale): string {
   const t = messages[locale];
   const field = fieldName(issue);
   if (issue.code === "invalid_type") {
-    return interpolate(issue.input === undefined || issue.input === null || issue.input === "" ? t.required : t.invalidType, { field });
+    return interpolate(
+      issue.input === undefined || issue.input === null || issue.input === ""
+        ? t.required
+        : t.invalidType,
+      { field },
+    );
   }
   if (issue.code === "invalid_format") {
     const format = String((issue as { format?: string }).format ?? "");
@@ -112,17 +139,23 @@ function issueMessage(issue: ValidationIssue, locale: ApiLocale): string {
   if (issue.code === "too_small") {
     const minimum = String((issue as { minimum?: unknown }).minimum ?? "");
     const origin = String((issue as { origin?: string }).origin ?? "");
-    return interpolate(origin === "number" ? t.tooSmallNumber : t.tooSmallString, { field, minimum });
+    return interpolate(
+      origin === "number" ? t.tooSmallNumber : t.tooSmallString,
+      { field, minimum },
+    );
   }
   if (issue.code === "too_big") {
     const maximum = String((issue as { maximum?: unknown }).maximum ?? "");
     const origin = String((issue as { origin?: string }).origin ?? "");
-    return interpolate(origin === "number" ? t.tooBigNumber : t.tooBigString, { field, maximum });
+    return interpolate(origin === "number" ? t.tooBigNumber : t.tooBigString, {
+      field,
+      maximum,
+    });
   }
-  if (issue.code === "custom" || issue.code === "invalid_format") return interpolate(t.invalidType, { field });
+  if (issue.code === "custom" || issue.code === "invalid_format")
+    return interpolate(t.invalidType, { field });
   return issue.message || interpolate(t.invalidType, { field });
 }
-
 
 type PostgresErrorInfo = {
   code?: string;
@@ -138,7 +171,11 @@ function postgresError(error: unknown): PostgresErrorInfo | undefined {
   let current: unknown = error;
   const visited = new Set<unknown>();
 
-  for (let depth = 0; depth < 8 && current && typeof current === "object"; depth += 1) {
+  for (
+    let depth = 0;
+    depth < 8 && current && typeof current === "object";
+    depth += 1
+  ) {
     if (visited.has(current)) break;
     visited.add(current);
 
@@ -285,6 +322,7 @@ export function sendApiError(req: Request, res: Response, error: unknown) {
     return res.status(status).json(response);
   }
 
-  const message = error instanceof Error && error.message ? error.message : t.invalidRequest;
+  const message =
+    error instanceof Error && error.message ? error.message : t.invalidRequest;
   return res.status(400).json({ locale, code: "INVALID_REQUEST", message });
 }

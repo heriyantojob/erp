@@ -1,8 +1,8 @@
-import { s3GetFile } from '@/lib/storage/s3GetFile';
-import slugify from 'slug';
-import { fileRepository } from '../repositories/file.repository';
-import { CustomError } from '@/lib/custom-error';
-import logger from '@/utils/logger';
+import { s3GetFile } from "@/lib/storage/s3GetFile";
+import slugify from "slug";
+import { fileRepository } from "../repositories/file.repository";
+import { CustomError } from "@/lib/custom-error";
+import logger from "@/utils/logger";
 
 export interface FileAttachment {
   id: string;
@@ -29,11 +29,11 @@ function getUpdatedAt(value: string | null): string | null {
   try {
     const date = new Date(value);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
     return `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
   } catch {
     return null;
@@ -43,18 +43,18 @@ function getUpdatedAt(value: string | null): string | null {
 export async function getFileAttachmentsPreviewDownload(
   idFile: string,
   inPreview: number,
-  inDownload: number
+  inDownload: number,
 ): Promise<FileAttachment[] | null> {
   try {
     const attachments = (await fileRepository.attachmentsByFile(
       idFile,
       inPreview,
-      inDownload
+      inDownload,
     )) as FileAttachment[];
 
     for (const attachment of attachments) {
       try {
-        const fileUrl = await s3GetFile(attachment.filePath || '');
+        const fileUrl = await s3GetFile(attachment.filePath || "");
         const updateAt = getUpdatedAt(attachment.updatedAt);
         attachment.fileUrl = updateAt ? `${fileUrl}?v=${updateAt}` : fileUrl;
       } catch {
@@ -69,17 +69,15 @@ export async function getFileAttachmentsPreviewDownload(
 
 export async function getFileAttachmentsAll(
   idFile: string,
-
 ): Promise<FileAttachment[] | null> {
   try {
     const attachments = (await fileRepository.attachmentsByFileAll(
       idFile,
-    
     )) as FileAttachment[];
 
     for (const attachment of attachments) {
       try {
-        const fileUrl = await s3GetFile(attachment.filePath || '');
+        const fileUrl = await s3GetFile(attachment.filePath || "");
         const updateAt = getUpdatedAt(attachment.updatedAt);
         attachment.fileUrl = updateAt ? `${fileUrl}?v=${updateAt}` : fileUrl;
       } catch {
@@ -97,7 +95,7 @@ export async function listPublicFilesService(params: {
   perPage: number;
   q?: string;
   type?: string;
-  moduleType?: string|null;
+  moduleType?: string | null;
 }) {
   const total = await fileRepository.countPublic({
     q: params.q,
@@ -114,7 +112,7 @@ export async function listPublicFilesService(params: {
   for (let i = 0; i < items.length; i++) {
     try {
       const item = items[i];
-      items[i].fileAttachments  = await getFileAttachmentsAll(item.id);
+      items[i].fileAttachments = await getFileAttachmentsAll(item.id);
       // items[i].filePreview = await getFileAttachmentsPreviewDownload(item?.id, 1, 0);
       // items[i].fileDownload = await getFileAttachmentsPreviewDownload(item?.id, 0, 1);
     } catch {}
@@ -128,7 +126,7 @@ export async function listPrivateFilesService(params: {
   perPage: number;
   q?: string;
   type?: string;
-  moduleType?: string|null;
+  moduleType?: string | null;
 }) {
   const total = await fileRepository.countPrivate({
     userId: params.userId,
@@ -147,7 +145,7 @@ export async function listPrivateFilesService(params: {
   for (let i = 0; i < items.length; i++) {
     try {
       const item = items[i];
-         items[i].fileAttachments  = await getFileAttachmentsAll(item.id);
+      items[i].fileAttachments = await getFileAttachmentsAll(item.id);
       // items[i].filePreview = await getFileAttachmentsPreviewDownload(item?.id, 1, 0);
       // items[i].fileDownload = await getFileAttachmentsPreviewDownload(item?.id, 0, 1);
     } catch {}
@@ -161,8 +159,8 @@ export async function listAdminFilesService(params: {
   q?: string;
   type?: string;
   // 0 = draft, 1 = publish, 2 = review, 3 = reject. Omit = all statuses
-  status?: number|null;
-  moduleType?: string|null;
+  status?: number | null;
+  moduleType?: string | null;
 }) {
   const total = await fileRepository.countAdmin({
     q: params.q,
@@ -181,8 +179,16 @@ export async function listAdminFilesService(params: {
   for (let i = 0; i < items.length; i++) {
     try {
       const item = items[i];
-      items[i].filePreview = await getFileAttachmentsPreviewDownload(item?.id, 1, 0);
-      items[i].fileDownload = await getFileAttachmentsPreviewDownload(item?.id, 0, 1);
+      items[i].filePreview = await getFileAttachmentsPreviewDownload(
+        item?.id,
+        1,
+        0,
+      );
+      items[i].fileDownload = await getFileAttachmentsPreviewDownload(
+        item?.id,
+        0,
+        1,
+      );
     } catch {}
   }
   return { items, total, totalPages: Math.ceil(total / params.perPage) };
@@ -191,7 +197,7 @@ export async function listAdminFilesService(params: {
 export async function viewAdminFileByIdService(id: string) {
   const data = await fileRepository.findByIdAdmin(id);
   if (!data) return null;
-  const fileAttachments  = await getFileAttachmentsAll(data.id);
+  const fileAttachments = await getFileAttachmentsAll(data.id);
   const filePreview = await getFileAttachmentsPreviewDownload(data.id, 1, 0);
   const fileDownload = await getFileAttachmentsPreviewDownload(data.id, 0, 1);
   return { ...data, fileAttachments };
@@ -203,7 +209,7 @@ export async function viewPublicFileBySlugService(slug: string) {
   // const fileAttachments  = await getFileAttachmentsAll(data.id);
   const filePreview = await getFileAttachmentsPreviewDownload(data.id, 1, 0);
   const fileDownload = await getFileAttachmentsPreviewDownload(data.id, 0, 1);
-  return { ...data,filePreview, fileDownload };
+  return { ...data, filePreview, fileDownload };
 }
 
 export async function viewPrivateFileByIdService(id: string, userId: string) {
@@ -226,32 +232,25 @@ export async function updateFileService(id: string, body: any) {
 }
 
 export async function deleteFileService(id: string, userId: string) {
-  
   const file = await fileRepository.findByIdForUser(id, userId);
 
   if (!file) {
-    throw new CustomError('Not Found', 404);
+    throw new CustomError("Not Found", 404);
   }
- 
 
   const attachments = await fileRepository.attachmentsByFileAll(id);
 
   return { file, attachments };
 }
 
-
 export async function deleteFileAdminService(id: string) {
-  
   const file = await fileRepository.findById(id);
 
   if (!file) {
-    throw new CustomError('Not Found', 404);
+    throw new CustomError("Not Found", 404);
   }
- 
 
   const attachments = await fileRepository.attachmentsByFileAll(id);
 
   return { file, attachments };
 }
-
-

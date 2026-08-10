@@ -7,13 +7,14 @@ import {
   timestamp,
   uuid,
   varchar,
-  bigint
+  bigint,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
-
 export const tableFiles = pgTable("files", {
-  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id")
+    .primaryKey()
+    .default(sql`gen_random_uuid()`),
 
   owner: varchar("owner", { length: 255 }).notNull(),
   ownerTransfer: varchar("owner_transfer", { length: 255 }),
@@ -25,10 +26,8 @@ export const tableFiles = pgTable("files", {
 
   // Legacy assets are intentionally constrained to one module for the ERP migration.
   moduleType: varchar("module_type", { length: 30 }).notNull().default("file"),
-  
-  supporters: bigint("supporters", { mode: "number" })
-    .default(0)
-    .notNull(), // jumlah pendukung / pengguna twibbon
+
+  supporters: bigint("supporters", { mode: "number" }).default(0).notNull(), // jumlah pendukung / pengguna twibbon
   // 0 = draft, 1 = publish, 2 = review, 3 = reject
   status: smallint("status").default(1),
 
@@ -44,7 +43,9 @@ export const tableFiles = pgTable("files", {
 });
 
 export const tableFileAttachments = pgTable("file_attachments", {
-  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id")
+    .primaryKey()
+    .default(sql`gen_random_uuid()`),
 
   idFile: varchar("id_file", { length: 36 }),
 

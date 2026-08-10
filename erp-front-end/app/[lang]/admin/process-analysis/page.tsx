@@ -10,26 +10,69 @@ type Stage = {
 };
 
 const topStages: Stage[] = [
-  { key: "purchaseRequisition", href: "/admin/purchase-requisition", implemented: true },
+  {
+    key: "purchaseRequisition",
+    href: "/admin/purchase-requisition",
+    implemented: true,
+  },
   { key: "purchaseOrder", href: "/admin/purchase-order", implemented: true },
-  { key: "goodsReceipt", href: "/admin/goods-receipt-input", implemented: true },
-  { key: "incomingQuality", href: "/admin/incoming-quality", implemented: true },
-  { key: "rawMaterialWarehouse", href: "/admin/raw-material-warehouse", implemented: true },
+  {
+    key: "goodsReceipt",
+    href: "/admin/goods-receipt-input",
+    implemented: true,
+  },
+  {
+    key: "incomingQuality",
+    href: "/admin/incoming-quality",
+    implemented: true,
+  },
+  {
+    key: "rawMaterialWarehouse",
+    href: "/admin/raw-material-warehouse",
+    implemented: true,
+  },
   { key: "materialIssue", href: "/admin/material-issues", implemented: true },
 ];
 const bottomStages: Stage[] = [
-  { key: "customerDelivery", href: "/admin/customer-delivery", implemented: true },
+  {
+    key: "customerDelivery",
+    href: "/admin/customer-delivery",
+    implemented: true,
+  },
   { key: "salesDeliveryOrder", href: "/admin/sales-order", implemented: true },
-  { key: "finishedGoodsWarehouse", href: "/admin/finished-goods-warehouse", implemented: true },
-  { key: "finishedGoodsReceipt", href: "/admin/finished-goods-receipt", implemented: true },
-  { key: "manufacturingProcess", href: "/admin/manufacturing", implemented: true },
-  { key: "productionOrder", href: "/admin/production-order", implemented: true },
+  {
+    key: "finishedGoodsWarehouse",
+    href: "/admin/finished-goods-warehouse",
+    implemented: true,
+  },
+  {
+    key: "finishedGoodsReceipt",
+    href: "/admin/finished-goods-receipt",
+    implemented: true,
+  },
+  {
+    key: "manufacturingProcess",
+    href: "/admin/manufacturing",
+    implemented: true,
+  },
+  {
+    key: "productionOrder",
+    href: "/admin/production-order",
+    implemented: true,
+  },
 ];
 
-function Arrow({ direction = "right" }: { direction?: "right" | "left" | "down" }) {
+function Arrow({
+  direction = "right",
+}: {
+  direction?: "right" | "left" | "down";
+}) {
   if (direction === "down") {
     return (
-      <div className="hidden h-12 items-center justify-center lg:flex" aria-hidden="true">
+      <div
+        className="hidden h-12 items-center justify-center lg:flex"
+        aria-hidden="true"
+      >
         <div className="relative h-12 w-0.5 bg-emerald-700">
           <span className="absolute -bottom-1.5 -left-[5px] h-0 w-0 border-x-[6px] border-t-[8px] border-x-transparent border-t-emerald-700" />
         </div>
@@ -71,8 +114,12 @@ function ProcessCard({
           : "border-emerald-500/70 bg-emerald-50/70"
       }`}
     >
-      <p className="text-sm font-bold leading-tight text-slate-800">{item.title}</p>
-      <p className="mt-1 text-[11px] font-medium text-emerald-700">{item.department}</p>
+      <p className="text-sm font-bold leading-tight text-slate-800">
+        {item.title}
+      </p>
+      <p className="mt-1 text-[11px] font-medium text-emerald-700">
+        {item.department}
+      </p>
       <span
         className={`mt-2 rounded-full px-2 py-0.5 text-[10px] font-semibold ${
           stage.implemented
@@ -90,13 +137,24 @@ function ProcessCard({
   if (!stage.href) return content;
 
   return (
-    <Link href={`/${lang}${stage.href}`} className="block focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 rounded-xl">
+    <Link
+      href={`/${lang}${stage.href}`}
+      className="block focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 rounded-xl"
+    >
       {content}
     </Link>
   );
 }
 
-function MobileFlow({ stages, lang, dictionary }: { stages: Stage[]; lang: string; dictionary: any }) {
+function MobileFlow({
+  stages,
+  lang,
+  dictionary,
+}: {
+  stages: Stage[];
+  lang: string;
+  dictionary: any;
+}) {
   return (
     <div className="grid gap-2 lg:hidden">
       {stages.map((stage, index) => (
@@ -130,9 +188,15 @@ export default async function ProcessAnalysisPage({
     <AdminShell title={p.title}>
       <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6 lg:p-8">
         <div className="mb-8">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">{p.eyebrow}</p>
-          <h2 className="mt-2 text-2xl font-bold text-emerald-800 sm:text-3xl">{p.flowTitle}</h2>
-          <p className="mt-2 max-w-4xl text-sm leading-6 text-slate-600">{p.description}</p>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">
+            {p.eyebrow}
+          </p>
+          <h2 className="mt-2 text-2xl font-bold text-emerald-800 sm:text-3xl">
+            {p.flowTitle}
+          </h2>
+          <p className="mt-2 max-w-4xl text-sm leading-6 text-slate-600">
+            {p.description}
+          </p>
         </div>
 
         <MobileFlow stages={allStages} lang={locale} dictionary={d} />
@@ -148,7 +212,9 @@ export default async function ProcessAnalysisPage({
           </div>
 
           <div className="grid grid-cols-6">
-            <div className="col-start-6 flex justify-center"><Arrow direction="down" /></div>
+            <div className="col-start-6 flex justify-center">
+              <Arrow direction="down" />
+            </div>
           </div>
 
           <div className="grid grid-cols-[1fr_28px_1fr_28px_1fr_28px_1fr_28px_1fr_28px_1fr] items-center">
@@ -162,9 +228,14 @@ export default async function ProcessAnalysisPage({
         </div>
 
         <div className="mt-8 flex flex-wrap items-center gap-2 border-t border-slate-200 pt-5">
-          <span className="mr-1 text-sm font-bold text-emerald-800">{p.controlLayer}:</span>
+          <span className="mr-1 text-sm font-bold text-emerald-800">
+            {p.controlLayer}:
+          </span>
           {p.controls.map((control: string) => (
-            <span key={control} className="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-800">
+            <span
+              key={control}
+              className="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-800"
+            >
               {control}
             </span>
           ))}
@@ -172,17 +243,23 @@ export default async function ProcessAnalysisPage({
 
         <div className="mt-8 rounded-xl border border-emerald-300 bg-emerald-50 p-5 sm:p-6">
           <div className="grid gap-2 md:grid-cols-[auto_1fr] md:gap-4">
-            <h3 className="text-lg font-black uppercase text-emerald-800">{p.prototype.title}</h3>
-            <p className="text-sm leading-6 text-slate-700">{p.prototype.description}</p>
+            <h3 className="text-lg font-black uppercase text-emerald-800">
+              {p.prototype.title}
+            </h3>
+            <p className="text-sm leading-6 text-slate-700">
+              {p.prototype.description}
+            </p>
           </div>
         </div>
 
         <div className="mt-5 flex flex-wrap gap-4 text-xs text-slate-500">
           <span className="inline-flex items-center gap-2">
-            <span className="h-3 w-3 rounded-sm bg-emerald-700" /> {p.legend.available}
+            <span className="h-3 w-3 rounded-sm bg-emerald-700" />{" "}
+            {p.legend.available}
           </span>
           <span className="inline-flex items-center gap-2">
-            <span className="h-3 w-3 rounded-sm border border-emerald-400 bg-emerald-50" /> {p.legend.planned}
+            <span className="h-3 w-3 rounded-sm border border-emerald-400 bg-emerald-50" />{" "}
+            {p.legend.planned}
           </span>
         </div>
       </div>

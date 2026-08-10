@@ -22,13 +22,8 @@
             ],
             "url": {
               "raw": "{{base_url}}/t4-admin/blog?page=1&per_page=10",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "t4-admin",
-                "blog"
-              ],
+              "host": ["{{base_url}}"],
+              "path": ["t4-admin", "blog"],
               "query": [
                 {
                   "key": "page",
@@ -56,14 +51,8 @@
             ],
             "url": {
               "raw": "{{base_url}}/t4-admin/blog/{{id}}",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "t4-admin",
-                "blog",
-                "{{id}}"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["t4-admin", "blog", "{{id}}"]
             }
           },
           "response": []
@@ -95,13 +84,8 @@
             },
             "url": {
               "raw": "{{base_url}}/t4-admin/blog",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "t4-admin",
-                "blog"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["t4-admin", "blog"]
             }
           },
           "response": []
@@ -133,14 +117,8 @@
             },
             "url": {
               "raw": "{{base_url}}/t4-admin/blog/{{id}}",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "t4-admin",
-                "blog",
-                "{{id}}"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["t4-admin", "blog", "{{id}}"]
             }
           },
           "response": []
@@ -158,14 +136,8 @@
             ],
             "url": {
               "raw": "{{base_url}}/t4-admin/blog/{{id}}",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "t4-admin",
-                "blog",
-                "{{id}}"
-              ]
+              "host": ["{{base_url}}"],
+              "path": ["t4-admin", "blog", "{{id}}"]
             }
           },
           "response": []

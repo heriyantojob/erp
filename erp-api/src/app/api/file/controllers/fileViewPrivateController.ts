@@ -11,14 +11,18 @@ export const viewFilePrivate = async (req: Request, res: Response) => {
   }
 
   try {
-    const data = await viewPrivateFileByIdService(idParams as string, userId as string);
+    const data = await viewPrivateFileByIdService(
+      idParams as string,
+      userId as string,
+    );
     if (!data) {
       return res.status(404).json({ message: "Not Found" });
     }
     return res.status(200).json({ ...data });
- 
   } catch (error) {
     //console.error("Error querying database:", error);
-    return res.status(500).json({ message: "Internal server error. Please try again later." });
+    return res
+      .status(500)
+      .json({ message: "Internal server error. Please try again later." });
   }
 };

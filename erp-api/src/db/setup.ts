@@ -10,7 +10,9 @@ if (!process.env.DB_URL) {
   throw new Error("Missing DB_URL environment variable");
 }
 
-export const poolConnection = new Pool({ connectionString: process.env.DB_URL });
+export const poolConnection = new Pool({
+  connectionString: process.env.DB_URL,
+});
 
 async function initDatabase() {
   try {

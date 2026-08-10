@@ -11,21 +11,32 @@ import { permissions, rolePermissions, userRoles } from "@/db/schema";
 export function requireAnyPermission(...required: string[]) {
   return async (_req: Request, res: Response, next: NextFunction) => {
     try {
-      const currentUser = res.locals.user as { id?: string; role?: string } | undefined;
-      if (!currentUser?.id) return res.status(401).json({ message: "Unauthorized" });
+      const currentUser = res.locals.user as
+        | { id?: string; role?: string }
+        | undefined;
+      if (!currentUser?.id)
+        return res.status(401).json({ message: "Unauthorized" });
 
-      if (["admin", "superadmin"].includes(currentUser.role ?? "")) return next();
+      if (["admin", "superadmin"].includes(currentUser.role ?? ""))
+        return next();
 
       const granted = await db
         .select({ code: permissions.code })
         .from(userRoles)
-        .innerJoin(rolePermissions, eq(rolePermissions.roleId, userRoles.roleId))
-        .innerJoin(permissions, eq(permissions.id, rolePermissions.permissionId))
+        .innerJoin(
+          rolePermissions,
+          eq(rolePermissions.roleId, userRoles.roleId),
+        )
+        .innerJoin(
+          permissions,
+          eq(permissions.id, rolePermissions.permissionId),
+        )
         .where(eq(userRoles.userId, currentUser.id));
 
       if (!granted.some(({ code }) => required.includes(code))) {
         return res.status(403).json({
-          message: "Forbidden: your role does not have the required permission.",
+          message:
+            "Forbidden: your role does not have the required permission.",
           required,
         });
       }
@@ -36,7 +47,10 @@ export function requireAnyPermission(...required: string[]) {
   };
 }
 
-export async function getCurrentPermissions(userId: string, fallbackRole?: string) {
+export async function getCurrentPermissions(
+  userId: string,
+  fallbackRole?: string,
+) {
   if (["admin", "superadmin"].includes(fallbackRole ?? "")) return ["*"];
   const rows = await db
     .select({ code: permissions.code })

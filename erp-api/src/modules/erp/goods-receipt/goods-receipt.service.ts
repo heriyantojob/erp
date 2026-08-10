@@ -20,10 +20,15 @@ import {
   getDefaultRawMaterialStorage,
 } from "./goods-receipt.repository";
 
-export async function createGoodsReceipt(input: GoodsReceiptInput, userId?: string | null) {
+export async function createGoodsReceipt(
+  input: GoodsReceiptInput,
+  userId?: string | null,
+) {
   const material = await findActiveMaterial(db, input.materialCode);
   if (!material) {
-    throw new Error(`Material "${input.materialCode}" was not found or has been deleted.`);
+    throw new Error(
+      `Material "${input.materialCode}" was not found or has been deleted.`,
+    );
   }
   if (material.unit !== input.unit) {
     throw new Error(
@@ -49,7 +54,8 @@ export async function createGoodsReceipt(input: GoodsReceiptInput, userId?: stri
       ? await findPurchaseOrder(tx, input.purchaseOrderId)
       : undefined;
 
-    if (input.purchaseOrderId && !po) throw new Error("Purchase order not found.");
+    if (input.purchaseOrderId && !po)
+      throw new Error("Purchase order not found.");
     if (po && po.status !== "approved") {
       throw new Error(
         `Purchase order "${po.orderNumber}" must be approved before goods receipt. Current status: ${po.status}.`,
@@ -73,7 +79,10 @@ export async function createGoodsReceipt(input: GoodsReceiptInput, userId?: stri
 
     let supplierCode: string | null = null;
     if (po?.supplierCode) {
-      const supplier = await ensureSupplierFromBusinessPartner(tx, po.supplierCode);
+      const supplier = await ensureSupplierFromBusinessPartner(
+        tx,
+        po.supplierCode,
+      );
       if (!supplier) {
         throw new Error(
           `Supplier "${po.supplierCode}" from purchase order "${po.orderNumber}" was not found as an active supplier. Select a valid supplier in Business Partners and update the Purchase Order.`,
@@ -83,29 +92,35 @@ export async function createGoodsReceipt(input: GoodsReceiptInput, userId?: stri
     }
 
     let batch = await findBatch(tx, input.materialCode, input.batchNumber);
-    if (batch?.expiryDate && input.expiryDate && batch.expiryDate !== input.expiryDate) {
+    if (
+      batch?.expiryDate &&
+      input.expiryDate &&
+      batch.expiryDate !== input.expiryDate
+    ) {
       throw new Error(
         `Batch "${input.batchNumber}" already exists with expiry date ${batch.expiryDate}. ` +
-        "Use the same expiry date or create a different batch number.",
+          "Use the same expiry date or create a different batch number.",
       );
     }
 
     if (!batch) {
-      batch = (await tx
-        .insert(batchLots)
-        .values({
-          materialCode: input.materialCode,
-          batchNumber: input.batchNumber,
-          receivedAt: input.receivedAt,
-          expiryDate: input.expiryDate ?? null,
-          qualityStatus: "quarantine",
-        })
-        .returning({
-          id: batchLots.id,
-          materialCode: batchLots.materialCode,
-          batchNumber: batchLots.batchNumber,
-          expiryDate: batchLots.expiryDate,
-        }))[0];
+      batch = (
+        await tx
+          .insert(batchLots)
+          .values({
+            materialCode: input.materialCode,
+            batchNumber: input.batchNumber,
+            receivedAt: input.receivedAt,
+            expiryDate: input.expiryDate ?? null,
+            qualityStatus: "quarantine",
+          })
+          .returning({
+            id: batchLots.id,
+            materialCode: batchLots.materialCode,
+            batchNumber: batchLots.batchNumber,
+            expiryDate: batchLots.expiryDate,
+          })
+      )[0];
     }
 
     if (!batch) throw new Error("Failed to create or resolve the batch.");
@@ -115,18 +130,20 @@ export async function createGoodsReceipt(input: GoodsReceiptInput, userId?: stri
       .set({ qualityStatus: "quarantine", updatedAt: new Date() })
       .where(eq(batchLots.id, batch.id));
 
-    const header = (await tx
-      .insert(goodsReceiptHeaders)
-      .values({
-        receiptNumber: input.receiptNumber,
-        receivedAt: input.receivedAt,
-        supplierCode,
-        warehouseId: storage.warehouse.id,
-        status: "posted",
-        externalDocumentNumber: po?.orderNumber ?? null,
-        createdByUserId: userId ?? null,
-      })
-      .returning({ id: goodsReceiptHeaders.id }))[0];
+    const header = (
+      await tx
+        .insert(goodsReceiptHeaders)
+        .values({
+          receiptNumber: input.receiptNumber,
+          receivedAt: input.receivedAt,
+          supplierCode,
+          warehouseId: storage.warehouse.id,
+          status: "posted",
+          externalDocumentNumber: po?.orderNumber ?? null,
+          createdByUserId: userId ?? null,
+        })
+        .returning({ id: goodsReceiptHeaders.id })
+    )[0];
 
     if (!header) throw new Error("Failed to create the goods receipt header.");
 

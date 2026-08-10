@@ -26,7 +26,7 @@ type UploadResult = {
 export async function uploadToS3(
   filePath: string,
   key: string,
-  contentType = "application/octet-stream"
+  contentType = "application/octet-stream",
 ): Promise<UploadResult> {
   const cleanKey = key.replace(/^\/+/, "");
   const fileStream = fs.createReadStream(filePath);
@@ -37,7 +37,7 @@ export async function uploadToS3(
       Key: cleanKey,
       Body: fileStream,
       ContentType: contentType,
-    })
+    }),
   );
 
   const url = publicBaseUrl ? `${publicBaseUrl}/${cleanKey}` : undefined;

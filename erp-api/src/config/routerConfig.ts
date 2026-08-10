@@ -1,1 +1,1 @@
-const routerAdminPath = "admin"
+const routerAdminPath = "admin";

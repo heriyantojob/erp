@@ -5,11 +5,41 @@ import { db } from "../src/db/setup.js";
 import { roles, user, userRoles } from "../src/db/schema.js";
 
 export const demoUsers = [
-  { name: "ERP System Administrator", email: "admin@erp.test", password: "1234asdf", role: "system_administrator", fallbackRole: "admin" },
-  { name: "ERP Warehouse User", email: "warehouse@erp.test", password: "asdf1234", role: "warehouse_user", fallbackRole: "user" },
-  { name: "ERP Production User", email: "production@erp.test", password: "asdf1234", role: "production_user", fallbackRole: "user" },
-  { name: "ERP Supervisor / Approver", email: "approver@erp.test", password: "asdf1234", role: "supervisor_approver", fallbackRole: "user" },
-  { name: "ERP Management / Auditor", email: "auditor@erp.test", password: "asdf1234", role: "management_auditor", fallbackRole: "user" },
+  {
+    name: "ERP System Administrator",
+    email: "admin@erp.test",
+    password: "1234asdf",
+    role: "system_administrator",
+    fallbackRole: "admin",
+  },
+  {
+    name: "ERP Warehouse User",
+    email: "warehouse@erp.test",
+    password: "asdf1234",
+    role: "warehouse_user",
+    fallbackRole: "user",
+  },
+  {
+    name: "ERP Production User",
+    email: "production@erp.test",
+    password: "asdf1234",
+    role: "production_user",
+    fallbackRole: "user",
+  },
+  {
+    name: "ERP Supervisor / Approver",
+    email: "approver@erp.test",
+    password: "asdf1234",
+    role: "supervisor_approver",
+    fallbackRole: "user",
+  },
+  {
+    name: "ERP Management / Auditor",
+    email: "auditor@erp.test",
+    password: "asdf1234",
+    role: "management_auditor",
+    fallbackRole: "user",
+  },
 ] as const;
 
 const legacyDemoEmails = [
@@ -33,7 +63,9 @@ export async function seedDemoUsers() {
     .where(inArray(user.email, legacyDemoEmails));
 
   for (const demo of demoUsers) {
-    let account = (await db.select().from(user).where(eq(user.email, demo.email)))[0];
+    let account = (
+      await db.select().from(user).where(eq(user.email, demo.email))
+    )[0];
 
     if (!account) {
       await auth.api.signUpEmail({
@@ -43,10 +75,14 @@ export async function seedDemoUsers() {
           password: demo.password,
         },
       });
-      account = (await db.select().from(user).where(eq(user.email, demo.email)))[0];
+      account = (
+        await db.select().from(user).where(eq(user.email, demo.email))
+      )[0];
     }
 
-    const role = (await db.select().from(roles).where(eq(roles.code, demo.role)))[0];
+    const role = (
+      await db.select().from(roles).where(eq(roles.code, demo.role))
+    )[0];
     if (!account || !role) {
       throw new Error(`Cannot provision ${demo.email}; seed RBAC roles first.`);
     }
@@ -70,11 +106,15 @@ export async function seedDemoUsers() {
       await db
         .select()
         .from(userRoles)
-        .where(and(eq(userRoles.userId, account.id), eq(userRoles.roleId, role.id)))
+        .where(
+          and(eq(userRoles.userId, account.id), eq(userRoles.roleId, role.id)),
+        )
     )[0];
 
     if (!assigned) {
-      await db.insert(userRoles).values({ userId: account.id, roleId: role.id });
+      await db
+        .insert(userRoles)
+        .values({ userId: account.id, roleId: role.id });
     }
 
     console.info(`Provisioned ${demo.email} as ${demo.role}.`);

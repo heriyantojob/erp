@@ -1,1 +1,15 @@
-{"brand":"ERP File Manager","login":"Masuk","eyebrow":"Sederhana & aman","title":"Kelola file tim dalam satu tempat.","description":"Masuk dengan akun Anda, unggah file, dan kelola aset yang diperlukan tanpa fitur yang tidak relevan.","cta":"Login dengan email","featuresTitle":"Fitur inti","features":["Login email dan password","Session Better Auth","Manajemen file pengguna","Halaman administrasi"]}
+{
+  "brand": "ERP File Manager",
+  "login": "Masuk",
+  "eyebrow": "Sederhana & aman",
+  "title": "Kelola file tim dalam satu tempat.",
+  "description": "Masuk dengan akun Anda, unggah file, dan kelola aset yang diperlukan tanpa fitur yang tidak relevan.",
+  "cta": "Login dengan email",
+  "featuresTitle": "Fitur inti",
+  "features": [
+    "Login email dan password",
+    "Session Better Auth",
+    "Manajemen file pengguna",
+    "Halaman administrasi"
+  ]
+}

@@ -13,7 +13,10 @@ export const metadata = {
   description: "ERP inventory and file management application",
 };
 
-export default async function RootLayout({ children, params }: {
+export default async function RootLayout({
+  children,
+  params,
+}: {
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }) {
@@ -26,7 +29,10 @@ export default async function RootLayout({ children, params }: {
     <html lang={lang}>
       <body>
         <div className="fixed right-4 top-4 z-[100]">
-          <LocaleSwitcher currentLocale={lang} label={dictionary.common.language} />
+          <LocaleSwitcher
+            currentLocale={lang}
+            label={dictionary.common.language}
+          />
         </div>
         {children}
       </body>

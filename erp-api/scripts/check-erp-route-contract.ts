@@ -34,9 +34,15 @@ if (duplicateKeys.length > 0) {
   for (const key of [...new Set(duplicateKeys)]) console.error(`- ${key}`);
   process.exitCode = 1;
 } else {
-  console.info(`ERP route contract OK: ${routes.length} routes across ${files.length} feature modules.`);
+  console.info(
+    `ERP route contract OK: ${routes.length} routes across ${files.length} feature modules.`,
+  );
 }
 
-for (const route of routes.sort((a, b) => a.path.localeCompare(b.path) || a.method.localeCompare(b.method))) {
-  console.info(`${route.method.padEnd(6)} ${route.path.padEnd(60)} ${route.file}`);
+for (const route of routes.sort(
+  (a, b) => a.path.localeCompare(b.path) || a.method.localeCompare(b.method),
+)) {
+  console.info(
+    `${route.method.padEnd(6)} ${route.path.padEnd(60)} ${route.file}`,
+  );
 }

@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer"
+import nodemailer from "nodemailer";
 
 // * Gmail SMTP server address: smtp.gmail.com
 // * Gmail SMTP name: Your full name
@@ -15,21 +15,21 @@ const transporter = nodemailer.createTransport({
     user: process.env.GMAIL_USER,
     pass: process.env.GMAIL_PASSWORD,
   },
-})
+});
 
 export async function sendEmail({
   to,
   subject,
   html,
 }: {
-  to: string
-  subject: string
-  html: string
+  to: string;
+  subject: string;
+  html: string;
 }) {
   await transporter.sendMail({
     from: `"targetviral" <${process.env.GMAIL_USER}>`, // sender address
     to, // list of receivers
     subject, // Subject line
     html, // html body
-  })
+  });
 }

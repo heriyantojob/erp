@@ -23,7 +23,10 @@ function milli(value: string) {
 
 function decimal(value: bigint) {
   const whole = value / 1000n;
-  const fraction = (value % 1000n).toString().padStart(3, "0").replace(/0+$/, "");
+  const fraction = (value % 1000n)
+    .toString()
+    .padStart(3, "0")
+    .replace(/0+$/, "");
   return fraction ? `${whole}.${fraction}` : String(whole);
 }
 
@@ -32,7 +35,10 @@ export async function createFinishedGoodsReceipt(
   userId?: string | null,
 ) {
   return db.transaction(async (tx) => {
-    const productionOrder = await findProductionOrder(tx, input.productionOrderId);
+    const productionOrder = await findProductionOrder(
+      tx,
+      input.productionOrderId,
+    );
 
     if (!productionOrder) throw new Error("Production order not found.");
     if (!["in_progress", "completed"].includes(productionOrder.status)) {
@@ -46,24 +52,31 @@ export async function createFinishedGoodsReceipt(
       );
     }
 
-    const previousReceipts = await listReceiptQuantities(tx, productionOrder.id);
+    const previousReceipts = await listReceiptQuantities(
+      tx,
+      productionOrder.id,
+    );
     const alreadyReceived = previousReceipts.reduce(
-      (sum: bigint, item: { quantity: string }) => sum + milli(String(item.quantity)),
+      (sum: bigint, item: { quantity: string }) =>
+        sum + milli(String(item.quantity)),
       0n,
     );
     const planned = milli(String(productionOrder.plannedQuantity));
     const requested = milli(String(input.quantity));
-    const remaining = planned > alreadyReceived ? planned - alreadyReceived : 0n;
+    const remaining =
+      planned > alreadyReceived ? planned - alreadyReceived : 0n;
 
     if (remaining === 0n) {
-      throw new Error(`Production order "${productionOrder.orderNumber}" has already been fully received.`);
+      throw new Error(
+        `Production order "${productionOrder.orderNumber}" has already been fully received.`,
+      );
     }
     if (requested > remaining) {
       throw new Error(
         `Finished goods quantity exceeds the remaining production quantity. ` +
-        `Planned: ${productionOrder.plannedQuantity} ${productionOrder.unit}; ` +
-        `already received: ${decimal(alreadyReceived)} ${productionOrder.unit}; ` +
-        `remaining: ${decimal(remaining)} ${productionOrder.unit}.`,
+          `Planned: ${productionOrder.plannedQuantity} ${productionOrder.unit}; ` +
+          `already received: ${decimal(alreadyReceived)} ${productionOrder.unit}; ` +
+          `remaining: ${decimal(remaining)} ${productionOrder.unit}.`,
       );
     }
 
@@ -75,35 +88,41 @@ export async function createFinishedGoodsReceipt(
     );
 
     if (!batch) {
-      batch = (await tx
-        .insert(batchLots)
+      batch = (
+        await tx
+          .insert(batchLots)
+          .values({
+            materialCode: productionOrder.finishedMaterialCode,
+            batchNumber: input.batchNumber,
+            receivedAt: new Date().toISOString().slice(0, 10),
+            qualityStatus: "released",
+          })
+          .returning({
+            id: batchLots.id,
+            materialCode: batchLots.materialCode,
+            batchNumber: batchLots.batchNumber,
+          })
+      )[0];
+    }
+    if (!batch)
+      throw new Error("Failed to create or resolve the finished-goods batch.");
+
+    const receipt = (
+      await tx
+        .insert(finishedGoodsReceipts)
         .values({
-          materialCode: productionOrder.finishedMaterialCode,
-          batchNumber: input.batchNumber,
-          receivedAt: new Date().toISOString().slice(0, 10),
+          productionOrderId: productionOrder.id,
+          batchLotId: batch.id,
+          locationId: storage.location.id,
+          quantity: input.quantity,
+          unit: input.unit,
           qualityStatus: "released",
         })
-        .returning({
-          id: batchLots.id,
-          materialCode: batchLots.materialCode,
-          batchNumber: batchLots.batchNumber,
-        }))[0];
-    }
-    if (!batch) throw new Error("Failed to create or resolve the finished-goods batch.");
+        .returning()
+    )[0];
 
-    const receipt = (await tx
-      .insert(finishedGoodsReceipts)
-      .values({
-        productionOrderId: productionOrder.id,
-        batchLotId: batch.id,
-        locationId: storage.location.id,
-        quantity: input.quantity,
-        unit: input.unit,
-        qualityStatus: "released",
-      })
-      .returning())[0];
-
-    if (!receipt) throw new Error("Failed to create the finished goods receipt.");
+    if (!receipt)
+      throw new Error("Failed to create the finished goods receipt.");
 
     await tx
       .insert(stockBalances)
@@ -183,7 +202,10 @@ export async function listFinishedGoodsReceipts() {
       receivedAt: finishedGoodsReceipts.receivedAt,
     })
     .from(finishedGoodsReceipts)
-    .innerJoin(productionOrders, eq(finishedGoodsReceipts.productionOrderId, productionOrders.id))
+    .innerJoin(
+      productionOrders,
+      eq(finishedGoodsReceipts.productionOrderId, productionOrders.id),
+    )
     .innerJoin(batchLots, eq(finishedGoodsReceipts.batchLotId, batchLots.id))
     .orderBy(sql`${finishedGoodsReceipts.receivedAt} desc`);
 }

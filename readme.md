@@ -2,9 +2,9 @@
 
 ## Technology Stack
 
-* **Backend:** Express.js 5
-* **Frontend:** Next.js 16
-* **Database:** PostgreSQL
+- **Backend:** Express.js 5
+- **Frontend:** Next.js 16
+- **Database:** PostgreSQL
 
 > **Note:** The backend API is built with Express.js 5, the frontend application uses Next.js 16, and PostgreSQL is used as the primary relational database.
 

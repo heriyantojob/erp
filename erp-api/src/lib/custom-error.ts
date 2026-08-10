@@ -12,7 +12,7 @@ export class CustomError extends Error {
 
   constructor(message: string, status: number) {
     super(message);
-    this.name = 'CustomError'; // Optional: Set a custom error name
+    this.name = "CustomError"; // Optional: Set a custom error name
     this.status = status;
   }
 }

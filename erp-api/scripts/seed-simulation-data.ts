@@ -18,10 +18,25 @@ import {
 } from "../src/db/schema.js";
 
 const MATERIALS = [
-  { code: "RM-001", name: "Rose Extract", category: "Raw Material", unit: "kg" },
+  {
+    code: "RM-001",
+    name: "Rose Extract",
+    category: "Raw Material",
+    unit: "kg",
+  },
   { code: "RM-002", name: "Alcohol", category: "Raw Material", unit: "liter" },
-  { code: "RM-003", name: "Packaging Bottle", category: "Packaging", unit: "pcs" },
-  { code: "FG-001", name: "Aroma Blend A", category: "Finished Goods", unit: "liter" },
+  {
+    code: "RM-003",
+    name: "Packaging Bottle",
+    category: "Packaging",
+    unit: "pcs",
+  },
+  {
+    code: "FG-001",
+    name: "Aroma Blend A",
+    category: "Finished Goods",
+    unit: "liter",
+  },
 ] as const;
 
 const PARTNERS = [
@@ -35,11 +50,51 @@ const PARTNERS = [
 // Units are normalized to the Material Master values (e.g. "liter" instead of
 // display abbreviation "L") so transactional validation remains consistent.
 const RECEIPTS = [
-  { receivedAt: "2026-08-01", receiptNumber: "GR-26001", materialCode: "RM-001", batchNumber: "RE-26001", expiryDate: "2027-07-31", quantity: "25.000", unit: "kg" },
-  { receivedAt: "2026-08-08", receiptNumber: "GR-26002", materialCode: "RM-001", batchNumber: "RE-26002", expiryDate: "2027-08-07", quantity: "35.000", unit: "kg" },
-  { receivedAt: "2026-08-01", receiptNumber: "GR-26003", materialCode: "RM-002", batchNumber: "AL-26001", expiryDate: "2028-07-31", quantity: "40.000", unit: "liter" },
-  { receivedAt: "2026-08-10", receiptNumber: "GR-26004", materialCode: "RM-002", batchNumber: "AL-26002", expiryDate: "2028-08-09", quantity: "80.000", unit: "liter" },
-  { receivedAt: "2026-08-01", receiptNumber: "GR-26005", materialCode: "RM-003", batchNumber: "PKG-26001", expiryDate: null, quantity: "200.000", unit: "pcs" },
+  {
+    receivedAt: "2026-08-01",
+    receiptNumber: "GR-26001",
+    materialCode: "RM-001",
+    batchNumber: "RE-26001",
+    expiryDate: "2027-07-31",
+    quantity: "25.000",
+    unit: "kg",
+  },
+  {
+    receivedAt: "2026-08-08",
+    receiptNumber: "GR-26002",
+    materialCode: "RM-001",
+    batchNumber: "RE-26002",
+    expiryDate: "2027-08-07",
+    quantity: "35.000",
+    unit: "kg",
+  },
+  {
+    receivedAt: "2026-08-01",
+    receiptNumber: "GR-26003",
+    materialCode: "RM-002",
+    batchNumber: "AL-26001",
+    expiryDate: "2028-07-31",
+    quantity: "40.000",
+    unit: "liter",
+  },
+  {
+    receivedAt: "2026-08-10",
+    receiptNumber: "GR-26004",
+    materialCode: "RM-002",
+    batchNumber: "AL-26002",
+    expiryDate: "2028-08-09",
+    quantity: "80.000",
+    unit: "liter",
+  },
+  {
+    receivedAt: "2026-08-01",
+    receiptNumber: "GR-26005",
+    materialCode: "RM-003",
+    batchNumber: "PKG-26001",
+    expiryDate: null,
+    quantity: "200.000",
+    unit: "pcs",
+  },
 ] as const;
 
 // Current bill_of_materials schema stores component requirements only. These
@@ -53,7 +108,11 @@ const BOM_COMPONENTS = [
 
 async function ensureStorage() {
   let warehouse = (
-    await db.select().from(warehouses).where(eq(warehouses.code, "MAIN")).limit(1)
+    await db
+      .select()
+      .from(warehouses)
+      .where(eq(warehouses.code, "MAIN"))
+      .limit(1)
   )[0];
 
   if (!warehouse) {
@@ -67,7 +126,13 @@ async function ensureStorage() {
     warehouse = (
       await db
         .update(warehouses)
-        .set({ deletedAt: null, deletedByUserId: null, deleteReason: null, active: true, updatedAt: new Date() })
+        .set({
+          deletedAt: null,
+          deletedByUserId: null,
+          deleteReason: null,
+          active: true,
+          updatedAt: new Date(),
+        })
         .where(eq(warehouses.id, warehouse.id))
         .returning()
     )[0];
@@ -79,7 +144,12 @@ async function ensureStorage() {
     await db
       .select()
       .from(locations)
-      .where(and(eq(locations.warehouseId, warehouse.id), eq(locations.code, "MAIN-01")))
+      .where(
+        and(
+          eq(locations.warehouseId, warehouse.id),
+          eq(locations.code, "MAIN-01"),
+        ),
+      )
       .limit(1)
   )[0];
 
@@ -87,7 +157,12 @@ async function ensureStorage() {
     location = (
       await db
         .insert(locations)
-        .values({ warehouseId: warehouse.id, code: "MAIN-01", name: "Main Storage", active: true })
+        .values({
+          warehouseId: warehouse.id,
+          code: "MAIN-01",
+          name: "Main Storage",
+          active: true,
+        })
         .returning()
     )[0];
   }
@@ -98,13 +173,25 @@ async function ensureStorage() {
 
 async function seedMaterials() {
   for (const item of MATERIALS) {
-    const existing = (await db.select().from(materials).where(eq(materials.code, item.code)).limit(1))[0];
+    const existing = (
+      await db
+        .select()
+        .from(materials)
+        .where(eq(materials.code, item.code))
+        .limit(1)
+    )[0];
     if (!existing) {
       await db.insert(materials).values(item);
     } else {
       await db
         .update(materials)
-        .set({ ...item, deletedAt: null, deletedByUserId: null, deleteReason: null, updatedAt: new Date() })
+        .set({
+          ...item,
+          deletedAt: null,
+          deletedByUserId: null,
+          deleteReason: null,
+          updatedAt: new Date(),
+        })
         .where(eq(materials.code, item.code));
     }
   }
@@ -112,13 +199,25 @@ async function seedMaterials() {
 
 async function seedPartners() {
   for (const partner of PARTNERS) {
-    const existing = (await db.select().from(businessPartners).where(eq(businessPartners.code, partner.code)).limit(1))[0];
+    const existing = (
+      await db
+        .select()
+        .from(businessPartners)
+        .where(eq(businessPartners.code, partner.code))
+        .limit(1)
+    )[0];
     if (!existing) {
       await db.insert(businessPartners).values(partner);
     } else {
       await db
         .update(businessPartners)
-        .set({ ...partner, deletedAt: null, deletedByUserId: null, deleteReason: null, updatedAt: new Date() })
+        .set({
+          ...partner,
+          deletedAt: null,
+          deletedByUserId: null,
+          deleteReason: null,
+          updatedAt: new Date(),
+        })
         .where(eq(businessPartners.code, partner.code));
     }
 
@@ -128,7 +227,14 @@ async function seedPartners() {
         .values({ code: partner.code, name: partner.name, active: true })
         .onConflictDoUpdate({
           target: suppliers.code,
-          set: { name: partner.name, active: true, deletedAt: null, deletedByUserId: null, deleteReason: null, updatedAt: new Date() },
+          set: {
+            name: partner.name,
+            active: true,
+            deletedAt: null,
+            deletedByUserId: null,
+            deleteReason: null,
+            updatedAt: new Date(),
+          },
         });
     } else {
       await db
@@ -136,7 +242,14 @@ async function seedPartners() {
         .values({ code: partner.code, name: partner.name, active: true })
         .onConflictDoUpdate({
           target: customers.code,
-          set: { name: partner.name, active: true, deletedAt: null, deletedByUserId: null, deleteReason: null, updatedAt: new Date() },
+          set: {
+            name: partner.name,
+            active: true,
+            deletedAt: null,
+            deletedByUserId: null,
+            deleteReason: null,
+            updatedAt: new Date(),
+          },
         });
     }
   }
@@ -148,12 +261,14 @@ async function seedBom() {
       await db
         .select()
         .from(billOfMaterials)
-        .where(and(
-          eq(billOfMaterials.materialCode, component.materialCode),
-          eq(billOfMaterials.requiredQuantity, component.requiredQuantity),
-          eq(billOfMaterials.unit, component.unit),
-          isNull(billOfMaterials.deletedAt),
-        ))
+        .where(
+          and(
+            eq(billOfMaterials.materialCode, component.materialCode),
+            eq(billOfMaterials.requiredQuantity, component.requiredQuantity),
+            eq(billOfMaterials.unit, component.unit),
+            isNull(billOfMaterials.deletedAt),
+          ),
+        )
         .limit(1)
     )[0];
 
@@ -167,7 +282,11 @@ async function seedReceipts() {
   for (const receipt of RECEIPTS) {
     // Compatibility table used by the original assessment endpoints.
     const legacy = (
-      await db.select().from(goodsReceipts).where(eq(goodsReceipts.receiptCode, receipt.receiptNumber)).limit(1)
+      await db
+        .select()
+        .from(goodsReceipts)
+        .where(eq(goodsReceipts.receiptCode, receipt.receiptNumber))
+        .limit(1)
     )[0];
     if (!legacy) {
       await db.insert(goodsReceipts).values({
@@ -185,7 +304,12 @@ async function seedReceipts() {
       await db
         .select()
         .from(batchLots)
-        .where(and(eq(batchLots.materialCode, receipt.materialCode), eq(batchLots.batchNumber, receipt.batchNumber)))
+        .where(
+          and(
+            eq(batchLots.materialCode, receipt.materialCode),
+            eq(batchLots.batchNumber, receipt.batchNumber),
+          ),
+        )
         .limit(1)
     )[0];
 
@@ -242,13 +366,19 @@ async function seedReceipts() {
       )[0];
     }
 
-    if (!header) throw new Error(`Could not seed receipt ${receipt.receiptNumber}.`);
+    if (!header)
+      throw new Error(`Could not seed receipt ${receipt.receiptNumber}.`);
 
     const line = (
       await db
         .select()
         .from(goodsReceiptLines)
-        .where(and(eq(goodsReceiptLines.receiptId, header.id), eq(goodsReceiptLines.lineNumber, 1)))
+        .where(
+          and(
+            eq(goodsReceiptLines.receiptId, header.id),
+            eq(goodsReceiptLines.lineNumber, 1),
+          ),
+        )
         .limit(1)
     )[0];
 
@@ -288,7 +418,12 @@ async function seedReceipts() {
           unit: receipt.unit,
         })
         .onConflictDoUpdate({
-          target: [stockBalances.materialCode, stockBalances.batchLotId, stockBalances.warehouseId, stockBalances.locationId],
+          target: [
+            stockBalances.materialCode,
+            stockBalances.batchLotId,
+            stockBalances.warehouseId,
+            stockBalances.locationId,
+          ],
           set: {
             quantityOnHand: sql`${stockBalances.quantityOnHand} + ${receipt.quantity}`,
             updatedAt: new Date(),

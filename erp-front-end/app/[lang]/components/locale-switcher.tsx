@@ -34,7 +34,9 @@ export default function LocaleSwitcher({ currentLocale, label }: Props) {
         className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm"
       >
         {i18n.locales.map((locale) => (
-          <option key={locale} value={locale}>{localeNames[locale]}</option>
+          <option key={locale} value={locale}>
+            {localeNames[locale]}
+          </option>
         ))}
       </select>
     </label>

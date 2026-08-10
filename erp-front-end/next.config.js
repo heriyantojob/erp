@@ -1,4 +1,5 @@
-const apiUrl = process.env.NEXT_PUBLIC_API_URL_EXPRESS || "http://localhost:4000";
+const apiUrl =
+  process.env.NEXT_PUBLIC_API_URL_EXPRESS || "http://localhost:4000";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

@@ -1,7 +1,57 @@
 import type { Locale } from "@/i18n-config";
-import enCommon from "@/dictionaries/en/common.json"; import enAdmin from "@/dictionaries/en/admin.json"; import enModules from "@/dictionaries/en/modules.json"; import enCrud from "@/dictionaries/en/crud.json"; import enStock from "@/dictionaries/en/stock.json"; import enUsers from "@/dictionaries/en/users.json"; import enWorkflow from "@/dictionaries/en/workflow.json";
-import idCommon from "@/dictionaries/id/common.json"; import idAdmin from "@/dictionaries/id/admin.json"; import idModules from "@/dictionaries/id/modules.json"; import idCrud from "@/dictionaries/id/crud.json"; import idStock from "@/dictionaries/id/stock.json"; import idUsers from "@/dictionaries/id/users.json"; import idWorkflow from "@/dictionaries/id/workflow.json";
-import koCommon from "@/dictionaries/ko/common.json"; import koAdmin from "@/dictionaries/ko/admin.json"; import koModules from "@/dictionaries/ko/modules.json"; import koCrud from "@/dictionaries/ko/crud.json"; import koStock from "@/dictionaries/ko/stock.json"; import koUsers from "@/dictionaries/ko/users.json"; import koWorkflow from "@/dictionaries/ko/workflow.json";
-const clientDictionaries = { en:{common:enCommon,admin:enAdmin,modules:enModules,crud:enCrud,stock:enStock,users:enUsers,workflow:enWorkflow}, id:{common:idCommon,admin:idAdmin,modules:idModules,crud:idCrud,stock:idStock,users:idUsers,workflow:idWorkflow}, ko:{common:koCommon,admin:koAdmin,modules:koModules,crud:koCrud,stock:koStock,users:koUsers,workflow:koWorkflow} } as const;
-export function normalizeLocale(value: string): Locale { return value === "en" || value === "ko" ? value : "id"; }
-export function getClientDictionary(value: string) { return clientDictionaries[normalizeLocale(value)]; }
+import enCommon from "@/dictionaries/en/common.json";
+import enAdmin from "@/dictionaries/en/admin.json";
+import enModules from "@/dictionaries/en/modules.json";
+import enCrud from "@/dictionaries/en/crud.json";
+import enStock from "@/dictionaries/en/stock.json";
+import enUsers from "@/dictionaries/en/users.json";
+import enWorkflow from "@/dictionaries/en/workflow.json";
+import idCommon from "@/dictionaries/id/common.json";
+import idAdmin from "@/dictionaries/id/admin.json";
+import idModules from "@/dictionaries/id/modules.json";
+import idCrud from "@/dictionaries/id/crud.json";
+import idStock from "@/dictionaries/id/stock.json";
+import idUsers from "@/dictionaries/id/users.json";
+import idWorkflow from "@/dictionaries/id/workflow.json";
+import koCommon from "@/dictionaries/ko/common.json";
+import koAdmin from "@/dictionaries/ko/admin.json";
+import koModules from "@/dictionaries/ko/modules.json";
+import koCrud from "@/dictionaries/ko/crud.json";
+import koStock from "@/dictionaries/ko/stock.json";
+import koUsers from "@/dictionaries/ko/users.json";
+import koWorkflow from "@/dictionaries/ko/workflow.json";
+const clientDictionaries = {
+  en: {
+    common: enCommon,
+    admin: enAdmin,
+    modules: enModules,
+    crud: enCrud,
+    stock: enStock,
+    users: enUsers,
+    workflow: enWorkflow,
+  },
+  id: {
+    common: idCommon,
+    admin: idAdmin,
+    modules: idModules,
+    crud: idCrud,
+    stock: idStock,
+    users: idUsers,
+    workflow: idWorkflow,
+  },
+  ko: {
+    common: koCommon,
+    admin: koAdmin,
+    modules: koModules,
+    crud: koCrud,
+    stock: koStock,
+    users: koUsers,
+    workflow: koWorkflow,
+  },
+} as const;
+export function normalizeLocale(value: string): Locale {
+  return value === "en" || value === "ko" ? value : "id";
+}
+export function getClientDictionary(value: string) {
+  return clientDictionaries[normalizeLocale(value)];
+}

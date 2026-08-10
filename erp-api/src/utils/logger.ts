@@ -32,13 +32,11 @@ const formatLog = (log: any): string => {
     .replace("Z", "");
 
   const level =
-    Object.keys(LEVELS).find(
-      (k) => LEVELS[k as keyof typeof LEVELS] === log.level
-    )?.toUpperCase() ?? "UNKNOWN";
+    Object.keys(LEVELS)
+      .find((k) => LEVELS[k as keyof typeof LEVELS] === log.level)
+      ?.toUpperCase() ?? "UNKNOWN";
 
-  const reqInfo = log.req
-    ? ` (${log.req.method} ${log.req.url})`
-    : "";
+  const reqInfo = log.req ? ` (${log.req.method} ${log.req.url})` : "";
 
   const stack = log.err?.stack ? `\n${log.err.stack}` : "";
 
@@ -93,7 +91,7 @@ const logger = pino(
       streams.forEach((s) => s.write(data));
       process.stdout.write(formatLog(JSON.parse(data))); // optional console
     },
-  }
+  },
 );
 
 export default logger;

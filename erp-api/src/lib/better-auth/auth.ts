@@ -19,13 +19,16 @@ export const auth = betterAuth({
     // A fresh installation can log in immediately after sign-up without an email service.
     requireEmailVerification: false,
   },
-  socialProviders: googleClientId && googleClientSecret ? {
-    google: {
-      clientId: googleClientId,
-      clientSecret: googleClientSecret,
-      scope: ["openid", "email", "profile"],
-    },
-  } : {},
+  socialProviders:
+    googleClientId && googleClientSecret
+      ? {
+          google: {
+            clientId: googleClientId,
+            clientSecret: googleClientSecret,
+            scope: ["openid", "email", "profile"],
+          },
+        }
+      : {},
   trustedOrigins,
   // Limits repeated authentication attempts before they reach password checks.
   rateLimit: { enabled: true, window: 60, max: 10 },

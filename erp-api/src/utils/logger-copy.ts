@@ -1,10 +1,10 @@
-import pino, { Logger, LogDescriptor, StreamEntry } from 'pino';
-import fs from 'fs';
-import { Writable } from 'stream';
-import path from 'path';
+import pino, { Logger, LogDescriptor, StreamEntry } from "pino";
+import fs from "fs";
+import { Writable } from "stream";
+import path from "path";
 
 // Pastikan folder logs ada
-const logDir = path.resolve('logs');
+const logDir = path.resolve("logs");
 if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir);
 }
@@ -12,17 +12,23 @@ if (!fs.existsSync(logDir)) {
 // Custom formatter (msg duluan)
 const customFormat = (log: Record<string, any>): string => {
   const { msg, level, time, ...rest } = log;
-  return JSON.stringify({
-    msg,
-    level,
-    time,
-    ...rest,
-  }) + '\n';
+  return (
+    JSON.stringify({
+      msg,
+      level,
+      time,
+      ...rest,
+    }) + "\n"
+  );
 };
 
 // Destinasi file log
-const destination = fs.createWriteStream(path.join(logDir, 'access.log'), { flags: 'a' });
-const errorDestination = fs.createWriteStream(path.join(logDir, 'error.log'), { flags: 'a' });
+const destination = fs.createWriteStream(path.join(logDir, "access.log"), {
+  flags: "a",
+});
+const errorDestination = fs.createWriteStream(path.join(logDir, "error.log"), {
+  flags: "a",
+});
 
 // Stream untuk multistream
 const streams: StreamEntry[] = [
@@ -42,7 +48,7 @@ const streams: StreamEntry[] = [
     }),
   },
   {
-    level: 'error',
+    level: "error",
     stream: new Writable({
       write(chunk, _encoding, callback) {
         try {
@@ -58,9 +64,6 @@ const streams: StreamEntry[] = [
 ];
 
 // Inisialisasi logger
-const logger: Logger = pino(
-  { formatters: {} },
-  pino.multistream(streams)
-);
+const logger: Logger = pino({ formatters: {} }, pino.multistream(streams));
 
 export default logger;

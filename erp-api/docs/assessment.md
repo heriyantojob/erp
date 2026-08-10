@@ -6,13 +6,13 @@ The implemented flow is **Goods Receipt -> Material Issue -> Current Stock -> St
 
 ## Process and controls
 
-| Stage | Owner | Document | Inventory impact | Control |
-| --- | --- | --- | --- | --- |
-| Purchase requisition / PO | Purchasing | PR, PO | None | Approval and supplier validation |
-| Goods receipt | Warehouse + QA | GR | Batch stock increases | Batch uniqueness, quality status |
-| Material issue | Warehouse | MI linked to production order | Batch stock decreases | FIFO, released batches only, no negative balance |
-| Production | Production | Production order / FG receipt | RM consumption, FG increase | BOM and actual consumption |
-| Delivery | Warehouse / Sales | Delivery note | FG decreases | Customer, batch, approval |
+| Stage                     | Owner             | Document                      | Inventory impact            | Control                                          |
+| ------------------------- | ----------------- | ----------------------------- | --------------------------- | ------------------------------------------------ |
+| Purchase requisition / PO | Purchasing        | PR, PO                        | None                        | Approval and supplier validation                 |
+| Goods receipt             | Warehouse + QA    | GR                            | Batch stock increases       | Batch uniqueness, quality status                 |
+| Material issue            | Warehouse         | MI linked to production order | Batch stock decreases       | FIFO, released batches only, no negative balance |
+| Production                | Production        | Production order / FG receipt | RM consumption, FG increase | BOM and actual consumption                       |
+| Delivery                  | Warehouse / Sales | Delivery note                 | FG decreases                | Customer, batch, approval                        |
 
 Assumption: the prototype uses a single `MAIN/MAIN` warehouse location and released material can be consumed. Quarantined or rejected batches are unavailable.
 
@@ -35,13 +35,34 @@ The migration `0016_erp_inventory.sql` defines PostgreSQL types, mandatory field
 ## API examples
 
 `POST /erp/goods-receipts`
+
 ```json
-{"supplierCode":"SUP-001","documentNumber":"GR-26001","receiptDate":"2026-08-01","idempotencyKey":"a unique client key","lines":[{"itemCode":"RM-001","batchNumber":"RE-26001","expiryDate":"2027-07-31","quantity":25,"qualityStatus":"released"}]}
+{
+  "supplierCode": "SUP-001",
+  "documentNumber": "GR-26001",
+  "receiptDate": "2026-08-01",
+  "idempotencyKey": "a unique client key",
+  "lines": [
+    {
+      "itemCode": "RM-001",
+      "batchNumber": "RE-26001",
+      "expiryDate": "2027-07-31",
+      "quantity": 25,
+      "qualityStatus": "released"
+    }
+  ]
+}
 ```
 
 `POST /erp/material-issues`
+
 ```json
-{"productionOrderNumber":"PO-26001","issueDate":"2026-08-15","idempotencyKey":"a different unique client key","lines":[{"itemCode":"RM-002","quantity":50}]}
+{
+  "productionOrderNumber": "PO-26001",
+  "issueDate": "2026-08-15",
+  "idempotencyKey": "a different unique client key",
+  "lines": [{ "itemCode": "RM-002", "quantity": 50 }]
+}
 ```
 
 Success returns `201` and its reference number. Insufficient stock returns `400` with available stock in the message. Replaying an idempotency key returns the original document without moving stock again.

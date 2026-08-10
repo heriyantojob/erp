@@ -16,16 +16,20 @@ const STATUS_MAP: Record<string, number> = {
 };
 
 function resolveStatusParam(raw: unknown): number | null {
-  if (raw === undefined || raw === null || raw === '') return null;
+  if (raw === undefined || raw === null || raw === "") return null;
   const value = String(raw).trim().toLowerCase();
-  if (!value || value === 'all') return null;
+  if (!value || value === "all") return null;
   if (value in STATUS_MAP) return STATUS_MAP[value] ?? null;
   const numeric = Number(value);
   if (Number.isInteger(numeric) && numeric >= 0 && numeric <= 3) return numeric;
   return null;
 }
 
-export async function readFileAdmin(req: Request, res: Response, next: NextFunction) {
+export async function readFileAdmin(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   const userAuth = res.locals;
   if (!userAuth?.user) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -60,6 +64,9 @@ export async function readFileAdmin(req: Request, res: Response, next: NextFunct
     }
     return res.status(200).json({ items, total, totalPages });
   } catch (e) {
-    return res.status(500).json({ message: "We're sorry, something went wrong on our end. Please try refreshing the page." });
+    return res.status(500).json({
+      message:
+        "We're sorry, something went wrong on our end. Please try refreshing the page.",
+    });
   }
 }

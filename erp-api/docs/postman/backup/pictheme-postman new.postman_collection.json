@@ -36,15 +36,8 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/auth/sign-in/email",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "auth",
-                    "sign-in",
-                    "email"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "sign-in", "email"]
                 }
               },
               "response": []
@@ -71,14 +64,8 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/auth/reset-password",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "auth",
-                    "reset-password"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "reset-password"]
                 }
               },
               "response": []
@@ -105,15 +92,8 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/auth/sign-in/email",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "auth",
-                    "sign-in",
-                    "email"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "sign-in", "email"]
                 }
               },
               "response": []
@@ -153,14 +133,8 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/auth/get-session",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "auth",
-                    "get-session"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "get-session"]
                 }
               },
               "response": []
@@ -190,12 +164,8 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/me",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "me"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["me"]
                 }
               },
               "response": []
@@ -222,15 +192,8 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/auth/sign-up/email",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "auth",
-                    "sign-up",
-                    "email"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "sign-up", "email"]
                 }
               },
               "response": []
@@ -291,13 +254,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/01932a06-b14d-7449-a6ed-81d26cf0876f",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "01932a06-b14d-7449-a6ed-81d26cf0876f"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "01932a06-b14d-7449-a6ed-81d26cf0876f"]
                     }
                   },
                   "response": []
@@ -333,13 +291,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/public?q=test",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "public"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "public"],
                       "query": [
                         {
                           "key": "q",
@@ -381,13 +334,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/public?q=test",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "public"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "public"],
                       "query": [
                         {
                           "key": "q",
@@ -429,13 +377,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/public?q=test",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "public"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "public"],
                       "query": [
                         {
                           "key": "q",
@@ -452,9 +395,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -491,13 +432,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/private",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "private"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "private"]
                     }
                   },
                   "response": []
@@ -537,14 +473,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/public/233232",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "public",
-                        "233232"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "public", "233232"]
                     }
                   },
                   "response": []
@@ -580,9 +510,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/private/01943188-22a8-7cc0-8af8-ad150199bf37",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "stock",
                         "private",
@@ -623,13 +551,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/user",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "user"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "user"]
                     }
                   },
                   "response": []
@@ -640,9 +563,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -713,13 +634,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/stock/add-file",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "add-file"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "add-file"]
                     }
                   },
                   "response": []
@@ -780,9 +696,7 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/stock/update-file/01934d29-fdf7-7bb5-88f3-6e77d9a55533",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "stock",
                         "update-file",
@@ -798,9 +712,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -852,9 +764,7 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/stock/update-file/019a0bd5-d9f1-7bb2-a5ab-090ba8eb506c",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "stock",
                         "update-file",
@@ -908,9 +818,7 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/stock/update-file/0193aff8-7209-7229-ad54-c1505e87bc2d",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "stock",
                         "update-file",
@@ -934,9 +842,7 @@
                         {
                           "listen": "test",
                           "script": {
-                            "exec": [
-                              ""
-                            ],
+                            "exec": [""],
                             "type": "text/javascript",
                             "packages": {},
                             "requests": {}
@@ -973,15 +879,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/end-user/user-file/public/",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "end-user",
-                            "user-file",
-                            "public",
-                            ""
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["end-user", "user-file", "public", ""],
                           "query": [
                             {
                               "key": "file_type",
@@ -999,9 +898,7 @@
                         {
                           "listen": "test",
                           "script": {
-                            "exec": [
-                              ""
-                            ],
+                            "exec": [""],
                             "type": "text/javascript",
                             "packages": {},
                             "requests": {}
@@ -1051,14 +948,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/end-user/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "end-user",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["end-user", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -1069,9 +960,7 @@
                         {
                           "listen": "test",
                           "script": {
-                            "exec": [
-                              ""
-                            ],
+                            "exec": [""],
                             "type": "text/javascript",
                             "packages": {},
                             "requests": {}
@@ -1131,14 +1020,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -1204,14 +1087,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -1262,13 +1139,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/api/user-files?project_type=1&page=1&per_page=5",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files"],
                           "query": [
                             {
                               "key": "file_type",
@@ -1346,14 +1218,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/project",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "project"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "project"]
                         }
                       },
                       "response": []
@@ -1412,9 +1278,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/project/278921fb-b512-4104-9999-7091a3f1bc2b",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "api",
                             "user-files",
@@ -1433,9 +1297,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -1462,15 +1324,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/end-user/user-file/public/",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "end-user",
-                        "user-file",
-                        "public",
-                        ""
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["end-user", "user-file", "public", ""]
                     }
                   },
                   "response": []
@@ -1506,14 +1361,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/user-file/public/aku",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "user-file",
-                        "public",
-                        "aku"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["user-file", "public", "aku"]
                     }
                   },
                   "response": []
@@ -1549,9 +1398,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/user-file/private/0192ae4c-85be-7554-bb90-ac876ca7a469",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "user-file",
                         "private",
@@ -1592,13 +1439,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/user-file/private",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "user-file",
-                        "private"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["user-file", "private"]
                     }
                   },
                   "response": []
@@ -1609,9 +1451,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -1652,13 +1492,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/user-file/add-file",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "user-file",
-                        "add-file"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["user-file", "add-file"]
                     }
                   },
                   "response": []
@@ -1699,13 +1534,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/dummy/session",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "dummy",
-                        "session"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["dummy", "session"]
                     }
                   },
                   "response": []
@@ -1741,9 +1571,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}",
-                      "host": [
-                        "{{base_url}}"
-                      ]
+                      "host": ["{{base_url}}"]
                     }
                   },
                   "response": []
@@ -1807,9 +1635,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-cms/user/upload/01905025-411e-7222-965e-0af9d138d201",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-cms",
                             "user",
@@ -1864,9 +1690,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/0191302e-b8bb-7994-a462-caebbbfa8d39",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -1920,9 +1744,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/0191302e-b8bb-7994-a462-caebbbfa8d39",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -1976,9 +1798,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/01905025-411e-7222-965e-0af9d138d201",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -2032,14 +1852,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user",
-                            ""
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user", ""]
                         }
                       },
                       "response": []
@@ -2088,14 +1902,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user",
-                            ""
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user", ""]
                         }
                       },
                       "response": []
@@ -2144,14 +1952,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user",
-                            ""
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user", ""]
                         }
                       },
                       "response": []
@@ -2187,13 +1989,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/t4-admin/user?page=1&per_page=10",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-admin",
-                            "user"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-admin", "user"],
                           "query": [
                             {
                               "key": "page",
@@ -2239,13 +2036,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user?adminType=2",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user"],
                           "query": [
                             {
                               "key": "adminType",
@@ -2287,9 +2079,7 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/4e135297-9eca-49ad-9052-6821721e79f0",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -2330,9 +2120,7 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/0191302e-b8bb-7994-a462-caebbbfa8d39",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -2395,13 +2183,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/dashboard",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "dashboard"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "dashboard"]
                     }
                   },
                   "response": []
@@ -2452,9 +2235,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}",
-                      "host": [
-                        "{{base_url}}"
-                      ]
+                      "host": ["{{base_url}}"]
                     }
                   },
                   "response": []
@@ -2502,12 +2283,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/user-profile",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "user-profile"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["user-profile"]
                 }
               },
               "response": []
@@ -2566,13 +2343,8 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/user-profile",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "user-profile"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "user-profile"]
                 }
               },
               "response": []
@@ -2626,13 +2398,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/example-protect",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "example-protect"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "example-protect"]
                 }
               },
               "response": []
@@ -2686,14 +2453,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/example-session/",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "example-session",
-                    ""
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "example-session", ""]
                 }
               },
               "response": []
@@ -2737,13 +2498,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/01932a06-b14d-7449-a6ed-81d26cf0876f",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "01932a06-b14d-7449-a6ed-81d26cf0876f"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "01932a06-b14d-7449-a6ed-81d26cf0876f"]
                     }
                   },
                   "response": []
@@ -2754,9 +2510,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -2783,14 +2537,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/end-user/stock/public?q=test",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "end-user",
-                        "stock",
-                        "public"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["end-user", "stock", "public"],
                       "query": [
                         {
                           "key": "q",
@@ -2807,9 +2555,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -2846,13 +2592,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/private",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "private"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "private"]
                     }
                   },
                   "response": []
@@ -2892,14 +2633,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/public/233232",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "public",
-                        "233232"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "public", "233232"]
                     }
                   },
                   "response": []
@@ -2935,9 +2670,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/private/01943188-22a8-7cc0-8af8-ad150199bf37",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "stock",
                         "private",
@@ -2978,13 +2711,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/stock/user",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "user"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "user"]
                     }
                   },
                   "response": []
@@ -2995,9 +2723,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -3068,13 +2794,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/stock/add-file",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "stock",
-                        "add-file"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["stock", "add-file"]
                     }
                   },
                   "response": []
@@ -3135,9 +2856,7 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/stock/update-file/01934d29-fdf7-7bb5-88f3-6e77d9a55533",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "stock",
                         "update-file",
@@ -3153,9 +2872,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -3207,9 +2924,7 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/stock/update-file/019a0bd5-d9f1-7bb2-a5ab-090ba8eb506c",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "stock",
                         "update-file",
@@ -3263,9 +2978,7 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/stock/update-file/0193aff8-7209-7229-ad54-c1505e87bc2d",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "stock",
                         "update-file",
@@ -3289,9 +3002,7 @@
                         {
                           "listen": "test",
                           "script": {
-                            "exec": [
-                              ""
-                            ],
+                            "exec": [""],
                             "type": "text/javascript",
                             "packages": {},
                             "requests": {}
@@ -3328,15 +3039,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/end-user/user-file/public/?type=0",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "end-user",
-                            "user-file",
-                            "public",
-                            ""
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["end-user", "user-file", "public", ""],
                           "query": [
                             {
                               "key": "file_type",
@@ -3358,9 +3062,7 @@
                         {
                           "listen": "test",
                           "script": {
-                            "exec": [
-                              ""
-                            ],
+                            "exec": [""],
                             "type": "text/javascript",
                             "packages": {},
                             "requests": {}
@@ -3397,15 +3099,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/end-user/user-file/public/?type=0",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "end-user",
-                            "user-file",
-                            "public",
-                            ""
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["end-user", "user-file", "public", ""],
                           "query": [
                             {
                               "key": "file_type",
@@ -3427,9 +3122,7 @@
                         {
                           "listen": "test",
                           "script": {
-                            "exec": [
-                              ""
-                            ],
+                            "exec": [""],
                             "type": "text/javascript",
                             "packages": {},
                             "requests": {}
@@ -3480,14 +3173,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/end-user/user-file/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "end-user",
-                            "user-file",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["end-user", "user-file", "media"]
                         }
                       },
                       "response": []
@@ -3498,9 +3185,7 @@
                         {
                           "listen": "test",
                           "script": {
-                            "exec": [
-                              ""
-                            ],
+                            "exec": [""],
                             "type": "text/javascript",
                             "packages": {},
                             "requests": {}
@@ -3557,14 +3242,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/end-user/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "end-user",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["end-user", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -3575,9 +3254,7 @@
                         {
                           "listen": "test",
                           "script": {
-                            "exec": [
-                              ""
-                            ],
+                            "exec": [""],
                             "type": "text/javascript",
                             "packages": {},
                             "requests": {}
@@ -3628,14 +3305,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -3646,9 +3317,7 @@
                         {
                           "listen": "test",
                           "script": {
-                            "exec": [
-                              ""
-                            ],
+                            "exec": [""],
                             "type": "text/javascript",
                             "packages": {},
                             "requests": {}
@@ -3675,15 +3344,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/end-user/user-file/private/",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "end-user",
-                            "user-file",
-                            "private",
-                            ""
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["end-user", "user-file", "private", ""]
                         }
                       },
                       "response": []
@@ -3699,9 +3361,7 @@
                         {
                           "listen": "test",
                           "script": {
-                            "exec": [
-                              ""
-                            ],
+                            "exec": [""],
                             "type": "text/javascript",
                             "packages": {},
                             "requests": {}
@@ -3738,13 +3398,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/end-user/user-files?project_type=1&page=1&per_page=5",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "end-user",
-                            "user-files"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["end-user", "user-files"],
                           "query": [
                             {
                               "key": "file_type",
@@ -3774,9 +3429,7 @@
                         {
                           "listen": "test",
                           "script": {
-                            "exec": [
-                              ""
-                            ],
+                            "exec": [""],
                             "type": "text/javascript",
                             "packages": {},
                             "requests": {}
@@ -3826,14 +3479,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/end-user/user-file/project",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "end-user",
-                            "user-file",
-                            "project"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["end-user", "user-file", "project"]
                         }
                       },
                       "response": []
@@ -3892,9 +3539,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/project/278921fb-b512-4104-9999-7091a3f1bc2b",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "api",
                             "user-files",
@@ -3913,9 +3558,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -3942,15 +3585,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/end-user/user-file/public/",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "end-user",
-                        "user-file",
-                        "public",
-                        ""
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["end-user", "user-file", "public", ""]
                     }
                   },
                   "response": []
@@ -3961,9 +3597,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -3990,15 +3624,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/end-user/user-file/private/",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "end-user",
-                        "user-file",
-                        "private",
-                        ""
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["end-user", "user-file", "private", ""]
                     }
                   },
                   "response": []
@@ -4009,9 +3636,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -4038,15 +3663,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/end-user/user-file/public/dddddd",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "end-user",
-                        "user-file",
-                        "public",
-                        "dddddd"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["end-user", "user-file", "public", "dddddd"]
                     }
                   },
                   "response": []
@@ -4057,9 +3675,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -4086,9 +3702,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/end-user/user-file/private/019a3581-dafb-7778-b6b6-309d0ce0dc8f",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "end-user",
                         "user-file",
@@ -4130,13 +3744,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/user-file/private",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "user-file",
-                        "private"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["user-file", "private"]
                     }
                   },
                   "response": []
@@ -4147,9 +3756,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -4190,13 +3797,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/user-file/add-file",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "user-file",
-                        "add-file"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["user-file", "add-file"]
                     }
                   },
                   "response": []
@@ -4208,9 +3810,7 @@
                     "header": [],
                     "url": {
                       "raw": "{{base_url}}/user-file/019a3581-dafb-7778-b6b6-309d0ce0dc8f",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "user-file",
                         "019a3581-dafb-7778-b6b6-309d0ce0dc8f"
@@ -4255,13 +3855,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/dummy/session",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "dummy",
-                        "session"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["dummy", "session"]
                     }
                   },
                   "response": []
@@ -4297,9 +3892,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}",
-                      "host": [
-                        "{{base_url}}"
-                      ]
+                      "host": ["{{base_url}}"]
                     }
                   },
                   "response": []
@@ -4363,9 +3956,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-cms/user/upload/01905025-411e-7222-965e-0af9d138d201",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-cms",
                             "user",
@@ -4420,9 +4011,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/0191302e-b8bb-7994-a462-caebbbfa8d39",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -4476,9 +4065,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/0191302e-b8bb-7994-a462-caebbbfa8d39",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -4532,9 +4119,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/01905025-411e-7222-965e-0af9d138d201",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -4588,14 +4173,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user",
-                            ""
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user", ""]
                         }
                       },
                       "response": []
@@ -4644,14 +4223,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user",
-                            ""
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user", ""]
                         }
                       },
                       "response": []
@@ -4700,14 +4273,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user",
-                            ""
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user", ""]
                         }
                       },
                       "response": []
@@ -4743,13 +4310,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/t4-admin/user?page=1&per_page=10",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-admin",
-                            "user"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-admin", "user"],
                           "query": [
                             {
                               "key": "page",
@@ -4795,13 +4357,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user?adminType=2",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user"],
                           "query": [
                             {
                               "key": "adminType",
@@ -4843,9 +4400,7 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/4e135297-9eca-49ad-9052-6821721e79f0",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -4886,9 +4441,7 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/0191302e-b8bb-7994-a462-caebbbfa8d39",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -4951,13 +4504,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/dashboard",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "dashboard"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "dashboard"]
                     }
                   },
                   "response": []
@@ -5008,9 +4556,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}",
-                      "host": [
-                        "{{base_url}}"
-                      ]
+                      "host": ["{{base_url}}"]
                     }
                   },
                   "response": []
@@ -5051,9 +4597,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/download/hari-guru-nasional-2024-1-af08ed93-71f1-4d09-9694-eb84930489b6.jpg",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "download",
                         "hari-guru-nasional-2024-1-af08ed93-71f1-4d09-9694-eb84930489b6.jpg"
@@ -5105,12 +4649,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/user-profile",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "user-profile"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["user-profile"]
                 }
               },
               "response": []
@@ -5169,13 +4709,8 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/user-profile",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "user-profile"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "user-profile"]
                 }
               },
               "response": []
@@ -5229,13 +4764,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/example-protect",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "example-protect"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "example-protect"]
                 }
               },
               "response": []
@@ -5289,14 +4819,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/example-session/",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "example-session",
-                    ""
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "example-session", ""]
                 }
               },
               "response": []
@@ -5345,13 +4869,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/dummy/session",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "dummy",
-                        "session"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["dummy", "session"]
                     }
                   },
                   "response": []
@@ -5387,9 +4906,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}",
-                      "host": [
-                        "{{base_url}}"
-                      ]
+                      "host": ["{{base_url}}"]
                     }
                   },
                   "response": []
@@ -5453,9 +4970,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-cms/user/upload/01905025-411e-7222-965e-0af9d138d201",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-cms",
                             "user",
@@ -5510,9 +5025,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/0191302e-b8bb-7994-a462-caebbbfa8d39",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -5566,9 +5079,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/0191302e-b8bb-7994-a462-caebbbfa8d39",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -5622,9 +5133,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/01905025-411e-7222-965e-0af9d138d201",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -5678,14 +5187,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user",
-                            ""
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user", ""]
                         }
                       },
                       "response": []
@@ -5734,14 +5237,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user",
-                            ""
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user", ""]
                         }
                       },
                       "response": []
@@ -5790,14 +5287,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user",
-                            ""
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user", ""]
                         }
                       },
                       "response": []
@@ -5833,13 +5324,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user?page=2&per_page=10",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user"],
                           "query": [
                             {
                               "key": "page",
@@ -5885,13 +5371,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user?adminType=2",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "t4-back-office",
-                            "user"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["t4-back-office", "user"],
                           "query": [
                             {
                               "key": "adminType",
@@ -5933,9 +5414,7 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/4e135297-9eca-49ad-9052-6821721e79f0",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -5976,9 +5455,7 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/t4-back-office/user/0191302e-b8bb-7994-a462-caebbbfa8d39",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "t4-back-office",
                             "user",
@@ -6036,13 +5513,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/example-protect",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "example-protect"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "example-protect"]
                     }
                   },
                   "response": []
@@ -6058,9 +5530,7 @@
                     {
                       "listen": "test",
                       "script": {
-                        "exec": [
-                          ""
-                        ],
+                        "exec": [""],
                         "type": "text/javascript",
                         "packages": {},
                         "requests": {}
@@ -6097,13 +5567,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/campaign?page=1&per_page=2",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "campaign"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "campaign"],
                       "query": [
                         {
                           "key": "page",
@@ -6159,14 +5624,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/campaign/anak-bawang",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "campaign",
-                        "anak-bawang"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "campaign", "anak-bawang"]
                     }
                   },
                   "response": []
@@ -6220,13 +5679,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/api/user-files?file_type=photo,video,music",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files"],
                           "query": [
                             {
                               "key": "file_type",
@@ -6296,14 +5750,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -6369,14 +5817,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -6442,14 +5884,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -6465,9 +5901,7 @@
                         {
                           "listen": "test",
                           "script": {
-                            "exec": [
-                              ""
-                            ],
+                            "exec": [""],
                             "type": "text/javascript",
                             "packages": {},
                             "requests": {}
@@ -6504,13 +5938,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/api/user-files?page=0&per_page=5&q=?project_type=1&page=1&per_page=5",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files"],
                           "query": [
                             {
                               "key": "page",
@@ -6596,14 +6025,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/project",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "project"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "project"]
                         }
                       },
                       "response": []
@@ -6662,9 +6085,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/project/278921fb-b512-4104-9999-7091a3f1bc2b",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "api",
                             "user-files",
@@ -6722,9 +6143,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/user-files/166e7bd6-3792-4e10-9b7c-5a5d4aedbb94",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "api",
                         "user-files",
@@ -6775,13 +6194,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/user-files?page=1&per_page=2",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "user-files"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "user-files"],
                       "query": [
                         {
                           "key": "page",
@@ -6842,9 +6256,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/user-files/6df4b5eb-68ce-45a0-a97e-9ad5267144cb",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "api",
                         "user-files",
@@ -6905,13 +6317,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/dashboard",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "dashboard"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "dashboard"]
                     }
                   },
                   "response": []
@@ -6962,9 +6369,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}",
-                      "host": [
-                        "{{base_url}}"
-                      ]
+                      "host": ["{{base_url}}"]
                     }
                   },
                   "response": []
@@ -7018,12 +6423,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/login?tes=",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "login"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["login"],
                       "query": [
                         {
                           "key": "tes",
@@ -7078,12 +6479,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/login?tes=",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "login"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["login"],
                       "query": [
                         {
                           "key": "tes",
@@ -7125,14 +6522,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/auth/csrf",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "csrf"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "csrf"]
                     }
                   },
                   "response": []
@@ -7164,15 +6555,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth/sign-in/email",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "sign-in",
-                        "email"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "sign-in", "email"]
                     }
                   },
                   "response": []
@@ -7199,14 +6583,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth/get-session",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "get-session"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "get-session"]
                     }
                   },
                   "response": []
@@ -7236,13 +6614,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/me",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "me"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "me"]
                     }
                   },
                   "response": []
@@ -7269,15 +6642,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth/sign-up/email",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "sign-up",
-                        "email"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "sign-up", "email"]
                     }
                   },
                   "response": []
@@ -7332,12 +6698,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/session",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "session"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["session"]
                 }
               },
               "response": []
@@ -7383,12 +6745,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/user-profile",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "user-profile"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["user-profile"]
                 }
               },
               "response": []
@@ -7447,13 +6805,8 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/user-profile",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "user-profile"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "user-profile"]
                 }
               },
               "response": []
@@ -7507,13 +6860,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/example-protect",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "example-protect"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "example-protect"]
                 }
               },
               "response": []
@@ -7567,14 +6915,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/example-session/",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "example-session",
-                    ""
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "example-session", ""]
                 }
               },
               "response": []
@@ -7632,13 +6974,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/user?tes=",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "user"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "user"],
                       "query": [
                         {
                           "key": "tes",
@@ -7709,14 +7046,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth/jwt",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "jwt"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "jwt"]
                     }
                   },
                   "response": []
@@ -7765,14 +7096,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth/login",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "login"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "login"]
                     }
                   },
                   "response": []
@@ -7821,15 +7146,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth/callback/credentials",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "callback",
-                        "credentials"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "callback", "credentials"]
                     }
                   },
                   "response": []
@@ -7865,14 +7183,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/auth/csrf",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "csrf"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "csrf"]
                     }
                   },
                   "response": []
@@ -7913,14 +7225,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/auth/csrf",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "csrf"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "csrf"]
                     }
                   },
                   "response": []
@@ -7969,14 +7275,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/user/?tes=",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "user",
-                        ""
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "user", ""],
                       "query": [
                         {
                           "key": "tes",
@@ -8031,15 +7331,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth/callback/credentials?tes=",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "callback",
-                        "credentials"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "callback", "credentials"],
                       "query": [
                         {
                           "key": "tes",
@@ -8094,14 +7387,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth/signin?tes=",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "signin"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "signin"],
                       "query": [
                         {
                           "key": "tes",
@@ -8157,13 +7444,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/admin",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "admin"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "admin"]
                     }
                   },
                   "response": []
@@ -8219,13 +7501,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/logout",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "logout"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "logout"]
                     }
                   },
                   "response": []
@@ -8261,14 +7538,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/oauth/register",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "oauth",
-                        "register"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "oauth", "register"]
                     }
                   },
                   "response": []
@@ -8314,13 +7585,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/example-protect-lucia",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "example-protect-lucia"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "example-protect-lucia"]
                     }
                   },
                   "response": []
@@ -8379,14 +7645,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/login/",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "login",
-                        ""
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "login", ""]
                     }
                   },
                   "response": []
@@ -8445,13 +7705,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/register",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "register"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "register"]
                     }
                   },
                   "response": []
@@ -8497,13 +7752,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/session-bearer",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "session-bearer"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "session-bearer"]
                     }
                   },
                   "response": []
@@ -8554,13 +7804,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/example-protect",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "example-protect"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "example-protect"]
                     }
                   },
                   "response": []
@@ -8611,13 +7856,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/campaign?page=1&per_page=2&project_type=1",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "campaign"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "campaign"],
                       "query": [
                         {
                           "key": "page",
@@ -8677,14 +7917,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/campaign/tesa",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "campaign",
-                        "tesa"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "campaign", "tesa"]
                     }
                   },
                   "response": []
@@ -8748,13 +7982,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/login",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "login"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "login"]
                     }
                   },
                   "response": []
@@ -8813,13 +8042,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/refresh-token",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "refresh-token"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "refresh-token"]
                     }
                   },
                   "response": []
@@ -8878,13 +8102,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/refresh-token",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "refresh-token"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "refresh-token"]
                     }
                   },
                   "response": []
@@ -8938,13 +8157,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/api/user-files?file_type=photo,video,music",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files"],
                           "query": [
                             {
                               "key": "file_type",
@@ -9014,14 +8228,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -9087,14 +8295,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -9160,14 +8362,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -9218,13 +8414,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/api/user-files?project_type=1&page=1&per_page=5",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files"],
                           "query": [
                             {
                               "key": "file_type",
@@ -9302,14 +8493,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/project",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "project"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "project"]
                         }
                       },
                       "response": []
@@ -9368,9 +8553,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/project/278921fb-b512-4104-9999-7091a3f1bc2b",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "api",
                             "user-files",
@@ -9428,9 +8611,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/user-files/166e7bd6-3792-4e10-9b7c-5a5d4aedbb94",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "api",
                         "user-files",
@@ -9481,13 +8662,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/user-files?page=1&per_page=2",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "user-files"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "user-files"],
                       "query": [
                         {
                           "key": "page",
@@ -9548,9 +8724,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/user-files/8357db2f-482c-4f13-9194-a5555d4c1c99",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "api",
                         "user-files",
@@ -9611,13 +8785,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/dashboard",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "dashboard"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "dashboard"]
                     }
                   },
                   "response": []
@@ -9671,13 +8840,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/login?tes=",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "login"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "login"],
                       "query": [
                         {
                           "key": "tes",
@@ -9729,9 +8893,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}",
-                      "host": [
-                        "{{base_url}}"
-                      ]
+                      "host": ["{{base_url}}"]
                     }
                   },
                   "response": []
@@ -9772,14 +8934,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/auth/csrf",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "csrf"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "csrf"]
                     }
                   },
                   "response": []
@@ -9815,14 +8971,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/auth/csrf",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "csrf"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "csrf"]
                     }
                   },
                   "response": []
@@ -9871,15 +9021,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth/callback/credentials?tes=",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "callback",
-                        "credentials"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "callback", "credentials"],
                       "query": [
                         {
                           "key": "tes",
@@ -9934,14 +9077,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth/signin?tes=",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "signin"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "signin"],
                       "query": [
                         {
                           "key": "tes",
@@ -9997,13 +9134,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/admin",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "admin"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "admin"]
                     }
                   },
                   "response": []
@@ -10051,13 +9183,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/user-profile",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "user-profile"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "user-profile"]
                 }
               },
               "response": []
@@ -10116,13 +9243,8 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/user-profile",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "user-profile"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "user-profile"]
                 }
               },
               "response": []
@@ -10176,13 +9298,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/example-protect",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "example-protect"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "example-protect"]
                 }
               },
               "response": []
@@ -10236,14 +9353,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/example-session/",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "example-session",
-                    ""
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "example-session", ""]
                 }
               },
               "response": []
@@ -10297,13 +9408,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/logout",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "logout"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "logout"]
                     }
                   },
                   "response": []
@@ -10339,14 +9445,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/oauth/register",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "oauth",
-                        "register"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "oauth", "register"]
                     }
                   },
                   "response": []
@@ -10392,13 +9492,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/example-protect-lucia",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "example-protect-lucia"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "example-protect-lucia"]
                     }
                   },
                   "response": []
@@ -10457,14 +9552,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/login/",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "login",
-                        ""
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "login", ""]
                     }
                   },
                   "response": []
@@ -10523,13 +9612,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/register",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "register"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "register"]
                     }
                   },
                   "response": []
@@ -10575,13 +9659,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/session-bearer",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "session-bearer"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "session-bearer"]
                     }
                   },
                   "response": []
@@ -10632,13 +9711,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/example-protect",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "example-protect"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "example-protect"]
                     }
                   },
                   "response": []
@@ -10689,13 +9763,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/campaign?page=1&per_page=2&project_type=1",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "campaign"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "campaign"],
                       "query": [
                         {
                           "key": "page",
@@ -10755,14 +9824,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/campaign/tesa",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "campaign",
-                        "tesa"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "campaign", "tesa"]
                     }
                   },
                   "response": []
@@ -10826,14 +9889,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth-custom/login",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth-custom",
-                        "login"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth-custom", "login"]
                     }
                   },
                   "response": []
@@ -10892,13 +9949,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/refresh-token",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "refresh-token"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "refresh-token"]
                     }
                   },
                   "response": []
@@ -10957,13 +10009,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/refresh-token",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "refresh-token"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "refresh-token"]
                     }
                   },
                   "response": []
@@ -11017,13 +10064,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/api/user-files?file_type=photo,video,music",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files"],
                           "query": [
                             {
                               "key": "file_type",
@@ -11093,14 +10135,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -11166,14 +10202,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -11239,14 +10269,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/media",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "media"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "media"]
                         }
                       },
                       "response": []
@@ -11297,13 +10321,8 @@
                         ],
                         "url": {
                           "raw": "{{base_url}}/api/user-files?project_type=1&page=1&per_page=5",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files"
-                          ],
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files"],
                           "query": [
                             {
                               "key": "file_type",
@@ -11381,14 +10400,8 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/project",
-                          "host": [
-                            "{{base_url}}"
-                          ],
-                          "path": [
-                            "api",
-                            "user-files",
-                            "project"
-                          ]
+                          "host": ["{{base_url}}"],
+                          "path": ["api", "user-files", "project"]
                         }
                       },
                       "response": []
@@ -11447,9 +10460,7 @@
                         },
                         "url": {
                           "raw": "{{base_url}}/api/user-files/project/278921fb-b512-4104-9999-7091a3f1bc2b",
-                          "host": [
-                            "{{base_url}}"
-                          ],
+                          "host": ["{{base_url}}"],
                           "path": [
                             "api",
                             "user-files",
@@ -11507,9 +10518,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/user-files/166e7bd6-3792-4e10-9b7c-5a5d4aedbb94",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "api",
                         "user-files",
@@ -11560,13 +10569,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/user-files?page=1&per_page=2",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "user-files"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "user-files"],
                       "query": [
                         {
                           "key": "page",
@@ -11627,9 +10631,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/user-files/8357db2f-482c-4f13-9194-a5555d4c1c99",
-                      "host": [
-                        "{{base_url}}"
-                      ],
+                      "host": ["{{base_url}}"],
                       "path": [
                         "api",
                         "user-files",
@@ -11690,13 +10692,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/dashboard",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "dashboard"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "dashboard"]
                     }
                   },
                   "response": []
@@ -11750,13 +10747,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/login?tes=",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "login"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "login"],
                       "query": [
                         {
                           "key": "tes",
@@ -11808,9 +10800,7 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}",
-                      "host": [
-                        "{{base_url}}"
-                      ]
+                      "host": ["{{base_url}}"]
                     }
                   },
                   "response": []
@@ -11851,14 +10841,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/auth/csrf",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "csrf"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "csrf"]
                     }
                   },
                   "response": []
@@ -11894,14 +10878,8 @@
                     ],
                     "url": {
                       "raw": "{{base_url}}/api/auth/csrf",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "csrf"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "csrf"]
                     }
                   },
                   "response": []
@@ -11950,15 +10928,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth/callback/credentials?tes=",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "callback",
-                        "credentials"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "callback", "credentials"],
                       "query": [
                         {
                           "key": "tes",
@@ -12013,14 +10984,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/auth/signin?tes=",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "auth",
-                        "signin"
-                      ],
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "auth", "signin"],
                       "query": [
                         {
                           "key": "tes",
@@ -12076,13 +11041,8 @@
                     },
                     "url": {
                       "raw": "{{base_url}}/api/admin",
-                      "host": [
-                        "{{base_url}}"
-                      ],
-                      "path": [
-                        "api",
-                        "admin"
-                      ]
+                      "host": ["{{base_url}}"],
+                      "path": ["api", "admin"]
                     }
                   },
                   "response": []
@@ -12130,9 +11090,7 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}",
-                  "host": [
-                    "{{base_url}}"
-                  ]
+                  "host": ["{{base_url}}"]
                 }
               },
               "response": []
@@ -12191,13 +11149,8 @@
                 },
                 "url": {
                   "raw": "{{base_url}}/api/user-profile",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "user-profile"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "user-profile"]
                 }
               },
               "response": []
@@ -12251,13 +11204,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/example-protect",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "example-protect"
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "example-protect"]
                 }
               },
               "response": []
@@ -12311,14 +11259,8 @@
                 ],
                 "url": {
                   "raw": "{{base_url}}/api/example-session/",
-                  "host": [
-                    "{{base_url}}"
-                  ],
-                  "path": [
-                    "api",
-                    "example-session",
-                    ""
-                  ]
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "example-session", ""]
                 }
               },
               "response": []

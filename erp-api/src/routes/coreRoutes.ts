@@ -11,13 +11,17 @@ import processRouter from "@/app/api/erp/processRoutes";
 const router = Router();
 
 router.use(async (req, res, next) => {
-  const result = await auth.api.getSession({ headers: fromNodeHeaders(req.headers) });
+  const result = await auth.api.getSession({
+    headers: fromNodeHeaders(req.headers),
+  });
   res.locals.session = result?.session ?? null;
   res.locals.user = result?.user ?? null;
   next();
 });
 
-router.get("/me", authUserMiddleware, (_req, res) => res.json({ user: res.locals.user }));
+router.get("/me", authUserMiddleware, (_req, res) =>
+  res.json({ user: res.locals.user }),
+);
 
 function mountErp(basePath: string) {
   router.get(`${basePath}/_diagnostic`, authUserMiddleware, (req, res) =>

@@ -3,16 +3,16 @@ kind: Service
 metadata:
   name: car-new
   annotations:
-        run.googleapis.com/allow-unauthenticated: "true"  # Allows public access
+    run.googleapis.com/allow-unauthenticated: "true" # Allows public access
 spec:
   template:
     metadata:
       name: car-new-revision-4
     spec:
       containers:
-      - image: gcr.io/project-id/car-new
-        ports:
-          - containerPort: 3000
+        - image: gcr.io/project-id/car-new
+          ports:
+            - containerPort: 3000
       env:
         - name: NEXT_PUBLIC_API_URL
           value: "http://localhost:8090/api/v1"
@@ -26,5 +26,3 @@ spec:
           value: "https://www.octobees.com"
         - name: NEXT_PUBLIC_SPREADSHEET_API
           value: "https://script.google.com/macros/s/AKfycbzGtDvI9LVxbNdq_ijSjXjALQnpgZtMD6e7gj1bJXS7nFg0HdgR2_dtS0afJeglMqw/exec"
-
-

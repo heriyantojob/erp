@@ -1,15 +1,17 @@
-import 'dotenv/config';
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { drizzle } from 'drizzle-orm/node-postgres';
-import { migrate } from 'drizzle-orm/node-postgres/migrator';
-import { Pool } from 'pg';
-import { seedRbac } from './seed-rbac.js';
+import "dotenv/config";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { migrate } from "drizzle-orm/node-postgres/migrator";
+import { Pool } from "pg";
+import { seedRbac } from "./seed-rbac.js";
 
 const connectionString = process.env.DB_URL;
 
 if (!connectionString) {
-  throw new Error('DB_URL is not configured. Add it to the .env file before running migrations.');
+  throw new Error(
+    "DB_URL is not configured. Add it to the .env file before running migrations.",
+  );
 }
 
 /**
@@ -25,8 +27,8 @@ if (!connectionString) {
  * migrations are never touched.
  */
 function repairKnownGeneratedDuplicateMigration() {
-  const migrationsDir = join(process.cwd(), 'drizzle');
-  const e2eMigration = join(migrationsDir, '0008_end_to_end_process.sql');
+  const migrationsDir = join(process.cwd(), "drizzle");
+  const e2eMigration = join(migrationsDir, "0008_end_to_end_process.sql");
   if (!existsSync(e2eMigration)) return;
 
   const duplicateTableMarkers = [
@@ -41,29 +43,29 @@ function repairKnownGeneratedDuplicateMigration() {
     if (!match || Number(match[1]) <= 8) continue;
 
     const path = join(migrationsDir, fileName);
-    const sql = readFileSync(path, 'utf8');
+    const sql = readFileSync(path, "utf8");
     const isKnownDuplicate =
       duplicateTableMarkers.every((marker) => sql.includes(marker)) &&
-      !sql.includes('SAFE SCHEMA BASELINE');
+      !sql.includes("SAFE SCHEMA BASELINE");
 
     if (!isKnownDuplicate) continue;
 
     const backupPath = `${path}.duplicate-generated.bak`;
     if (!existsSync(backupPath)) {
-      writeFileSync(backupPath, sql, 'utf8');
+      writeFileSync(backupPath, sql, "utf8");
     }
 
     writeFileSync(
       path,
       [
-        '-- SAFE SCHEMA BASELINE',
-        '-- Automatically repaired before migration.',
-        '-- This file was generated from an outdated Drizzle snapshot and duplicated migration 0008.',
-        '-- The original SQL is saved beside this file with .duplicate-generated.bak.',
-        'SELECT 1;',
-        '',
-      ].join('\n'),
-      'utf8',
+        "-- SAFE SCHEMA BASELINE",
+        "-- Automatically repaired before migration.",
+        "-- This file was generated from an outdated Drizzle snapshot and duplicated migration 0008.",
+        "-- The original SQL is saved beside this file with .duplicate-generated.bak.",
+        "SELECT 1;",
+        "",
+      ].join("\n"),
+      "utf8",
     );
 
     console.warn(`Repaired duplicate generated migration: ${fileName}`);
@@ -78,12 +80,12 @@ const pool = new Pool({
 });
 
 try {
-  console.info('Checking PostgreSQL connection...');
-  await pool.query('select 1');
+  console.info("Checking PostgreSQL connection...");
+  await pool.query("select 1");
 
-  console.info('Applying Drizzle migrations...');
+  console.info("Applying Drizzle migrations...");
   const db = drizzle(pool);
-  await migrate(db, { migrationsFolder: './drizzle' });
+  await migrate(db, { migrationsFolder: "./drizzle" });
 
   // Fail early with a clear message if migration metadata and SQL files drift apart.
   const userColumns = await pool.query<{ column_name: string }>(`
@@ -94,13 +96,15 @@ try {
       and column_name in ('deleted_at', 'deleted_by_user_id', 'delete_reason')
   `);
   const foundColumns = new Set(userColumns.rows.map((row) => row.column_name));
-  const missingColumns = ['deleted_at', 'deleted_by_user_id', 'delete_reason'].filter(
-    (column) => !foundColumns.has(column),
-  );
+  const missingColumns = [
+    "deleted_at",
+    "deleted_by_user_id",
+    "delete_reason",
+  ].filter((column) => !foundColumns.has(column));
   if (missingColumns.length > 0) {
     throw new Error(
-      `Migration 0006_user_management was not applied. Missing columns: ${missingColumns.join(', ')}. ` +
-      'Check drizzle/meta/_journal.json and the __drizzle_migrations table.',
+      `Migration 0006_user_management was not applied. Missing columns: ${missingColumns.join(", ")}. ` +
+        "Check drizzle/meta/_journal.json and the __drizzle_migrations table.",
     );
   }
 
@@ -116,17 +120,26 @@ try {
   `);
   const auditColumns = new Set(auditTable.rows.map((row) => row.column_name));
   const requiredAuditColumns = [
-    'id', 'actor_user_id', 'action', 'entity_type', 'entity_id',
-    'before_data', 'after_data', 'ip_address', 'created_at',
+    "id",
+    "actor_user_id",
+    "action",
+    "entity_type",
+    "entity_id",
+    "before_data",
+    "after_data",
+    "ip_address",
+    "created_at",
   ];
-  const missingAuditColumns = requiredAuditColumns.filter((column) => !auditColumns.has(column));
+  const missingAuditColumns = requiredAuditColumns.filter(
+    (column) => !auditColumns.has(column),
+  );
   if (missingAuditColumns.length > 0) {
     throw new Error(
-      `audit_logs schema is incomplete. Missing columns: ${missingAuditColumns.join(', ')}.`,
+      `audit_logs schema is incomplete. Missing columns: ${missingAuditColumns.join(", ")}.`,
     );
   }
 
-  console.info('Audit log schema is compatible (append-only).');
+  console.info("Audit log schema is compatible (append-only).");
 
   // stock_transactions is also an immutable ledger. It must match the original
   // ledger migration and must not require soft-delete columns. Corrections are
@@ -137,54 +150,110 @@ try {
     where table_schema = current_schema()
       and table_name = 'stock_transactions'
   `);
-  const stockTransactionColumns = new Set(stockTransactionTable.rows.map((row) => row.column_name));
+  const stockTransactionColumns = new Set(
+    stockTransactionTable.rows.map((row) => row.column_name),
+  );
   const requiredStockTransactionColumns = [
-    'id', 'transaction_number', 'transaction_type', 'transaction_at',
-    'material_code', 'batch_lot_id', 'warehouse_id', 'location_id',
-    'quantity_in', 'quantity_out', 'unit', 'reference_type', 'reference_id',
-    'created_by_user_id', 'created_at',
+    "id",
+    "transaction_number",
+    "transaction_type",
+    "transaction_at",
+    "material_code",
+    "batch_lot_id",
+    "warehouse_id",
+    "location_id",
+    "quantity_in",
+    "quantity_out",
+    "unit",
+    "reference_type",
+    "reference_id",
+    "created_by_user_id",
+    "created_at",
   ];
   const missingStockTransactionColumns = requiredStockTransactionColumns.filter(
     (column) => !stockTransactionColumns.has(column),
   );
   if (missingStockTransactionColumns.length > 0) {
     throw new Error(
-      `stock_transactions schema is incomplete. Missing columns: ${missingStockTransactionColumns.join(', ')}.`,
+      `stock_transactions schema is incomplete. Missing columns: ${missingStockTransactionColumns.join(", ")}.`,
     );
   }
 
-  console.info('Stock transaction schema is compatible (immutable ledger).');
+  console.info("Stock transaction schema is compatible (immutable ledger).");
 
   // Operational transaction tables used by Goods Receipt / Finished Goods Receipt.
   // This catches schema drift before a user discovers it through a form submission.
   const operationalRequirements: Record<string, string[]> = {
     goods_receipt_headers: [
-      'id', 'receipt_number', 'received_at', 'supplier_code', 'warehouse_id',
-      'status', 'external_document_number', 'created_by_user_id',
-      'deleted_at', 'deleted_by_user_id', 'delete_reason', 'created_at', 'updated_at',
+      "id",
+      "receipt_number",
+      "received_at",
+      "supplier_code",
+      "warehouse_id",
+      "status",
+      "external_document_number",
+      "created_by_user_id",
+      "deleted_at",
+      "deleted_by_user_id",
+      "delete_reason",
+      "created_at",
+      "updated_at",
     ],
     goods_receipt_lines: [
-      'id', 'receipt_id', 'line_number', 'material_code', 'batch_lot_id',
-      'location_id', 'quantity', 'unit', 'quality_status',
+      "id",
+      "receipt_id",
+      "line_number",
+      "material_code",
+      "batch_lot_id",
+      "location_id",
+      "quantity",
+      "unit",
+      "quality_status",
     ],
     batch_lots: [
-      'id', 'material_code', 'batch_number', 'received_at', 'expiry_date', 'quality_status',
+      "id",
+      "material_code",
+      "batch_number",
+      "received_at",
+      "expiry_date",
+      "quality_status",
     ],
     stock_balances: [
-      'id', 'material_code', 'batch_lot_id', 'warehouse_id', 'location_id',
-      'quantity_on_hand', 'unit', 'updated_at',
+      "id",
+      "material_code",
+      "batch_lot_id",
+      "warehouse_id",
+      "location_id",
+      "quantity_on_hand",
+      "unit",
+      "updated_at",
     ],
     quality_inspections: [
-      'id', 'receipt_id', 'batch_lot_id', 'status', 'result',
-      'inspected_by_user_id', 'inspected_at', 'created_at', 'updated_at',
+      "id",
+      "receipt_id",
+      "batch_lot_id",
+      "status",
+      "result",
+      "inspected_by_user_id",
+      "inspected_at",
+      "created_at",
+      "updated_at",
     ],
     finished_goods_receipts: [
-      'id', 'production_order_id', 'batch_lot_id', 'location_id',
-      'quantity', 'unit', 'received_at', 'quality_status',
+      "id",
+      "production_order_id",
+      "batch_lot_id",
+      "location_id",
+      "quantity",
+      "unit",
+      "received_at",
+      "quality_status",
     ],
   };
 
-  for (const [tableName, requiredColumns] of Object.entries(operationalRequirements)) {
+  for (const [tableName, requiredColumns] of Object.entries(
+    operationalRequirements,
+  )) {
     const result = await pool.query<{ column_name: string }>(
       `select column_name
        from information_schema.columns
@@ -196,32 +265,32 @@ try {
     const missing = requiredColumns.filter((column) => !available.has(column));
     if (missing.length > 0) {
       throw new Error(
-        `${tableName} schema is incomplete. Missing columns: ${missing.join(', ')}. ` +
-        'Run the latest migrations before starting the ERP API.',
+        `${tableName} schema is incomplete. Missing columns: ${missing.join(", ")}. ` +
+          "Run the latest migrations before starting the ERP API.",
       );
     }
   }
 
-  console.info('Goods Receipt and Finished Goods schema is compatible.');
-  console.info('Migrations applied successfully.');
+  console.info("Goods Receipt and Finished Goods schema is compatible.");
+  console.info("Migrations applied successfully.");
 
-  console.info('Seeding default ERP roles and permissions...');
+  console.info("Seeding default ERP roles and permissions...");
   await seedRbac(db);
-  console.info('Default ERP roles and permissions are ready.');
+  console.info("Default ERP roles and permissions are ready.");
 
   // Import only after all migrations are complete because Better Auth initializes
   // its own database adapter when this module is loaded.
-  console.info('Seeding ERP demo users...');
-  const { seedDemoUsers } = await import('./seed-demo-users.js');
+  console.info("Seeding ERP demo users...");
+  const { seedDemoUsers } = await import("./seed-demo-users.js");
   await seedDemoUsers();
-  console.info('ERP demo users are ready.');
+  console.info("ERP demo users are ready.");
 
-  console.info('Seeding ERP assessment simulation data...');
-  const { seedSimulationData } = await import('./seed-simulation-data.js');
+  console.info("Seeding ERP assessment simulation data...");
+  const { seedSimulationData } = await import("./seed-simulation-data.js");
   await seedSimulationData();
-  console.info('ERP assessment simulation data is ready.');
+  console.info("ERP assessment simulation data is ready.");
 } catch (error) {
-  console.error('Migration failed:', error);
+  console.error("Migration failed:", error);
   process.exitCode = 1;
 } finally {
   await pool.end();

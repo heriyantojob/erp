@@ -1,17 +1,25 @@
-import { pgTable, serial, varchar, text, integer, timestamp,smallint } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  serial,
+  varchar,
+  text,
+  integer,
+  timestamp,
+  smallint,
+} from "drizzle-orm/pg-core";
 
 // Tabel utama posts
 export const tablePosts = pgTable("posts", {
   id: serial("id").primaryKey(),
   // post_type dengan default 'post'
-  post_type: varchar("post_type", { length: 50 }).default('post').notNull(),
+  post_type: varchar("post_type", { length: 50 }).default("post").notNull(),
 
   feature_image: varchar("feature_image", { length: 512 }), // URL atau path image utama
   feature_image_thumbnail: varchar("feature_image_thumbnail", { length: 512 }), // URL thumbnail 420px
   publish_at: timestamp("publish_at"), // tanggal dan jam publish
   created_at: timestamp("created_at").defaultNow().notNull(),
   updated_at: timestamp("updated_at").defaultNow().notNull(),
-    status: smallint("status").default(0).notNull(),
+  status: smallint("status").default(0).notNull(),
 });
 
 // Tabel terjemahan per bahasa dengan slug SEO-friendly

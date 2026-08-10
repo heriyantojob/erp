@@ -1,45 +1,45 @@
 {
-    "compilerOptions": {
-      "target": "ES2020",
-      "module": "esnext",
-      "esModuleInterop": true,
-      "strict": true,
-      "moduleResolution": "node",
-      "noEmit": false,
-   
-      "outDir": "dist",
-      "rootDir": "src",
-   
-      "forceConsistentCasingInFileNames": true,
-      "ignoreDeprecations": "6.0",
-      "skipLibCheck": true,
-      "noUncheckedIndexedAccess": true,
-      "noImplicitAny": true,
-     
-      "baseUrl": ".",
-      "paths": {
-        "@/*": ["./src/*"]
-      },
-      "types": ["node", "jest"],
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "esnext",
+    "esModuleInterop": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "noEmit": false,
+
+    "outDir": "dist",
+    "rootDir": "src",
+
+    "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "6.0",
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitAny": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
     },
-    "tsc-alias": {
-      "resolveFullPaths": true,
-      "verbose": false
-    },
-    "include": [
-      "src/index.ts",
-      "src/server.ts",
-      "src/db/**/*.ts",
-      "src/lib/better-auth/auth.ts",
-      "src/lib/custom-error.ts",
-      "src/lib/storage/**/*.ts",
-      "src/middleware/**/*.ts",
-      "src/routes/index.ts",
-      "src/routes/coreRoutes.ts",
-      "src/app/api/file/**/*.ts",
-      "src/app/api/erp/**/*.ts",
-      "src/utils/logger.ts",
-      "src/modules/**/*.ts"
-    ],
-    "exclude": ["node_modules"]
-   }
+    "types": ["node", "jest"]
+  },
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "verbose": false
+  },
+  "include": [
+    "src/index.ts",
+    "src/server.ts",
+    "src/db/**/*.ts",
+    "src/lib/better-auth/auth.ts",
+    "src/lib/custom-error.ts",
+    "src/lib/storage/**/*.ts",
+    "src/middleware/**/*.ts",
+    "src/routes/index.ts",
+    "src/routes/coreRoutes.ts",
+    "src/app/api/file/**/*.ts",
+    "src/app/api/erp/**/*.ts",
+    "src/utils/logger.ts",
+    "src/modules/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}

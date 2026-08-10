@@ -1,1 +1,15 @@
-{"brand":"ERP File Manager","login":"Sign in","eyebrow":"Simple & secure","title":"Manage your team's files in one place.","description":"Sign in with your account, upload files, and manage the assets you need without irrelevant features.","cta":"Sign in with email","featuresTitle":"Core features","features":["Email and password sign-in","Better Auth session","User file management","Administration pages"]}
+{
+  "brand": "ERP File Manager",
+  "login": "Sign in",
+  "eyebrow": "Simple & secure",
+  "title": "Manage your team's files in one place.",
+  "description": "Sign in with your account, upload files, and manage the assets you need without irrelevant features.",
+  "cta": "Sign in with email",
+  "featuresTitle": "Core features",
+  "features": [
+    "Email and password sign-in",
+    "Better Auth session",
+    "User file management",
+    "Administration pages"
+  ]
+}

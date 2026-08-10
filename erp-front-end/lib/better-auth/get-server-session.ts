@@ -1,6 +1,6 @@
 // lib/better-auth/get-server-session.ts
-import { cookies } from 'next/headers';
-import { authClient } from './auth-client';
+import { cookies } from "next/headers";
+import { authClient } from "./auth-client";
 
 export async function getServerSession() {
   const cookieStore = await cookies();

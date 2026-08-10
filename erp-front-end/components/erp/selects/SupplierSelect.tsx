@@ -79,14 +79,20 @@ export default function SupplierSelect({
     };
   }, [value, selected?.value]);
 
-  const loadOptions = useCallback(async (inputValue: string): Promise<SupplierOption[]> => {
-    try {
-      return await searchSupplierOptions(inputValue);
-    } catch (error) {
-      console.error("[SupplierSelect] Failed to load supplier suggestions", error);
-      return [];
-    }
-  }, []);
+  const loadOptions = useCallback(
+    async (inputValue: string): Promise<SupplierOption[]> => {
+      try {
+        return await searchSupplierOptions(inputValue);
+      } catch (error) {
+        console.error(
+          "[SupplierSelect] Failed to load supplier suggestions",
+          error,
+        );
+        return [];
+      }
+    },
+    [],
+  );
 
   const createManualSupplier = useCallback(
     (inputValue: string) => {

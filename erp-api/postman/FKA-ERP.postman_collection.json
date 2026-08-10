@@ -39,12 +39,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/health",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "health"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
             }
           }
         }
@@ -70,15 +66,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/auth/sign-in/email",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "sign-in",
-                "email"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "sign-in", "email"]
             },
             "body": {
               "mode": "raw",
@@ -120,12 +109,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/me",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "me"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["me"]
             }
           }
         },
@@ -152,14 +137,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/auth/sign-out",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "sign-out"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "sign-out"]
             },
             "body": {
               "mode": "raw",
@@ -191,14 +170,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/erp/security/access",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "erp",
-                "security",
-                "access"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["erp", "security", "access"]
             }
           }
         },
@@ -221,14 +194,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/erp/security/roles",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "erp",
-                "security",
-                "roles"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["erp", "security", "roles"]
             }
           }
         },
@@ -251,14 +218,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/erp/security/users",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "erp",
-                "security",
-                "users"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["erp", "security", "users"]
             }
           }
         },
@@ -285,14 +246,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/erp/security/users",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "erp",
-                "security",
-                "users"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["erp", "security", "users"]
             },
             "body": {
               "mode": "raw",
@@ -335,15 +290,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/erp/security/users/{{userId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "erp",
-                "security",
-                "users",
-                "{{userId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["erp", "security", "users", "{{userId}}"]
             },
             "body": {
               "mode": "raw",
@@ -374,15 +322,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/erp/security/users/{{userId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "erp",
-                "security",
-                "users",
-                "{{userId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["erp", "security", "users", "{{userId}}"]
             },
             "body": {
               "mode": "raw",
@@ -412,15 +353,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/auth/sign-in/email",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "sign-in",
-                "email"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "sign-in", "email"]
             },
             "body": {
               "mode": "raw",
@@ -445,15 +379,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/auth/sign-in/email",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "sign-in",
-                "email"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "sign-in", "email"]
             },
             "body": {
               "mode": "raw",
@@ -478,15 +405,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/auth/sign-in/email",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "sign-in",
-                "email"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "sign-in", "email"]
             },
             "body": {
               "mode": "raw",
@@ -511,15 +431,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/auth/sign-in/email",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "sign-in",
-                "email"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "sign-in", "email"]
             },
             "body": {
               "mode": "raw",

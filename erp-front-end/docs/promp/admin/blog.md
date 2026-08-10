@@ -1,4 +1,4 @@
-pada routes 
+pada routes
 D:\project\code\project real\pictheme\pictheme-curent-version\pictheme-end-user\app\[lang]\t4-admin\blog
 tambahkan fitur crud cms next js
 buat blog list dalam bentuk table
@@ -18,8 +18,3 @@ D:\project\code\project real\pictheme\pictheme-curent-version\pictheme-api-pg\do
 
 buat menyesuai halaman
 https://flowbite-admin-dashboard.vercel.app/crud/users/
-
-
-
-
-

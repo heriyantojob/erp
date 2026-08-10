@@ -1,11 +1,22 @@
 import { erpRequest } from "@/lib/api/erp-client";
 export const businessPartnersApi = {
   list: (init?: RequestInit) => erpRequest<any>("business-partners", init),
-  create: (body: unknown) => erpRequest<any>("business-partners", { method: "POST", body: JSON.stringify(body) }),
-  update: (code: string, body: unknown) => erpRequest<any>(`business-partners/${encodeURIComponent(code)}`, { method: "PUT", body: JSON.stringify(body) }),
-  remove: (code: string, body?: unknown) => erpRequest<any>(`business-partners/${encodeURIComponent(code)}`, { method: "DELETE", ...(body !== undefined ? { body: JSON.stringify(body) } : {}) }),
+  create: (body: unknown) =>
+    erpRequest<any>("business-partners", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  update: (code: string, body: unknown) =>
+    erpRequest<any>(`business-partners/${encodeURIComponent(code)}`, {
+      method: "PUT",
+      body: JSON.stringify(body),
+    }),
+  remove: (code: string, body?: unknown) =>
+    erpRequest<any>(`business-partners/${encodeURIComponent(code)}`, {
+      method: "DELETE",
+      ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
+    }),
 };
-
 
 export type SupplierOption = {
   value: string;
@@ -21,7 +32,10 @@ type BusinessPartnerRow = {
   deletedAt?: string | null;
 };
 
-function normalizeSupplierOptions(rows: BusinessPartnerRow[], keyword = ""): SupplierOption[] {
+function normalizeSupplierOptions(
+  rows: BusinessPartnerRow[],
+  keyword = "",
+): SupplierOption[] {
   const search = keyword.trim().toLowerCase();
 
   return rows
@@ -52,7 +66,9 @@ function normalizeSupplierOptions(rows: BusinessPartnerRow[], keyword = ""): Sup
  * truth. Even if the optimized endpoint is unavailable/stale, a supplier that
  * is visible on the Business Partners page must still be selectable here.
  */
-export async function searchSupplierOptions(keyword = ""): Promise<SupplierOption[]> {
+export async function searchSupplierOptions(
+  keyword = "",
+): Promise<SupplierOption[]> {
   const params = new URLSearchParams();
   if (keyword.trim()) params.set("q", keyword.trim());
   const query = params.toString();
@@ -68,14 +84,19 @@ export async function searchSupplierOptions(keyword = ""): Promise<SupplierOptio
   } catch (error) {
     // Do not hide existing supplier master data just because the specialized
     // suggestion endpoint is unavailable. Fall back to the canonical list.
-    console.warn("[SupplierSelect] supplier-options endpoint failed; using Business Partners fallback", error);
+    console.warn(
+      "[SupplierSelect] supplier-options endpoint failed; using Business Partners fallback",
+      error,
+    );
   }
 
   const rows = await erpRequest<BusinessPartnerRow[]>("business-partners");
   return normalizeSupplierOptions(Array.isArray(rows) ? rows : [], keyword);
 }
 
-export async function findSupplierOptionByCode(code: string): Promise<SupplierOption | null> {
+export async function findSupplierOptionByCode(
+  code: string,
+): Promise<SupplierOption | null> {
   const normalized = code.trim();
   if (!normalized) return null;
 

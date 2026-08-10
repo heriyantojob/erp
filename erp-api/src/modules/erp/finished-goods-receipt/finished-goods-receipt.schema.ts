@@ -12,4 +12,6 @@ export const finishedGoodsReceiptInputSchema = z.object({
   unit: z.string().trim().min(1).max(30),
 });
 
-export type FinishedGoodsReceiptInput = z.infer<typeof finishedGoodsReceiptInputSchema>;
+export type FinishedGoodsReceiptInput = z.infer<
+  typeof finishedGoodsReceiptInputSchema
+>;

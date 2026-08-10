@@ -1,6 +1,5 @@
 docker-compose up --build
 
-
 # Internationalized Routing
 
 Next.js doesn't support internationalized routing in `app` directory out of the box. But you can easily implement it yourself. This example shows how to implement internationalized routing on the Edge.
@@ -25,8 +24,7 @@ pnpm create next-app --example app-dir-i18n-routing i18n-app
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
 
-
-libray 
+libray
 https://mediapipe-studio.webapps.google.com/home
 https://merakiui.com/
 https://mantine.dev
@@ -37,6 +35,7 @@ https://tailblocks.cc/?utm_source=tailkits&utm_medium=referral&utm_campaign=comp
 
 https://everythingcs.dev/blog/nextjs-server-side-pagination-server-components-drizzle-orm/
 baru
+
 # FKA Inventory Frontend
 
 Copy `.env.example` to `.env.local`, set the API URL, then run `npm run dev`.
