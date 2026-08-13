@@ -2,7 +2,11 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import Select, { SingleValue } from "react-select";
-import { formatQuantity, isQuantityField } from "@/lib/format-quantity";
+import {
+  formatQuantity,
+  isQuantityField,
+  normalizeQuantityInput,
+} from "@/lib/format-quantity";
 import { usePathname } from "next/navigation";
 import { getClientDictionary, normalizeLocale } from "@/lib/i18n/client";
 import { materialsApi } from "@/lib/api/erp/materials.api";
@@ -503,7 +507,7 @@ export default function StockPrototypeClient({
                   purchaseOrderId: event.target.value,
                   materialCode: po?.materialCode ?? receipt.materialCode,
                   quantity: po?.quantity
-                    ? String(po.quantity)
+                    ? normalizeQuantityInput(po.quantity)
                     : receipt.quantity,
                   unit: po?.unit ?? receipt.unit,
                 });

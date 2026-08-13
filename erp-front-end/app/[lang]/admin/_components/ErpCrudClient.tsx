@@ -7,7 +7,11 @@ import { materialsApi } from "@/lib/api/erp/materials.api";
 import { businessPartnersApi } from "@/lib/api/erp/business-partners.api";
 import { goodsReceiptsMasterApi } from "@/lib/api/erp/goods-receipts-master.api";
 import { billOfMaterialsApi } from "@/lib/api/erp/bill-of-materials.api";
-import { formatQuantity, isQuantityField } from "@/lib/format-quantity";
+import {
+  formatQuantity,
+  isQuantityField,
+  normalizeQuantityInput,
+} from "@/lib/format-quantity";
 import Select, { SingleValue } from "react-select";
 
 export type ModuleKey =
@@ -189,7 +193,11 @@ export default function ErpCrudClient({ module }: { module: ModuleKey }) {
       Object.fromEntries(
         config.fields.map(({ key }) => [
           key,
-          row[key] == null ? "" : String(row[key]),
+          row[key] == null
+            ? ""
+            : isQuantityField(key)
+              ? normalizeQuantityInput(row[key])
+              : String(row[key]),
         ]),
       ) as Row,
     );

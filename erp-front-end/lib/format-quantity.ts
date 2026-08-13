@@ -26,6 +26,20 @@ export function formatQuantity(
   }).format(number);
 }
 
+/**
+ * Converts an API quantity into the plain decimal syntax required by a number
+ * input. For example, "1.000" becomes "1" and "10000.00" becomes "10000".
+ */
+export function normalizeQuantityInput(value: unknown): string {
+  if (value === null || value === undefined || value === "") return "";
+  const text = String(value).trim();
+  if (!/^-?\d+(?:\.\d+)?$/.test(text)) return text;
+  const normalized = text
+    .replace(/(\.\d*?[1-9])0+$/, "$1")
+    .replace(/\.0+$/, "");
+  return normalized === "-0" ? "0" : normalized;
+}
+
 export function isQuantityField(field: string): boolean {
   return /^(quantity|requiredQuantity|plannedQuantity|quantityOnHand|reservedQuantity|availableQuantity|quantityIn|quantityOut)$/.test(
     field,
