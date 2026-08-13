@@ -206,7 +206,6 @@ export async function ensureSupplierFromBusinessPartner(
 
 export async function findBatch(
   db: any,
-  materialCode: string,
   batchNumber: string,
 ) {
   return (
@@ -218,12 +217,7 @@ export async function findBatch(
         expiryDate: batchLots.expiryDate,
       })
       .from(batchLots)
-      .where(
-        and(
-          eq(batchLots.materialCode, materialCode),
-          eq(batchLots.batchNumber, batchNumber),
-        ),
-      )
+      .where(eq(batchLots.batchNumber, batchNumber))
       .limit(1)
   )[0];
 }

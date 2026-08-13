@@ -1,6 +1,6 @@
 "use client";
 import { FormEvent, useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { getClientDictionary, normalizeLocale } from "@/lib/i18n/client";
 import { materialsApi } from "@/lib/api/erp/materials.api";
 import { stockApi } from "@/lib/api/erp/stock.api";
@@ -24,6 +24,7 @@ type Step =
 type AnyRow = Record<string, any>;
 export default function WorkflowStepClient({ step }: { step: Step }) {
   const path = usePathname();
+  const router = useRouter();
   const d: any = getClientDictionary(
     normalizeLocale(path.split("/")[1] || "en"),
   );
@@ -178,8 +179,10 @@ export default function WorkflowStepClient({ step }: { step: Step }) {
       await run();
       setMessage(t.actionSuccess);
       await load();
+      return true;
     } catch (e) {
       setError(e instanceof Error ? e.message : t.error);
+      return false;
     } finally {
       setSaving(false);
     }
@@ -445,14 +448,18 @@ export default function WorkflowStepClient({ step }: { step: Step }) {
                                 {t.actions.release}
                               </button>
                               <button
-                                onClick={() =>
-                                  action(() =>
+                                onClick={async () => {
+                                  const rejected = await action(() =>
                                     incomingQualityApi.inspect(r.id, {
                                       status: "rejected",
                                       result: `${t.actions.reject}: ${meta.title}`,
                                     }),
-                                  )
-                                }
+                                  );
+                                  if (rejected)
+                                    router.push(
+                                      `/${path.split("/")[1]}/admin/goods-receipt-input`,
+                                    );
+                                }}
                                 className="rounded bg-rose-600 px-2 py-1 text-xs text-white"
                               >
                                 {t.actions.reject}

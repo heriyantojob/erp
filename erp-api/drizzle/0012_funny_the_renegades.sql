@@ -1,0 +1,1 @@
+ALTER TABLE "goods_receipts" DROP CONSTRAINT "goods_receipts_batch_number_unique";

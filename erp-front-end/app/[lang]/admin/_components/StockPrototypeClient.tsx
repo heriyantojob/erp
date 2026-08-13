@@ -68,6 +68,13 @@ type MaterialOption = { value: string; label: string; item: Material };
 type StockOption = { value: string; label: string; stock: Stock };
 type LedgerOption = { value: string; label: string; transaction: LedgerRow };
 
+function batchFifoTimestamp(batchNumber: string) {
+  const match = /^LN\d+-(\d{2})-(\d{2})-(\d{2})$/i.exec(batchNumber.trim());
+  if (!match) return Number.POSITIVE_INFINITY;
+  const [, day, month, year] = match;
+  return Date.UTC(2000 + Number(year), Number(month) - 1, Number(day));
+}
+
 const currentStockColumns = [
   "materialCode",
   "materialName",
@@ -196,12 +203,21 @@ export default function StockPrototypeClient({
       setLedger(stockData);
       setStocks([]);
     } else {
-      setStocks(
+      const visibleStocks =
         warehouseCode
           ? stockData.filter((x: Stock) => x.warehouseCode === warehouseCode)
           : screen === "material-issue"
             ? stockData.filter((x: Stock) => x.warehouseCode === "MAIN")
-            : stockData,
+            : stockData;
+      setStocks(
+        screen === "current-stock"
+          ? [...visibleStocks].sort((a: Stock, b: Stock) => {
+              const byBatchDate =
+                batchFifoTimestamp(a.batchNumber) -
+                batchFifoTimestamp(b.batchNumber);
+              return byBatchDate || a.batchNumber.localeCompare(b.batchNumber);
+            })
+          : visibleStocks,
       );
       setLedger([]);
     }
@@ -266,6 +282,15 @@ export default function StockPrototypeClient({
 
   async function submitReceipt(event: FormEvent) {
     event.preventDefault();
+    const duplicateBatch = receipt.batchNumber.trim().toLowerCase();
+    if (
+      stocks.some(
+        (stock) => stock.batchNumber.trim().toLowerCase() === duplicateBatch,
+      )
+    ) {
+      setError(`Batch number "${receipt.batchNumber}" already exists. Enter a unique batch number.`);
+      return;
+    }
     setSaving(true);
     setMessage("");
     setError("");
@@ -524,6 +549,7 @@ export default function StockPrototypeClient({
               onChange={(event) =>
                 setReceipt({ ...receipt, batchNumber: event.target.value })
               }
+              placeholder="LN01-13-08-26"
               className="mt-1 w-full rounded border p-2"
             />
           </label>

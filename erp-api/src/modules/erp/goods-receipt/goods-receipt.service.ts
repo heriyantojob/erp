@@ -91,15 +91,11 @@ export async function createGoodsReceipt(
       supplierCode = supplier.code;
     }
 
-    let batch = await findBatch(tx, input.materialCode, input.batchNumber);
-    if (
-      batch?.expiryDate &&
-      input.expiryDate &&
-      batch.expiryDate !== input.expiryDate
-    ) {
+    let batch = await findBatch(tx, input.batchNumber);
+    if (batch) {
       throw new Error(
-        `Batch "${input.batchNumber}" already exists with expiry date ${batch.expiryDate}. ` +
-          "Use the same expiry date or create a different batch number.",
+        `Batch number "${input.batchNumber}" already exists. ` +
+          "Enter a unique batch number.",
       );
     }
 
