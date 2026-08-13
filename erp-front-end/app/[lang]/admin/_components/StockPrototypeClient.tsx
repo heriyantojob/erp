@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import Select, { SingleValue } from "react-select";
+import { formatQuantity, isQuantityField } from "@/lib/format-quantity";
 import { usePathname } from "next/navigation";
 import { getClientDictionary, normalizeLocale } from "@/lib/i18n/client";
 import { materialsApi } from "@/lib/api/erp/materials.api";
@@ -256,7 +257,7 @@ export default function StockPrototypeClient({
     () =>
       stocks.map((stock) => ({
         value: stock.id,
-        label: `${stock.materialCode} | Batch ${stock.batchNumber} | ${stock.availableQuantity ?? stock.quantityOnHand} ${stock.unit}`,
+        label: `${stock.materialCode} | Batch ${stock.batchNumber} | ${formatQuantity(stock.availableQuantity ?? stock.quantityOnHand)} ${stock.unit}`,
         stock,
       })),
     [stocks],
@@ -515,7 +516,7 @@ export default function StockPrototypeClient({
                 .filter((x) => x.status === "approved")
                 .map((po) => (
                   <option key={po.id} value={po.id}>
-                    {po.orderNumber} · {po.materialCode} · {po.quantity}{" "}
+                    {po.orderNumber} · {po.materialCode} · {formatQuantity(po.quantity)}{" "}
                     {po.unit}
                   </option>
                 ))}
@@ -652,8 +653,8 @@ export default function StockPrototypeClient({
             <p className="rounded bg-slate-50 p-3 text-sm">
               {t.available}:{" "}
               <strong>
-                {selectedStock.availableQuantity ??
-                  selectedStock.quantityOnHand}{" "}
+                {formatQuantity(selectedStock.availableQuantity ??
+                  selectedStock.quantityOnHand)}{" "}
                 {selectedStock.unit}
               </strong>{" "}
               - {t.batch} {selectedStock.batchNumber} - {t.received}{" "}
@@ -735,7 +736,9 @@ export default function StockPrototypeClient({
                 >
                   {columns.map((column) => (
                     <td key={column} className="px-4 py-3">
-                      {row[column as keyof typeof row] ?? "-"}
+                      {isQuantityField(column)
+                        ? formatQuantity(row[column as keyof typeof row])
+                        : (row[column as keyof typeof row] ?? "-")}
                     </td>
                   ))}
                 </tr>
@@ -846,18 +849,18 @@ export default function StockPrototypeClient({
               <p className="rounded bg-slate-50 p-3 text-sm">
                 {t.onHand}:{" "}
                 <strong>
-                  {selectedReservationStock.quantityOnHand}{" "}
+                  {formatQuantity(selectedReservationStock.quantityOnHand)}{" "}
                   {selectedReservationStock.unit}
                 </strong>{" "}
                 · {t.reserved}:{" "}
                 <strong>
-                  {selectedReservationStock.reservedQuantity ?? "0"}{" "}
+                  {formatQuantity(selectedReservationStock.reservedQuantity ?? "0")}{" "}
                   {selectedReservationStock.unit}
                 </strong>{" "}
                 · {t.available}:{" "}
                 <strong>
-                  {selectedReservationStock.availableQuantity ??
-                    selectedReservationStock.quantityOnHand}{" "}
+                  {formatQuantity(selectedReservationStock.availableQuantity ??
+                    selectedReservationStock.quantityOnHand)}{" "}
                   {selectedReservationStock.unit}
                 </strong>
               </p>
@@ -900,7 +903,7 @@ export default function StockPrototypeClient({
                       <td className="px-4 py-3">{item.materialCode}</td>
                       <td className="px-4 py-3">{item.batchNumber}</td>
                       <td className="px-4 py-3">
-                        {item.quantity} {item.unit}
+                        {formatQuantity(item.quantity)} {item.unit}
                       </td>
                       <td className="px-4 py-3">
                         {item.referenceType}

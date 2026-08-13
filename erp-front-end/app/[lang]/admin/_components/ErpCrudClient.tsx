@@ -7,6 +7,7 @@ import { materialsApi } from "@/lib/api/erp/materials.api";
 import { businessPartnersApi } from "@/lib/api/erp/business-partners.api";
 import { goodsReceiptsMasterApi } from "@/lib/api/erp/goods-receipts-master.api";
 import { billOfMaterialsApi } from "@/lib/api/erp/bill-of-materials.api";
+import { formatQuantity, isQuantityField } from "@/lib/format-quantity";
 import Select, { SingleValue } from "react-select";
 
 export type ModuleKey =
@@ -405,7 +406,9 @@ export default function ErpCrudClient({ module }: { module: ModuleKey }) {
                   >
                     {config.columns.map((column) => (
                       <td key={column} className="px-4 py-3">
-                        {row[column] ?? "-"}
+                        {isQuantityField(column)
+                          ? formatQuantity(row[column])
+                          : (row[column] ?? "-")}
                       </td>
                     ))}
                     <td className="whitespace-nowrap px-4 py-3">

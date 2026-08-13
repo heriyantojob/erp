@@ -11,6 +11,7 @@ import { productionOrderApi } from "@/lib/api/erp/production-order.api";
 import { finishedGoodsReceiptApi } from "@/lib/api/erp/finished-goods-receipt.api";
 import { salesOrderApi } from "@/lib/api/erp/sales-order.api";
 import { deliveryApi } from "@/lib/api/erp/delivery.api";
+import { formatQuantity } from "@/lib/format-quantity";
 import SupplierSelect from "@/components/erp/selects/SupplierSelect";
 type Step =
   | "purchase-requisition"
@@ -279,7 +280,7 @@ export default function WorkflowStepClient({ step }: { step: Step }) {
                 prs.filter((x) => x.status === "approved"),
                 (x) => [
                   x.id,
-                  `${x.requisitionNumber} · ${x.materialCode} · ${x.quantity} ${x.unit}`,
+                  `${x.requisitionNumber} · ${x.materialCode} · ${formatQuantity(x.quantity)} ${x.unit}`,
                 ],
               )}
             {step === "purchase-order" && (
@@ -331,7 +332,7 @@ export default function WorkflowStepClient({ step }: { step: Step }) {
                 sales.filter((x) => x.status === "confirmed"),
                 (x) => [
                   x.id,
-                  `${x.orderNumber} · ${x.materialCode} · ${x.quantity} ${x.unit}`,
+                  `${x.orderNumber} · ${x.materialCode} · ${formatQuantity(x.quantity)} ${x.unit}`,
                 ],
               )}
             {[
@@ -396,7 +397,7 @@ export default function WorkflowStepClient({ step }: { step: Step }) {
                       {r.batchNumber ? ` · ${r.batchNumber}` : ""}
                     </td>
                     <td className="p-3">
-                      {r.quantity || r.plannedQuantity || "-"} {r.unit || ""}
+                      {formatQuantity(r.quantity ?? r.plannedQuantity)} {r.unit || ""}
                     </td>
                     <td className="p-3">
                       {statusBadge(r.status || r.qualityStatus || "-")}
