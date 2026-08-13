@@ -122,9 +122,8 @@ export default function StockPrototypeClient({
   warehouseCode?: string;
 }) {
   const pathname = usePathname();
-  const dictionary = getClientDictionary(
-    normalizeLocale(pathname.split("/")[1] || "en"),
-  );
+  const locale = normalizeLocale(pathname.split("/")[1] || "en");
+  const dictionary = getClientDictionary(locale);
   const t = dictionary.stock;
   const interpolate = (
     template: string,
@@ -257,10 +256,10 @@ export default function StockPrototypeClient({
     () =>
       stocks.map((stock) => ({
         value: stock.id,
-        label: `${stock.materialCode} | Batch ${stock.batchNumber} | ${formatQuantity(stock.availableQuantity ?? stock.quantityOnHand)} ${stock.unit}`,
+        label: `${stock.materialCode} | Batch ${stock.batchNumber} | ${formatQuantity(stock.availableQuantity ?? stock.quantityOnHand, locale)} ${stock.unit}`,
         stock,
       })),
-    [stocks],
+    [stocks, locale],
   );
   const ledgerOptions = useMemo<LedgerOption[]>(
     () =>
@@ -516,7 +515,7 @@ export default function StockPrototypeClient({
                 .filter((x) => x.status === "approved")
                 .map((po) => (
                   <option key={po.id} value={po.id}>
-                    {po.orderNumber} · {po.materialCode} · {formatQuantity(po.quantity)}{" "}
+                    {po.orderNumber} · {po.materialCode} · {formatQuantity(po.quantity, locale)}{" "}
                     {po.unit}
                   </option>
                 ))}
@@ -654,7 +653,7 @@ export default function StockPrototypeClient({
               {t.available}:{" "}
               <strong>
                 {formatQuantity(selectedStock.availableQuantity ??
-                  selectedStock.quantityOnHand)}{" "}
+                  selectedStock.quantityOnHand, locale)}{" "}
                 {selectedStock.unit}
               </strong>{" "}
               - {t.batch} {selectedStock.batchNumber} - {t.received}{" "}
@@ -737,7 +736,7 @@ export default function StockPrototypeClient({
                   {columns.map((column) => (
                     <td key={column} className="px-4 py-3">
                       {isQuantityField(column)
-                        ? formatQuantity(row[column as keyof typeof row])
+                        ? formatQuantity(row[column as keyof typeof row], locale)
                         : (row[column as keyof typeof row] ?? "-")}
                     </td>
                   ))}
@@ -849,18 +848,18 @@ export default function StockPrototypeClient({
               <p className="rounded bg-slate-50 p-3 text-sm">
                 {t.onHand}:{" "}
                 <strong>
-                  {formatQuantity(selectedReservationStock.quantityOnHand)}{" "}
+                  {formatQuantity(selectedReservationStock.quantityOnHand, locale)}{" "}
                   {selectedReservationStock.unit}
                 </strong>{" "}
                 · {t.reserved}:{" "}
                 <strong>
-                  {formatQuantity(selectedReservationStock.reservedQuantity ?? "0")}{" "}
+                  {formatQuantity(selectedReservationStock.reservedQuantity ?? "0", locale)}{" "}
                   {selectedReservationStock.unit}
                 </strong>{" "}
                 · {t.available}:{" "}
                 <strong>
                   {formatQuantity(selectedReservationStock.availableQuantity ??
-                    selectedReservationStock.quantityOnHand)}{" "}
+                    selectedReservationStock.quantityOnHand, locale)}{" "}
                   {selectedReservationStock.unit}
                 </strong>
               </p>
@@ -903,7 +902,7 @@ export default function StockPrototypeClient({
                       <td className="px-4 py-3">{item.materialCode}</td>
                       <td className="px-4 py-3">{item.batchNumber}</td>
                       <td className="px-4 py-3">
-                        {formatQuantity(item.quantity)} {item.unit}
+                        {formatQuantity(item.quantity, locale)} {item.unit}
                       </td>
                       <td className="px-4 py-3">
                         {item.referenceType}

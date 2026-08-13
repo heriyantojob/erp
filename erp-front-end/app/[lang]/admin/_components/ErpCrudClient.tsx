@@ -129,9 +129,8 @@ const label = (key: string) =>
 export default function ErpCrudClient({ module }: { module: ModuleKey }) {
   const config = configs[module];
   const pathname = usePathname();
-  const dictionary = getClientDictionary(
-    normalizeLocale(pathname.split("/")[1] || "en"),
-  );
+  const locale = normalizeLocale(pathname.split("/")[1] || "en");
+  const dictionary = getClientDictionary(locale);
   const copy = { ...dictionary.common, ...dictionary.crud };
   const translatedTitle =
     module === "materials"
@@ -407,7 +406,7 @@ export default function ErpCrudClient({ module }: { module: ModuleKey }) {
                     {config.columns.map((column) => (
                       <td key={column} className="px-4 py-3">
                         {isQuantityField(column)
-                          ? formatQuantity(row[column])
+                          ? formatQuantity(row[column], locale)
                           : (row[column] ?? "-")}
                       </td>
                     ))}

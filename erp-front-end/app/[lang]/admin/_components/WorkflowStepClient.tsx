@@ -25,9 +25,8 @@ type Step =
 type AnyRow = Record<string, any>;
 export default function WorkflowStepClient({ step }: { step: Step }) {
   const path = usePathname();
-  const d: any = getClientDictionary(
-    normalizeLocale(path.split("/")[1] || "en"),
-  );
+  const locale = normalizeLocale(path.split("/")[1] || "en");
+  const d: any = getClientDictionary(locale);
   const t = d.workflow,
     meta = t.steps[step];
   const [rows, setRows] = useState<AnyRow[]>([]),
@@ -280,7 +279,7 @@ export default function WorkflowStepClient({ step }: { step: Step }) {
                 prs.filter((x) => x.status === "approved"),
                 (x) => [
                   x.id,
-                  `${x.requisitionNumber} · ${x.materialCode} · ${formatQuantity(x.quantity)} ${x.unit}`,
+                  `${x.requisitionNumber} · ${x.materialCode} · ${formatQuantity(x.quantity, locale)} ${x.unit}`,
                 ],
               )}
             {step === "purchase-order" && (
@@ -322,7 +321,7 @@ export default function WorkflowStepClient({ step }: { step: Step }) {
             {step === "sales-order" &&
               select(t.fields.stock, "stock", stocks, (x) => [
                 x.id,
-                `${x.materialCode} · ${x.batchNumber} · ${x.availableQuantity} ${x.unit}`,
+                `${x.materialCode} · ${x.batchNumber} · ${formatQuantity(x.availableQuantity, locale)} ${x.unit}`,
               ])}
             {step === "sales-order" && field(t.fields.customer, "customer")}
             {step === "customer-delivery" &&
@@ -332,7 +331,7 @@ export default function WorkflowStepClient({ step }: { step: Step }) {
                 sales.filter((x) => x.status === "confirmed"),
                 (x) => [
                   x.id,
-                  `${x.orderNumber} · ${x.materialCode} · ${formatQuantity(x.quantity)} ${x.unit}`,
+                  `${x.orderNumber} · ${x.materialCode} · ${formatQuantity(x.quantity, locale)} ${x.unit}`,
                 ],
               )}
             {[
@@ -397,7 +396,7 @@ export default function WorkflowStepClient({ step }: { step: Step }) {
                       {r.batchNumber ? ` · ${r.batchNumber}` : ""}
                     </td>
                     <td className="p-3">
-                      {formatQuantity(r.quantity ?? r.plannedQuantity)} {r.unit || ""}
+                      {formatQuantity(r.quantity ?? r.plannedQuantity, locale)} {r.unit || ""}
                     </td>
                     <td className="p-3">
                       {statusBadge(r.status || r.qualityStatus || "-")}

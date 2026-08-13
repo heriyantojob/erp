@@ -1,14 +1,29 @@
 /**
  * PostgreSQL numeric(…, 3) values are returned as strings such as "1.000".
- * Keep the quantity value intact, but omit insignificant trailing zeroes when
- * it is presented to users so "1" never appears to be one thousand.
+ * Present them using the active application's locale while retaining up to
+ * three decimal places used by ERP quantities.
  */
-export function formatQuantity(value: unknown): string {
+type AppLocale = "id" | "en" | "ko";
+
+const numberLocales: Record<AppLocale, string> = {
+  id: "id-ID",
+  en: "en-US",
+  ko: "ko-KR",
+};
+
+export function formatQuantity(
+  value: unknown,
+  language: AppLocale = "en",
+): string {
   if (value === null || value === undefined || value === "") return "-";
   const text = String(value).trim();
   if (!/^-?\d+(?:\.\d+)?$/.test(text)) return text;
-  const normalized = text.replace(/(\.\d*?[1-9])0+$/, "$1").replace(/\.0+$/, "");
-  return normalized === "-0" ? "0" : normalized;
+  const number = Number(text);
+  if (!Number.isFinite(number)) return text;
+  return new Intl.NumberFormat(numberLocales[language], {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 3,
+  }).format(number);
 }
 
 export function isQuantityField(field: string): boolean {
