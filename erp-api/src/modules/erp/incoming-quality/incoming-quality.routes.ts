@@ -220,6 +220,27 @@ router.post(
               eq(goodsReceiptLines.batchLotId, before.batchLotId),
             ),
           );
+        if (x.status === "rejected") {
+          const receipt = (
+            await tx
+              .select({
+                purchaseOrderNumber:
+                  goodsReceiptHeaders.externalDocumentNumber,
+              })
+              .from(goodsReceiptHeaders)
+              .where(eq(goodsReceiptHeaders.id, before.receiptId))
+              .limit(1)
+          )[0];
+
+          if (receipt?.purchaseOrderNumber) {
+            await tx
+              .update(purchaseOrders)
+              .set({ status: "approved", updatedAt: new Date() })
+              .where(
+                eq(purchaseOrders.orderNumber, receipt.purchaseOrderNumber),
+              );
+          }
+        }
         await audit(
           tx,
           res,
