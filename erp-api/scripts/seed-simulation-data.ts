@@ -11,6 +11,8 @@ import {
   goodsReceipts,
   locations,
   materials,
+  purchaseOrders,
+  qualityInspections,
   stockBalances,
   stockTransactions,
   suppliers,
@@ -105,6 +107,21 @@ const BOM_COMPONENTS = [
   { materialCode: "RM-002", requiredQuantity: "16.000", unit: "liter" },
   { materialCode: "RM-003", requiredQuantity: "20.000", unit: "pcs" },
 ] as const;
+
+// This scenario intentionally ends at Incoming Quality. The purchase order is
+// "received" because its goods receipt has been posted, while its inspection
+// remains "pending" so the Incoming Quality page always has test data.
+const INCOMING_QUALITY_SCENARIO = {
+  orderNumber: "PO-SEED-IQ-001",
+  receiptNumber: "GR-SEED-IQ-001",
+  materialCode: "RM-001",
+  batchNumber: "IQ-PO-SEED-001",
+  supplierCode: "SUP-001",
+  receivedAt: "2026-08-13",
+  expiryDate: "2027-08-12",
+  quantity: "10.000",
+  unit: "kg",
+} as const;
 
 async function ensureStorage() {
   let warehouse = (
@@ -448,11 +465,197 @@ async function seedReceipts() {
   }
 }
 
+async function seedIncomingQualityScenario() {
+  const scenario = INCOMING_QUALITY_SCENARIO;
+  const { warehouse, location } = await ensureStorage();
+
+  let purchaseOrder = (
+    await db
+      .select()
+      .from(purchaseOrders)
+      .where(eq(purchaseOrders.orderNumber, scenario.orderNumber))
+      .limit(1)
+  )[0];
+
+  if (!purchaseOrder) {
+    purchaseOrder = (
+      await db
+        .insert(purchaseOrders)
+        .values({
+          orderNumber: scenario.orderNumber,
+          supplierCode: scenario.supplierCode,
+          materialCode: scenario.materialCode,
+          quantity: scenario.quantity,
+          unit: scenario.unit,
+          expectedAt: scenario.receivedAt,
+          status: "received",
+          approvedAt: new Date(`${scenario.receivedAt}T00:00:00.000Z`),
+        })
+        .returning()
+    )[0];
+  } else {
+    purchaseOrder = (
+      await db
+        .update(purchaseOrders)
+        .set({
+          supplierCode: scenario.supplierCode,
+          materialCode: scenario.materialCode,
+          quantity: scenario.quantity,
+          unit: scenario.unit,
+          expectedAt: scenario.receivedAt,
+          status: "received",
+          deletedAt: null,
+          deletedByUserId: null,
+          deleteReason: null,
+          updatedAt: new Date(),
+        })
+        .where(eq(purchaseOrders.id, purchaseOrder.id))
+        .returning()
+    )[0];
+  }
+
+  if (!purchaseOrder) throw new Error("Could not seed Incoming Quality PO.");
+
+  let batch = (
+    await db
+      .select()
+      .from(batchLots)
+      .where(
+        and(
+          eq(batchLots.materialCode, scenario.materialCode),
+          eq(batchLots.batchNumber, scenario.batchNumber),
+        ),
+      )
+      .limit(1)
+  )[0];
+
+  if (!batch) {
+    batch = (
+      await db
+        .insert(batchLots)
+        .values({
+          materialCode: scenario.materialCode,
+          batchNumber: scenario.batchNumber,
+          receivedAt: scenario.receivedAt,
+          expiryDate: scenario.expiryDate,
+          qualityStatus: "quarantine",
+        })
+        .returning()
+    )[0];
+  } else {
+    batch = (
+      await db
+        .update(batchLots)
+        .set({
+          receivedAt: scenario.receivedAt,
+          expiryDate: scenario.expiryDate,
+          qualityStatus: "quarantine",
+          updatedAt: new Date(),
+        })
+        .where(eq(batchLots.id, batch.id))
+        .returning()
+    )[0];
+  }
+
+  if (!batch) throw new Error("Could not seed Incoming Quality batch.");
+
+  let receipt = (
+    await db
+      .select()
+      .from(goodsReceiptHeaders)
+      .where(eq(goodsReceiptHeaders.receiptNumber, scenario.receiptNumber))
+      .limit(1)
+  )[0];
+
+  if (!receipt) {
+    receipt = (
+      await db
+        .insert(goodsReceiptHeaders)
+        .values({
+          receiptNumber: scenario.receiptNumber,
+          receivedAt: scenario.receivedAt,
+          supplierCode: scenario.supplierCode,
+          warehouseId: warehouse.id,
+          status: "posted",
+          externalDocumentNumber: scenario.orderNumber,
+        })
+        .returning()
+    )[0];
+  }
+
+  if (!receipt) throw new Error("Could not seed Incoming Quality receipt.");
+
+  const line = (
+    await db
+      .select()
+      .from(goodsReceiptLines)
+      .where(
+        and(
+          eq(goodsReceiptLines.receiptId, receipt.id),
+          eq(goodsReceiptLines.lineNumber, 1),
+        ),
+      )
+      .limit(1)
+  )[0];
+
+  if (!line) {
+    await db.insert(goodsReceiptLines).values({
+      receiptId: receipt.id,
+      lineNumber: 1,
+      materialCode: scenario.materialCode,
+      batchLotId: batch.id,
+      locationId: location.id,
+      quantity: scenario.quantity,
+      unit: scenario.unit,
+      qualityStatus: "quarantine",
+    });
+  }
+
+  await db
+    .insert(qualityInspections)
+    .values({ receiptId: receipt.id, batchLotId: batch.id, status: "pending" })
+    .onConflictDoNothing();
+
+  const transactionNumber = `SEED-${scenario.receiptNumber}`;
+  const transaction = (
+    await db
+      .select()
+      .from(stockTransactions)
+      .where(eq(stockTransactions.transactionNumber, transactionNumber))
+      .limit(1)
+  )[0];
+  if (!transaction) {
+    await db.insert(stockBalances).values({
+      materialCode: scenario.materialCode,
+      batchLotId: batch.id,
+      warehouseId: warehouse.id,
+      locationId: location.id,
+      quantityOnHand: scenario.quantity,
+      unit: scenario.unit,
+    });
+    await db.insert(stockTransactions).values({
+      transactionNumber,
+      transactionType: "goods_receipt",
+      transactionAt: new Date(`${scenario.receivedAt}T00:00:00.000Z`),
+      materialCode: scenario.materialCode,
+      batchLotId: batch.id,
+      warehouseId: warehouse.id,
+      locationId: location.id,
+      quantityIn: scenario.quantity,
+      quantityOut: "0",
+      unit: scenario.unit,
+      referenceType: "goods_receipt_seed",
+      referenceId: receipt.id,
+    });
+  }
+}
+
 export async function seedSimulationData() {
   await seedMaterials();
   await seedPartners();
   await seedBom();
   await seedReceipts();
+  await seedIncomingQualityScenario();
   console.info("ERP assessment simulation data is ready.");
 }
 
