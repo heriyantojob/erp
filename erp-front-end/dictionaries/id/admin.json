@@ -17,6 +17,7 @@
     "bom": "Bill of Materials",
     "analysis": "Proses Bisnis",
     "users": "Manajemen User",
+    "rolesPermissions": "Roles & Permissions",
     "purchaseRequisition": "01 · Purchase Requisition",
     "purchaseOrder": "02 · Purchase Order",
     "incomingQuality": "04 · Incoming Quality Check",

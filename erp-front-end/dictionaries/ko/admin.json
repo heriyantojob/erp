@@ -17,6 +17,7 @@
     "bom": "자재 명세서",
     "analysis": "비즈니스 프로세스",
     "users": "사용자 관리",
+    "rolesPermissions": "Roles & Permissions",
     "purchaseRequisition": "01 · 구매 요청",
     "purchaseOrder": "02 · 구매 주문",
     "incomingQuality": "04 · 입고 품질 검사",

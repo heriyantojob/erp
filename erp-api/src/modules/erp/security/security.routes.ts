@@ -10,6 +10,8 @@ import {
   businessPartners,
   goodsReceipts,
   materials,
+  permissions,
+  rolePermissions,
   roles,
   user,
   userRoles,
@@ -158,6 +160,110 @@ router.get(
     );
   },
 );
+const roleInput = z.object({
+  code: z.string().trim().min(2).max(100).regex(/^[a-z0-9_-]+$/, "Role code may only use lowercase letters, numbers, _ and -"),
+  name: text,
+  description: z.string().trim().max(1000).optional().nullable(),
+  isSuperadmin: z.boolean().default(false),
+  permissionCodes: z.array(z.string().trim().min(1).max(150)).max(250).default([]),
+});
+const permissionInput = z.object({
+  code: z.string().trim().min(3).max(150).regex(/^[a-z0-9_.-]+$/, "Permission code may only use lowercase letters, numbers, . and -"),
+  name: text,
+  module: z.string().trim().min(2).max(100),
+  description: z.string().trim().max(1000).optional().nullable(),
+});
+async function resolvePermissions(permissionCodes: string[]) {
+  if (!permissionCodes.length) return [] as (typeof permissions.$inferSelect)[];
+  const rows = await db.select().from(permissions).where(isNull(permissions.deletedAt));
+  const selected = permissionCodes.map((code) => rows.find((row) => row.code === code));
+  if (selected.some((permission) => !permission))
+    throw new Error("One or more permission codes are invalid");
+  return selected as (typeof permissions.$inferSelect)[];
+}
+router.get(
+  "/security/roles/details",
+  requireAnyPermission("roles.manage"),
+  async (_req, res) => {
+    const roleRows = await db.select().from(roles).where(isNull(roles.deletedAt)).orderBy(asc(roles.name));
+    const links = await db.select({ roleId: rolePermissions.roleId, code: permissions.code })
+      .from(rolePermissions)
+      .innerJoin(permissions, eq(permissions.id, rolePermissions.permissionId))
+      .where(isNull(permissions.deletedAt));
+    return res.json(roleRows.map((role) => ({ ...role, permissionCodes: links.filter((link) => link.roleId === role.id).map((link) => link.code) })));
+  },
+);
+router.post(
+  "/security/roles",
+  requireAnyPermission("roles.manage"),
+  async (req, res) => {
+    try {
+      const input = roleInput.parse(req.body);
+      const selectedPermissions = await resolvePermissions(input.permissionCodes);
+      const created = await db.transaction(async (tx) => {
+        const row = (await tx.insert(roles).values({
+          code: input.code, name: input.name, description: input.description ?? null,
+          isSuperadmin: input.isSuperadmin,
+        }).returning())[0];
+        if (!row) throw new Error("Role could not be created");
+        if (selectedPermissions.length) await tx.insert(rolePermissions).values(selectedPermissions.map((permission) => ({ roleId: row.id, permissionId: permission.id })));
+        return row;
+      });
+      if (!created) throw new Error("Role could not be created");
+      await audit(db, res, "create", "role", created.id, undefined, input);
+      return res.status(201).json({ ...created, permissionCodes: input.permissionCodes });
+    } catch (error) { return sendApiError(req, res, error); }
+  },
+);
+router.put(
+  "/security/roles/:id",
+  requireAnyPermission("roles.manage"),
+  async (req, res) => {
+    try {
+      const input = roleInput.parse(req.body);
+      const id = String(req.params.id);
+      const before = (await db.select().from(roles).where(and(eq(roles.id, id), isNull(roles.deletedAt))))[0];
+      if (!before) return res.status(404).json({ message: "Role not found" });
+      if (before.isSystem && input.code !== before.code) return res.status(400).json({ message: "System role code cannot be changed" });
+      const selectedPermissions = await resolvePermissions(input.permissionCodes);
+      const updated = await db.transaction(async (tx) => {
+        const row = (await tx.update(roles).set({ code: input.code, name: input.name, description: input.description ?? null, isSuperadmin: input.isSuperadmin, updatedAt: new Date() }).where(eq(roles.id, id)).returning())[0];
+        await tx.delete(rolePermissions).where(eq(rolePermissions.roleId, id));
+        if (selectedPermissions.length) await tx.insert(rolePermissions).values(selectedPermissions.map((permission) => ({ roleId: id, permissionId: permission.id })));
+        return row;
+      });
+      await audit(db, res, "update", "role", id, before, input);
+      return res.json({ ...updated, permissionCodes: input.permissionCodes });
+    } catch (error) { return sendApiError(req, res, error); }
+  },
+);
+router.delete(
+  "/security/roles/:id",
+  requireAnyPermission("roles.manage"),
+  async (req, res) => {
+    const id = String(req.params.id);
+    const row = (await db.select().from(roles).where(and(eq(roles.id, id), isNull(roles.deletedAt))))[0];
+    if (!row) return res.status(404).json({ message: "Role not found" });
+    if (row.isSystem) return res.status(400).json({ message: "System roles cannot be deleted" });
+    await db.update(roles).set({ deletedAt: new Date(), deletedByUserId: res.locals.user?.id, deleteReason: "Deleted from role management", updatedAt: new Date() }).where(eq(roles.id, id));
+    await audit(db, res, "soft_delete", "role", id, row);
+    return res.status(204).send();
+  },
+);
+router.get("/security/permissions", requireAnyPermission("roles.manage", "permissions.manage"), async (_req, res) =>
+  res.json(await db.select().from(permissions).where(isNull(permissions.deletedAt)).orderBy(asc(permissions.module), asc(permissions.code))),
+);
+router.post("/security/permissions", requireAnyPermission("permissions.manage"), async (req, res) => {
+  try { const input = permissionInput.parse(req.body); const row = (await db.insert(permissions).values({ ...input, description: input.description ?? null }).returning())[0]; if (!row) throw new Error("Permission could not be created"); await audit(db, res, "create", "permission", row.id, undefined, input); return res.status(201).json(row); }
+  catch (error) { return sendApiError(req, res, error); }
+});
+router.put("/security/permissions/:id", requireAnyPermission("permissions.manage"), async (req, res) => {
+  try { const input = permissionInput.parse(req.body); const id = String(req.params.id); const before = (await db.select().from(permissions).where(and(eq(permissions.id, id), isNull(permissions.deletedAt))))[0]; if (!before) return res.status(404).json({ message: "Permission not found" }); const row = (await db.update(permissions).set({ ...input, description: input.description ?? null, updatedAt: new Date() }).where(eq(permissions.id, id)).returning())[0]; await audit(db, res, "update", "permission", id, before, input); return res.json(row); }
+  catch (error) { return sendApiError(req, res, error); }
+});
+router.delete("/security/permissions/:id", requireAnyPermission("permissions.manage"), async (req, res) => {
+  const id = String(req.params.id); const row = (await db.select().from(permissions).where(and(eq(permissions.id, id), isNull(permissions.deletedAt))))[0]; if (!row) return res.status(404).json({ message: "Permission not found" }); await db.update(permissions).set({ deletedAt: new Date(), deletedByUserId: res.locals.user?.id, deleteReason: "Deleted from permission management", updatedAt: new Date() }).where(eq(permissions.id, id)); await audit(db, res, "soft_delete", "permission", id, row); return res.status(204).send();
+});
 const userCreateInput = z.object({
   name: text,
   email: z.string().trim().email().max(256),

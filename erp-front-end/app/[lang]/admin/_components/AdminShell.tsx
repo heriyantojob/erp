@@ -155,6 +155,7 @@ export default function AdminShell({
     <nav className="mt-5 grid min-h-0 flex-1 gap-2 overflow-y-auto pr-1">
       <div className="pb-2">
         {navLink(["users", "/users"], closeAfterNavigate)}
+        {navLink(["rolesPermissions", "/roles-permissions"], closeAfterNavigate)}
       </div>
       {group("overview", overviewItems, closeAfterNavigate)}
       {group("process", processItems, closeAfterNavigate)}

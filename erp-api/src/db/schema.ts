@@ -185,6 +185,8 @@ export const roles = pgTable("roles", {
   name: varchar("name", { length: 255 }).notNull(),
   description: text("description"),
   isSystem: boolean("is_system").notNull().default(false),
+  // Super-admin roles bypass the normal permission matrix entirely.
+  isSuperadmin: boolean("is_superadmin").notNull().default(false),
   deletedAt: timestamp("deleted_at", { mode: "date" }),
   deletedByUserId: text("deleted_by_user_id"),
   deleteReason: text("delete_reason"),

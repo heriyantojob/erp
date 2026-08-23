@@ -41,6 +41,7 @@ const roleDefinitions = {
     name: "System Administrator",
     description:
       "Manage users, configuration, roles, and audited business data.",
+    isSuperadmin: true,
     permissions: permissionDefinitions.map(([code]) => code),
   },
   warehouse_user: {
@@ -139,19 +140,33 @@ export async function seedRbac(database: any) {
     const existing = (
       await database.select().from(roles).where(eq(roles.code, code))
     )[0];
-    const role =
-      existing ??
-      (
-        await database
-          .insert(roles)
-          .values({
-            code,
-            name: definition.name,
-            description: definition.description,
-            isSystem: true,
-          })
-          .returning()
-      )[0];
+    const role = existing
+      ? (
+          await database
+            .update(roles)
+            .set({
+              name: definition.name,
+              description: definition.description,
+              isSystem: true,
+              isSuperadmin: definition.isSuperadmin ?? false,
+              updatedAt: new Date(),
+            })
+            .where(eq(roles.id, existing.id))
+            .returning()
+        )[0]
+      : (
+          await database
+            .insert(roles)
+            .values({
+              code,
+              name: definition.name,
+              description: definition.description,
+              isSystem: true,
+              isSuperadmin: definition.isSuperadmin ?? false,
+            })
+            .returning()
+        )[0];
+    if (!role) throw new Error(`Unable to seed role: ${code}`);
     for (const permissionCode of definition.permissions) {
       const permissionId = ids.get(permissionCode);
       if (!permissionId) continue;
